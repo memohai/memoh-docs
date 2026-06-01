@@ -1,43 +1,87 @@
-# Memoh 文档
+# Memoh Docs
 
-这是 Memoh 项目的官方文档。
+<p align="center">
+  <img src="./docs/public/logo.svg" alt="Memoh" width="96" height="96">
+</p>
 
-## 本地开发
+<p align="center">
+  <strong>Documentation source for Memoh.</strong>
+</p>
 
-安装依赖：
+<p align="center">
+  <a href="https://docs.memoh.ai">docs.memoh.ai</a>
+  ·
+  <a href="https://github.com/memohai/Memoh">Memoh</a>
+  ·
+  <a href="./README_CN.md">简体中文</a>
+</p>
+
+This repository contains the public documentation site for [Memoh](https://github.com/memohai/Memoh), a multi-member, long-memory AI agent platform with isolated workspaces, channel integrations, and desktop/server deployment modes.
+
+The product source code lives in [`memohai/Memoh`](https://github.com/memohai/Memoh). This repository only owns the docs site: VitePress config, Markdown pages, screenshots, and blog posts.
+
+## What Is Here
+
+- **Guides** for installation, providers, bots, workspaces, sessions, memory, MCP, channels, email, TTS, scheduled tasks, and slash commands.
+- **English and Chinese docs** under `docs/` and `docs/zh/`.
+- **Static assets** under `docs/public/`, including screenshots and blog media.
+- **VitePress config** under `docs/.vitepress/`.
+
+## Local Development
+
+Use Node.js and pnpm. The repository is a standalone VitePress project.
 
 ```bash
 pnpm install
-```
-
-启动开发服务器：
-
-```bash
 pnpm dev
 ```
 
-文档将在 `http://localhost:5173` 运行。
+The dev server runs at:
 
-## 构建
+```text
+http://localhost:5173
+```
 
-构建生产版本：
+## Build
 
 ```bash
 pnpm build
 ```
 
-预览构建结果：
+Preview the production build:
 
 ```bash
 pnpm preview
 ```
 
-## 部署
+## Project Layout
 
-文档会在 `docs/` 目录发生变化时自动部署到 GitHub Pages。
+```text
+.
+├── docs/
+│   ├── .vitepress/        # VitePress config, nav, sidebars
+│   ├── public/            # Static images, logo, blog media
+│   ├── zh/                # Simplified Chinese documentation
+│   └── *.md               # English documentation pages
+├── package.json
+└── pnpm-lock.yaml
+```
 
-部署地址：https://docs.memoh.ai
+## Contributing
 
-## 手动部署
+Small fixes are best made directly in the relevant Markdown page. For larger changes:
 
-如果需要手动触发部署，可以在 GitHub Actions 页面选择 "Deploy Docs" workflow，然后点击 "Run workflow"。
+1. Run `pnpm dev`.
+2. Edit the docs under `docs/`.
+3. Run `pnpm build`.
+4. Open a pull request with screenshots when the change affects layout or images.
+
+When adding a new page, update the matching sidebar file in `docs/.vitepress/`:
+
+- `en.ts` for English pages
+- `zh.ts` for Chinese pages
+- `blogs.ts` for blog posts
+
+## License
+
+The documentation follows the license of the Memoh project unless a file says otherwise.
