@@ -5,8 +5,9 @@ To use Memoh effectively, you usually configure:
 - one or more **providers** that define how Memoh talks to upstream APIs
 - one or more **models** under those providers
 - optional **speech providers** if you want text-to-speech
+- optional **transcription providers** if you want speech-to-text
 
-The Web UI manages chat and embedding providers/models from the **Models** page. Speech models are managed separately from [TTS Providers](/tts-providers/index.md).
+The Web UI manages chat and embedding providers/models from the **Models** page. Speech models are managed from [TTS Providers](/tts-providers/index.md), and transcription models are managed from the Transcription settings page.
 
 ---
 
@@ -48,9 +49,22 @@ Memoh currently supports these client types:
 | `google-generative-ai` | Google Gemini API |
 | `openai-codex` | OpenAI Codex / ChatGPT-backed coding workflow with OAuth |
 | `github-copilot` | GitHub Copilot with device OAuth |
-| `edge-speech` | Speech-only provider type for Microsoft Edge Read Aloud |
+| `edge-speech` | Speech provider type for Microsoft Edge Read Aloud |
+| `openai-speech` | OpenAI-compatible text-to-speech providers |
+| `openai-transcription` | OpenAI-compatible speech-to-text providers |
+| `openrouter-speech` | OpenRouter speech providers |
+| `openrouter-transcription` | OpenRouter transcription providers |
+| `elevenlabs-speech` | ElevenLabs speech providers |
+| `elevenlabs-transcription` | ElevenLabs transcription providers |
+| `deepgram-speech` | Deepgram speech providers |
+| `deepgram-transcription` | Deepgram transcription providers |
+| `minimax-speech` | MiniMax speech providers |
+| `volcengine-speech` | Volcengine speech providers |
+| `alibabacloud-speech` | Alibaba Cloud speech providers |
+| `microsoft-speech` | Microsoft speech providers |
+| `google-transcription` | Google transcription providers |
 
-`edge-speech` is for speech synthesis, not for chat. Configure it through [TTS Providers](/tts-providers/index.md), not as your main chat provider.
+Speech and transcription client types are for audio workflows, not for chat. Configure speech through [TTS Providers](/tts-providers/index.md) and transcription through the Transcription settings page. Exact model and voice availability depends on the configured provider template and upstream account.
 
 ---
 
@@ -93,18 +107,20 @@ You can also add models manually when you already know the upstream model ID.
 
 ## Model Types
 
-Memoh distinguishes three model types:
+Memoh distinguishes four model types:
 
 | Type | Purpose |
 |------|---------|
 | `chat` | Main LLMs for conversation, tool use, reasoning, and image generation |
 | `embedding` | Vector models for memory and retrieval |
 | `speech` | Text-to-speech models used by TTS providers |
+| `transcription` | Speech-to-text models used by transcription providers |
 
 Important distinction:
 
 - The **Models** page is primarily where you manage `chat` and `embedding` models.
 - `speech` models are exposed through [TTS Providers](/tts-providers/index.md).
+- `transcription` models are exposed through the Transcription settings page.
 
 ---
 
@@ -165,25 +181,41 @@ Use embedding models with memory providers or any feature that relies on vector 
 
 ---
 
-## Speech Models
+## Speech And Transcription Models
 
 Speech models are managed from [TTS Providers](/tts-providers/index.md), not from the standard chat provider flow.
 
-Current built-in example:
+Current speech provider categories include:
 
-- **Edge TTS** via `edge-speech`
+- Edge via `edge-speech`
+- OpenAI-compatible via `openai-speech`
+- OpenRouter via `openrouter-speech`
+- ElevenLabs via `elevenlabs-speech`
+- Deepgram via `deepgram-speech`
+- MiniMax via `minimax-speech`
+- Volcengine via `volcengine-speech`
+- Alibaba Cloud via `alibabacloud-speech`
+- Microsoft via `microsoft-speech`
 
-This separation matters because speech models have voice, format, speed, and pitch settings that do not apply to chat or embedding models.
+Transcription models are managed from the Transcription settings page. Current transcription provider categories include:
+
+- OpenAI-compatible via `openai-transcription`
+- OpenRouter via `openrouter-transcription`
+- ElevenLabs via `elevenlabs-transcription`
+- Deepgram via `deepgram-transcription`
+- Google via `google-transcription`
+
+This separation matters because audio models have provider-specific voice, format, speed, pitch, language, and recognition settings that do not apply to chat or embedding models.
 
 ---
 
 ## Recommended Mental Model
 
-For most bots, think in terms of three parallel model roles:
+For most bots, think in terms of parallel model roles:
 
 - **Chat model** for normal conversations
 - **Embedding model** for memory search
-- **Speech / image models** for side capabilities such as TTS and image generation
+- **Speech / transcription / image models** for side capabilities such as TTS, speech-to-text, and image generation
 
 You do not need to force one model to do everything.
 
@@ -193,3 +225,4 @@ You do not need to force one model to do everything.
 
 - To assign chat, image, memory, and TTS settings to a bot, see [Bot Management](/getting-started/bot).
 - To configure speech providers and speech models, see [TTS Providers](/tts-providers/index.md).
+- To configure speech-to-text, open the Transcription settings page in the Web UI.

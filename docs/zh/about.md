@@ -55,13 +55,14 @@ Memoh 把浏览器和 GUI 操作分成几层：
 
 ### 会话与 Discuss 模式
 
-每个机器人有多路 **会话**，自带上下文。常见五类：
+每个机器人有多路 **会话**，自带上下文。当前有六类：
 
 - **Chat**：普通面向人的对话。
 - **Discuss**：偏观察；模型先组织判断，只有用发送类动作时才真正对频道说话。
 - **Heartbeat**：按间隔自动跑的任务会话。
 - **Schedule**：由 cron 触发的任务会话。
 - **Subagent**：委派子智能体时产生的会话。
+- **ACP Agent**：由 Agents/ACP 工作流创建的编码智能体会话。
 
 在渠道里可以用 `/new` 等切会话，网页端也有会话侧栏，可看上下文占用、缓存命中、用到的技能等。
 
@@ -73,11 +74,15 @@ Memoh 把浏览器和 GUI 操作分成几层：
 
 ### 工具、技能、MCP、超市
 
-内置能力包括：网页搜索与拉取、workspace 文件编辑和命令执行、Browser Use、Computer Use、记忆检索与管理、发消息/邮件、TTS、子智能体、可复用 **技能** 模块、外部 **MCP** 服务，以及从 **超市** 装技能和 MCP 模板。
+内置能力包括：网页搜索与拉取、workspace 文件编辑和命令执行、Browser Use、Computer Use、记忆检索与管理、发消息/邮件、TTS、子智能体、可复用 **技能** 模块、可暴露技能和 MCP 资源的 **插件**、外部 **MCP** 服务，以及从 **超市** 装技能和 MCP 模板。
 
 ### 供应商与模型
 
-支持多种对接方式，例如 OpenAI Chat/Responses、Anthropic Messages、Google、Codex、GitHub Copilot、Edge 朗读等。模型按 **chat / embedding / speech** 分角色。文生图走兼容的 chat/图像能力，不单独做一层“图像供应商系统”。
+支持多种对接方式，例如 OpenAI Chat/Responses、Anthropic Messages、Google、Codex、GitHub Copilot，以及语音合成和语音转写相关 provider 模板。模型按 **chat / embedding / speech / transcription** 分角色。
+
+语音合成 provider 类别包括 Edge、OpenAI 兼容、OpenRouter、ElevenLabs、Deepgram、MiniMax、火山引擎、阿里云、Microsoft。语音转写 provider 类别包括 OpenAI 兼容、OpenRouter、ElevenLabs、Deepgram、Google。具体模型、音色和语言取决于你配置的 provider 模板与上游账号。
+
+文生图走兼容的 chat/图像能力，不单独做一层“图像供应商系统”。
 
 ### 运维与界面
 

@@ -49,6 +49,10 @@ export const en = [
         link: '/getting-started/sessions.md'
       },
       {
+        text: 'Agents / ACP',
+        link: '/getting-started/acp.md'
+      },
+      {
         text: 'Access Control',
         link: '/getting-started/access.md'
       },
@@ -71,6 +75,10 @@ export const en = [
       {
         text: 'Supermarket',
         link: '/getting-started/supermarket.md'
+      },
+      {
+        text: 'Plugins',
+        link: '/getting-started/plugins.md'
       },
       {
         text: 'MCP',

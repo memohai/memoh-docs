@@ -25,21 +25,23 @@ Once created, clicking on a bot card takes you to its **Detail Page**, where you
 |-----|-------------|
 | **Overview** | Health checks for workspace runtime, database, channels, and memory. |
 | **General** | Core runtime settings: chat/title/image models, memory/search/TTS bindings, timezone, language, reasoning, and danger zone. |
-| **Container** | Container-backed workspace lifecycle, snapshots, data export/import. |
 | **Desktop** | Workspace display runtime, headed browser availability, and active display sessions. |
+| **Container** | Container-backed workspace lifecycle, snapshots, data export/import. |
 | **Network** | Workspace network and overlay provider status/actions. |
-| **Tool Approval** | Human approval settings for tools that require confirmation. |
 | **Memory** | Browse, search, create, edit, and compact memories. |
 | **Platforms** | Channel configurations such as Telegram, Discord, Feishu, QQ, Matrix, WeCom, WeChat, Misskey, DingTalk, and Web. |
 | **Access** | ACL rules and default access behavior. |
+| **Tool Approval** | Human approval settings for tools that require confirmation. |
+| **Agents** | ACP-compatible coding agents, such as Codex and Claude Code, that can be enabled for chat workspace use. |
 | **Email** | Email bindings and outbox. |
-| **Terminal** | Interactive terminal access to the bot workspace runtime. |
-| **Files** | File manager for the bot workspace filesystem. |
+| **Plugins** | Installed plugin status, authentication needs, exposed resources, and uninstall/purge actions. |
 | **MCP** | MCP connection management (Stdio, Remote, OAuth). |
 | **Heartbeat** | Heartbeat configuration, model selection, and execution logs. |
 | **Compaction** | Session context compaction settings and logs. |
 | **Schedule** | Cron-based scheduled tasks and execution logs. |
 | **Skills** | Markdown-based skill files that define bot personality and capabilities. |
+
+Files, Terminal, Display, and Browser workspace tools live in the chat workspace UI. They are not Bot Detail tabs. Use the workspace side of a chat when you need to inspect files, run shell commands, or operate the bot's browser/desktop.
 
 ---
 
@@ -59,6 +61,8 @@ If you have not created these resources yet, set them up first:
 - [Built-in Memory Provider](/memory-providers/builtin.md)
 - [Search Providers](/getting-started/search-provider.md)
 - [TTS Providers](/tts-providers/index.md)
+- [Agents / ACP](/getting-started/acp.md)
+- [Plugins](/getting-started/plugins.md)
 
 ---
 
@@ -82,7 +86,7 @@ The **General** tab contains the settings that shape everyday conversation behav
 Notes:
 
 - The **Image Generation Model** is intentionally separate from the normal chat model so you can dedicate an image-capable model only to visual generation tasks.
-- The **TTS Model** comes from the [TTS Providers](/tts-providers/index.md) system and uses `speech` models such as Edge TTS voices.
+- The **TTS Model** comes from the [TTS Providers](/tts-providers/index.md) system and uses `speech` models from the configured speech provider.
 - The selected chat model's `context_window` influences session status reporting and [Context Compaction](/getting-started/compaction).
 
 ---
@@ -139,13 +143,15 @@ If you manage bot settings through the API or custom automation, the settings sc
 
 ---
 
-## Terminal Tab
+## Workspace Files And Terminal
 
-The **Terminal** tab provides interactive shell access to the bot's workspace runtime:
+Workspace files and terminals are available from the chat workspace UI after the bot has an active workspace runtime. From there you can:
 
-- Open multiple terminal tabs simultaneously.
-- Execute commands directly inside the workspace.
-- Requires the workspace runtime to be running.
+- Browse and edit files in the bot workspace.
+- Open terminal sessions inside the workspace runtime.
+- Use display/browser tools when the bot workspace has display support enabled.
+
+For file workflows, see [Files](/getting-started/files.md). For headed browser and desktop workflows, see [Browser / Computer Use](/getting-started/browser-computer-use.md).
 
 ---
 

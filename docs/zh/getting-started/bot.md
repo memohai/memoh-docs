@@ -23,21 +23,23 @@
 |-----|------|
 | **Overview** | workspace runtime、库、渠道、记忆等健康检查 |
 | **General** | 主模型/标题/生图、记忆/搜索/浏览器/TTS、时区、语言、推理、危险区 |
-| **Container** | 容器型 workspace 起停、快照、导入导出 |
 | **Desktop** | Workspace display runtime、有头浏览器、实时 display session |
+| **Container** | 容器型 workspace 起停、快照、导入导出 |
 | **Network** | Workspace 网络与 overlay provider 状态/动作 |
-| **Tool Approval** | 需要人类确认的工具审批设置 |
 | **Memory** | 浏览、搜、建、改、压记忆 |
 | **Platforms** | 各消息渠道（Telegram、Discord、飞书等） |
 | **Access** | ACL 与默认通过/拒绝 |
+| **Tool Approval** | 需要人类确认的工具审批设置 |
+| **Agents** | 可为聊天 workspace 启用的 ACP 兼容编码智能体，如 Codex、Claude Code |
 | **Email** | 邮服绑定、发件箱 |
-| **Terminal** | 进入 workspace runtime 的交互 shell |
-| **Files** | workspace 文件管理 |
+| **Plugins** | 已安装插件状态、授权需求、暴露资源、卸载/清理动作 |
 | **MCP** | 连接（Stdio/Remote/OAuth） |
 | **Heartbeat** | 心跳间隔、模型、执行日志 |
 | **Compaction** | 会话压缩设置与记录 |
 | **Schedule** | cron 与日志 |
 | **Skills** | 技能 Markdown |
+
+Files、Terminal、Display、Browser 这些 workspace 工具在聊天 workspace UI 里，不是机器人详情页 tab。要看文件、跑 shell、操作浏览器或桌面，请进入对应聊天里的 workspace 区域。
 
 ---
 
@@ -54,6 +56,8 @@
 - [内置记忆提供方](/zh/memory-providers/builtin.md)（如用）
 - [搜索提供方](/zh/getting-started/search-provider.md)
 - [TTS 提供方](/zh/tts-providers/index)
+- [Agents / ACP](/zh/getting-started/acp.md)
+- [插件](/zh/getting-started/plugins.md)
 
 ---
 
@@ -75,7 +79,7 @@
 注意：
 
 - **生图模型** 故意与主聊天模型分开，好单独换「更擅长出图」的。
-- **TTS** 在 [TTS 提供方](/zh/tts-providers/index.md) 里用 `speech` 模型，例如 Edge。
+- **TTS** 在 [TTS 提供方](/zh/tts-providers/index.md) 里用所配置语音提供方的 `speech` 模型。
 - `context_window` 会影响状态栏展示和 [会话压缩](/zh/getting-started/compaction.md) 的体感。
 
 ---
@@ -115,9 +119,15 @@
 
 ---
 
-## 终端
+## Workspace 文件与终端
 
-**Terminal** tab 开交互 shell，可多 tab；workspace runtime 正在运行时才能用。
+Workspace 文件和终端在聊天 workspace UI 里使用；前提是该机器人有可用的 workspace runtime。这里可以：
+
+- 浏览、编辑 workspace 文件
+- 打开 workspace 内的终端会话
+- 在开启 display 后使用浏览器/桌面相关工具
+
+文件流程见 [文件](/zh/getting-started/files.md)，有头浏览器和桌面操作见 [Browser / Computer Use](/zh/getting-started/browser-computer-use.md)。
 
 ---
 

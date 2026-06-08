@@ -14,7 +14,7 @@ Sessions are scoped per bot — each bot manages its own set of sessions indepen
 
 ## Session Types
 
-Memoh uses five session types to separate different kinds of bot activity:
+Memoh uses six session types to separate different kinds of bot activity:
 
 | Type | Description |
 |------|-------------|
@@ -23,8 +23,9 @@ Memoh uses five session types to separate different kinds of bot activity:
 | **Heartbeat** | Automatically created when a bot's heartbeat triggers. Contains the bot's periodic autonomous activity. |
 | **Schedule** | Created when a scheduled task fires. Contains the bot's execution of a cron-triggered command. |
 | **Subagent** | Created when the bot delegates a task to a subagent. Contains the subagent's independent work context. |
+| **ACP Agent** | Created when an enabled ACP-compatible coding agent is used from the chat workspace. |
 
-Only **Chat** and **Discuss** sessions are directly created from user conversation routes. The other session types are system-managed and appear as read-only records in the session list.
+Only **Chat** and **Discuss** sessions are directly created from normal user conversation routes such as `/new chat` and `/new discuss`. **ACP Agent** sessions are created and managed by the Agents/ACP workflow, while the other session types are system-managed and appear as read-only records in the session list.
 
 ### Chat vs Discuss
 
@@ -57,6 +58,8 @@ Supported forms:
 - `/new chat` — force a normal chat session
 - `/new discuss` — force a discuss session
 
+ACP Agent sessions are not created through `/new`. They are started from the chat workspace after an ACP-compatible agent has been enabled on the bot.
+
 Default routing behavior:
 
 - **Web UI local chat** defaults to `chat`
@@ -88,7 +91,7 @@ The Web UI provides a session sidebar where you can:
 - Click the **New Session** button to create a fresh chat session.
 - Switch between existing sessions by clicking on them.
 - Search sessions by content.
-- Filter sessions by type (`chat`, `discuss`, `heartbeat`, `schedule`, `subagent`).
+- Filter sessions by type (`chat`, `discuss`, `heartbeat`, `schedule`, `subagent`, `acp_agent`).
 - Rename or delete sessions.
 
 ---
@@ -137,4 +140,5 @@ The panel also exposes **Compact Now**, which triggers immediate [Context Compac
 - **Heartbeat** sessions are created on each heartbeat trigger. You can view what the bot did during its autonomous activity by opening the corresponding heartbeat session.
 - **Schedule** sessions are created when a scheduled task runs. Check these to see the results of cron-triggered commands.
 - **Subagent** sessions track delegated tasks. They show the independent work context of each subagent invocation.
+- **ACP Agent** sessions track coding-agent work started from the chat workspace through the Agents/ACP integration.
 - **Memory** is shared across all sessions for a bot — memories extracted from one session are available in all others.
