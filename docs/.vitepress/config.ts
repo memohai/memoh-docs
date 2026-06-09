@@ -1,5 +1,4 @@
 import { defineConfig } from 'vitepress'
-import { blogs } from './blogs'
 import { en } from './en'
 import { zh } from './zh'
 
@@ -28,14 +27,12 @@ export default defineConfig({
   themeConfig: {
     siteTitle: 'Memoh',
     sidebar: {
-      '/blogs/': blogs,
       '/': en,
       '/zh/': zh,
     },
 
     nav: [
       { text: 'Guides', link: '/' },
-      { text: 'Blogs', link: '/blogs/' },
     ],
 
     logo: {

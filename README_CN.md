@@ -18,13 +18,13 @@
 
 这个仓库保存 [Memoh](https://github.com/memohai/Memoh) 的公开文档。Memoh 是一个多成员、长期记忆的 AI 智能体平台，支持独立 workspace、跨渠道接入，以及桌面版和服务器部署。
 
-产品代码在 [`memohai/Memoh`](https://github.com/memohai/Memoh)。这个仓库只负责文档站：VitePress 配置、Markdown 页面、截图和博客内容。
+产品代码在 [`memohai/Memoh`](https://github.com/memohai/Memoh)。这个仓库只负责文档站：VitePress 配置、Markdown 页面和截图。
 
 ## 这里有什么
 
 - 安装、供应商、机器人、workspace、会话、记忆、MCP、渠道、邮件、TTS、计划任务和斜杠命令等指南。
 - 英文和中文文档，分别位于 `docs/` 和 `docs/zh/`。
-- 截图、logo、博客图片等静态资源，位于 `docs/public/`。
+- 截图、logo 等静态资源，位于 `docs/public/`。
 - VitePress 配置，位于 `docs/.vitepress/`。
 
 ## 本地开发
@@ -60,7 +60,7 @@ pnpm preview
 .
 ├── docs/
 │   ├── .vitepress/        # VitePress 配置、导航、侧边栏
-│   ├── public/            # 静态图片、logo、博客媒体
+│   ├── public/            # 静态图片和 logo
 │   ├── zh/                # 中文文档
 │   └── *.md               # 英文文档页面
 ├── package.json
@@ -80,7 +80,6 @@ pnpm preview
 
 - 英文页面：`docs/.vitepress/en.ts`
 - 中文页面：`docs/.vitepress/zh.ts`
-- 博客文章：`docs/.vitepress/blogs.ts`
 
 ## 许可证
 

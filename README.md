@@ -18,13 +18,13 @@
 
 This repository contains the public documentation site for [Memoh](https://github.com/memohai/Memoh), a multi-member, long-memory AI agent platform with isolated workspaces, channel integrations, and desktop/server deployment modes.
 
-The product source code lives in [`memohai/Memoh`](https://github.com/memohai/Memoh). This repository only owns the docs site: VitePress config, Markdown pages, screenshots, and blog posts.
+The product source code lives in [`memohai/Memoh`](https://github.com/memohai/Memoh). This repository only owns the docs site: VitePress config, Markdown pages, and screenshots.
 
 ## What Is Here
 
 - **Guides** for installation, providers, bots, workspaces, sessions, memory, MCP, channels, email, TTS, scheduled tasks, and slash commands.
 - **English and Chinese docs** under `docs/` and `docs/zh/`.
-- **Static assets** under `docs/public/`, including screenshots and blog media.
+- **Static assets** under `docs/public/`, including screenshots and logos.
 - **VitePress config** under `docs/.vitepress/`.
 
 ## Local Development
@@ -60,7 +60,7 @@ pnpm preview
 .
 ├── docs/
 │   ├── .vitepress/        # VitePress config, nav, sidebars
-│   ├── public/            # Static images, logo, blog media
+│   ├── public/            # Static images and logo
 │   ├── zh/                # Simplified Chinese documentation
 │   └── *.md               # English documentation pages
 ├── package.json
@@ -80,7 +80,6 @@ When adding a new page, update the matching sidebar file in `docs/.vitepress/`:
 
 - `en.ts` for English pages
 - `zh.ts` for Chinese pages
-- `blogs.ts` for blog posts
 
 ## License
 
