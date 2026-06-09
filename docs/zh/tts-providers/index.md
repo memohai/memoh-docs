@@ -19,14 +19,27 @@ Memoh 支持把字变成声音。可以分三层想：
 
 ---
 
-## 当前文档里有的
+## 可用语音合成提供方
 
 | 提供方 | 说明 |
 |--------|------|
 | [Edge TTS](/zh/tts-providers/edge.md) | 走 Edge 公开朗读接口，无 key，多语音 |
+| OpenAI 兼容语音合成 | 使用 OpenAI 兼容的语音合成 API，需要匹配 provider 模板和凭据。 |
+| OpenRouter Speech | 使用 OpenRouter 可用的语音合成路线，具体取决于账号能力。 |
+| ElevenLabs Speech | 使用 ElevenLabs 语音合成模型和音色。 |
+| Deepgram Speech | 使用 Deepgram 语音合成模型。 |
+| MiniMax Speech | 使用 MiniMax 语音合成模型。 |
+| 火山引擎语音合成 | 使用火山引擎语音合成模型。 |
+| 阿里云语音合成 | 使用阿里云语音合成模型。 |
+| Microsoft Speech | 使用 Microsoft 语音合成模型。 |
+
+具体模型、音色、格式和语言取决于你配置的 provider 模板与上游账号。
+
+语音转写与 TTS 分开管理。Memoh 也支持 OpenAI 兼容、OpenRouter、ElevenLabs、Deepgram、Google 等语音转写 provider 类别。
 
 ---
 
 ## 接下来
 
-- 配 [Edge TTS](/zh/tts-providers/edge.md)
+- 配无 key 的 Edge 选项：[Edge TTS](/zh/tts-providers/edge.md)
+- 了解音频 provider client type 与模型关系：[供应商与模型](/zh/getting-started/provider-and-model.md)

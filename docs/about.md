@@ -58,13 +58,14 @@ This distinction is important: context compaction changes the active session win
 
 ### Sessions And Discuss Mode
 
-Each bot maintains independent **sessions** that preserve context. Memoh currently uses five session types:
+Each bot maintains independent **sessions** that preserve context. Memoh currently uses six session types:
 
 - **Chat** — regular user-facing conversations
 - **Discuss** — deliberative sessions where the bot can think through work and decide what to send outward
 - **Heartbeat** — periodic autonomous sessions
 - **Schedule** — cron-triggered task sessions
 - **Subagent** — delegated task sessions
+- **ACP Agent** — coding-agent sessions created by the Agents/ACP workflow
 
 You can start or route sessions with slash commands such as `/new`, and the Web UI exposes a session status panel with metrics like context usage, cache hit rate, and used skills.
 
@@ -85,18 +86,22 @@ Bots can use a rich set of built-in capabilities, including:
 - messaging, email, and TTS
 - subagents for delegated work
 - **skills** for reusable behavior modules
+- **plugins** that can expose bundled skills and MCP resources
 - **MCP** connections for external tool servers
 - **Supermarket** for curated skill and MCP template installation
 
 ### Providers And Models
 
-Memoh supports multiple provider client types, including OpenAI-compatible chat completions, OpenAI Responses API, Anthropic Messages, Google Generative AI, OpenAI Codex, GitHub Copilot, and Edge Speech/TTS.
+Memoh supports multiple provider client types, including OpenAI-compatible chat completions, OpenAI Responses API, Anthropic Messages, Google Generative AI, OpenAI Codex, GitHub Copilot, and provider templates for speech and transcription workflows.
 
 Models are separated by role:
 
 - **chat** models for normal interaction
 - **embedding** models for vector memory and search
-- **speech** models for TTS
+- **speech** models for text-to-speech
+- **transcription** models for speech-to-text
+
+Speech provider categories include Edge, OpenAI-compatible, OpenRouter, ElevenLabs, Deepgram, MiniMax, Volcengine, Alibaba Cloud, and Microsoft. Transcription provider categories include OpenAI-compatible, OpenRouter, ElevenLabs, Deepgram, and Google. Exact model and voice availability depends on the provider template and the upstream account you configure.
 
 Image generation is configured through compatible chat/image models rather than a separate image-provider system.
 

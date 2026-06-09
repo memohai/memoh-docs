@@ -4,9 +4,10 @@
 
 - 一个或多个 **供应商**（怎么连上游 API）
 - 其下的 **模型**
-- 若要朗读，再配 **语音相关**（见 [TTS](/zh/tts-providers/index.md)）
+- 若要朗读，再配 **语音合成**（见 [TTS](/zh/tts-providers/index.md)）
+- 若要把语音转文字，再配 **语音转写**
 
-聊天与 embedding 在 **Models** 页管理；语音模型在 TTS 流程里单走。
+聊天与 embedding 在 **Models** 页管理；语音合成模型在 TTS 流程里单走，语音转写模型在 Transcription 设置页管理。
 
 ---
 
@@ -45,9 +46,22 @@
 | `google-generative-ai` | Google Gemini |
 | `openai-codex` | Codex / ChatGPT 那套，OAuth |
 | `github-copilot` | Copilot，设备码 OAuth |
-| `edge-speech` | 仅朗读，走 Edge |
+| `edge-speech` | Edge 朗读 |
+| `openai-speech` | OpenAI 兼容语音合成 |
+| `openai-transcription` | OpenAI 兼容语音转写 |
+| `openrouter-speech` | OpenRouter 语音合成 |
+| `openrouter-transcription` | OpenRouter 语音转写 |
+| `elevenlabs-speech` | ElevenLabs 语音合成 |
+| `elevenlabs-transcription` | ElevenLabs 语音转写 |
+| `deepgram-speech` | Deepgram 语音合成 |
+| `deepgram-transcription` | Deepgram 语音转写 |
+| `minimax-speech` | MiniMax 语音合成 |
+| `volcengine-speech` | 火山引擎语音合成 |
+| `alibabacloud-speech` | 阿里云语音合成 |
+| `microsoft-speech` | Microsoft 语音合成 |
+| `google-transcription` | Google 语音转写 |
 
-`edge-speech` 不能当主聊天用，请走 [TTS 提供方](/zh/tts-providers/index.md)。
+语音合成与语音转写类型不能当主聊天用。语音合成走 [TTS 提供方](/zh/tts-providers/index.md)，语音转写走 Transcription 设置页。具体模型、音色和语言取决于 provider 模板与上游账号。
 
 ---
 
@@ -87,8 +101,9 @@
 | `chat` | 对话、工具、推理、文生图等 |
 | `embedding` | 向量化、记忆检索 |
 | `speech` | 朗读，挂在 TTS |
+| `transcription` | 语音转文字，挂在 Transcription |
 
-**Models** 页主要管 chat / embedding；speech 在 [TTS](/zh/tts-providers/index.md)。
+**Models** 页主要管 chat / embedding；speech 在 [TTS](/zh/tts-providers/index.md)，transcription 在 Transcription 设置页。
 
 ---
 
@@ -135,19 +150,39 @@ Memoh 用来：
 
 ---
 
-## 语音模型
+## 语音合成与转写模型
 
-在 [TTS 提供方](/zh/tts-providers/index.md) 配，不跟普通 chat 供应商混流。例如 Edge TTS 走 `edge-speech`。语音还有音色、格式、语速、音高，和 chat/embedding 不是一路设置。
+语音合成在 [TTS 提供方](/zh/tts-providers/index.md) 配，不跟普通 chat 供应商混流。当前语音合成类别包括：
+
+- Edge：`edge-speech`
+- OpenAI 兼容：`openai-speech`
+- OpenRouter：`openrouter-speech`
+- ElevenLabs：`elevenlabs-speech`
+- Deepgram：`deepgram-speech`
+- MiniMax：`minimax-speech`
+- 火山引擎：`volcengine-speech`
+- 阿里云：`alibabacloud-speech`
+- Microsoft：`microsoft-speech`
+
+语音转写在 Transcription 设置页配。当前语音转写类别包括：
+
+- OpenAI 兼容：`openai-transcription`
+- OpenRouter：`openrouter-transcription`
+- ElevenLabs：`elevenlabs-transcription`
+- Deepgram：`deepgram-transcription`
+- Google：`google-transcription`
+
+音频模型有 provider 专属的音色、格式、语速、音高、语言和识别设置，和 chat/embedding 不是一路设置。
 
 ---
 
 ## 怎么记省事
 
-对多数机器人，可以分三条线想：
+对多数机器人，可以分几条线想：
 
 - **Chat**：日常说人话
 - **Embedding**：记忆
-- **Speech / 生图模型**：边能力
+- **Speech / Transcription / 生图模型**：边能力
 
 不必强行一模型全包。
 
@@ -157,3 +192,4 @@ Memoh 用来：
 
 - 给机器人绑聊天、生图、浏览器、记忆、朗读等：[机器人](/zh/getting-started/bot.md)
 - 配语音提供方与语音模型：[TTS 提供方](/zh/tts-providers/index.md)
+- 配语音转文字：打开 Web UI 的 Transcription 设置页
