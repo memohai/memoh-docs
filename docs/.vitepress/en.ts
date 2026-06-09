@@ -28,6 +28,10 @@ export const en = [
         link: '/installation/workspace-backends.md'
       },
       {
+        text: 'Containerd + Kata',
+        link: '/installation/kata-containerd.md'
+      },
+      {
         text: 'SQLite',
         link: '/installation/sqlite.md'
       },

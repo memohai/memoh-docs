@@ -11,6 +11,7 @@ export const zh = [
       { text: 'Desktop 桌面版', link: '/zh/installation/desktop.md' },
       { text: 'Server Deploy', link: '/zh/installation/docker.md' },
       { text: 'Workspace backend', link: '/zh/installation/workspace-backends.md' },
+      { text: 'Containerd + Kata', link: '/zh/installation/kata-containerd.md' },
       { text: 'SQLite 部署', link: '/zh/installation/sqlite.md' },
     ],
   },
