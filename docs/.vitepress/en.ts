@@ -1,212 +1,89 @@
-
-export const en = [
-  {
-    text: 'Overview',
-    link: '/index.md'
-  },
-  {
-    text: 'About Memoh',
-    link: '/about.md'
-  },
-  {
-    text: 'Installation',
-    items: [
-      {
-        text: 'Overview',
-        link: '/installation/index.md'
-      },
-      {
-        text: 'Desktop',
-        link: '/installation/desktop.md'
-      },
-      {
-        text: 'Server Deploy',
-        link: '/installation/docker.md'
-      },
-      {
-        text: 'Workspace Backends',
-        link: '/installation/workspace-backends.md'
-      },
-      {
-        text: 'Containerd + Kata',
-        link: '/installation/kata-containerd.md'
-      },
-      {
-        text: 'SQLite',
-        link: '/installation/sqlite.md'
-      },
-    ]
-  },
-  {
-    text: 'Getting Started',
-    items: [
-      {
-        text: 'LLM Provider',
-        link: '/getting-started/provider-and-model.md'
-      },
-      {
-        text: 'Bot',
-        link: '/getting-started/bot.md'
-      },
-      {
-        text: 'Sessions',
-        link: '/getting-started/sessions.md'
-      },
-      {
-        text: 'Agents / ACP',
-        link: '/getting-started/acp.md'
-      },
-      {
-        text: 'Access Control',
-        link: '/getting-started/access.md'
-      },
-      {
-        text: 'Workspace / Container',
-        link: '/getting-started/container.md'
-      },
-      {
-        text: 'Browser / Computer Use',
-        link: '/getting-started/browser-computer-use.md'
-      },
-      {
-        text: 'Files',
-        link: '/getting-started/files.md'
-      },
-      {
-        text: 'Skills',
-        link: '/getting-started/skills.md'
-      },
-      {
-        text: 'Supermarket',
-        link: '/getting-started/supermarket.md'
-      },
-      {
-        text: 'Plugins',
-        link: '/getting-started/plugins.md'
-      },
-      {
-        text: 'MCP',
-        link: '/getting-started/mcp.md'
-      },
-      {
-        text: 'Channels',
-        link: '/getting-started/channels.md'
-      },
-      {
-        text: 'Memory',
-        link: '/getting-started/memory.md'
-      },
-      {
-        text: 'Context Compaction',
-        link: '/getting-started/compaction.md'
-      },
-      {
-        text: 'Heartbeat',
-        link: '/getting-started/heartbeat.md'
-      },
-      {
-        text: 'Scheduled Tasks',
-        link: '/getting-started/schedule.md'
-      },
-      {
-        text: 'Web Search',
-        link: '/getting-started/search-provider.md'
-      },
-      {
-        text: 'Email',
-        link: '/getting-started/email.md'
-      },
-      {
-        text: 'Slash Commands',
-        link: '/getting-started/slash-commands.md'
-      },
-    ]
-  },
-  {
-    text: 'Memory Providers',
-    items: [
-      {
-        text: 'Overview',
-        link: '/memory-providers/index.md'
-      },
-      {
-        text: 'Built-in',
-        link: '/memory-providers/builtin.md'
-      },
-      {
-        text: 'Mem0',
-        link: '/memory-providers/mem0.md'
-      },
-      {
-        text: 'OpenViking',
-        link: '/memory-providers/openviking.md'
-      },
-    ]
-  },
-  {
-    text: 'TTS Providers',
-    items: [
-      {
-        text: 'Overview',
-        link: '/tts-providers/index.md'
-      },
-      {
-        text: 'Edge TTS',
-        link: '/tts-providers/edge.md'
-      },
-    ]
-  },
-  {
-    text: 'Channels',
-    items: [
-      {
-        text: 'Overview',
-        link: '/channels/index.md'
-      },
-      {
-        text: 'Telegram',
-        link: '/channels/telegram.md'
-      },
-      {
-        text: 'Feishu (Lark)',
-        link: '/channels/feishu.md'
-      },
-      {
-        text: 'Discord',
-        link: '/channels/discord.md'
-      },
-      {
-        text: 'QQ',
-        link: '/channels/qq.md'
-      },
-      {
-        text: 'Matrix',
-        link: '/channels/matrix.md'
-      },
-      {
-        text: 'Misskey',
-        link: '/channels/misskey.md'
-      },
-      {
-        text: 'DingTalk',
-        link: '/channels/dingtalk.md'
-      },
-      {
-        text: 'WeCom (WeWork)',
-        link: '/channels/wecom.md'
-      },
-      {
-        text: 'WeChat',
-        link: '/channels/weixin.md'
-      },
-      {
-        text: 'WeChat Official Account',
-        link: '/channels/wechatoa.md'
-      },
-      {
-        text: 'Slack',
-        link: '/channels/slack.md'
-      }
-    ]
-  },
-]
+export const en = {
+  '/guides/': [
+    {
+      text: 'Guides',
+      items: [
+        { text: 'Overview', link: '/guides/' },
+        { text: 'Bot', link: '/guides/bot.md' },
+        { text: 'Sessions', link: '/guides/sessions.md' },
+        { text: 'Agents / ACP', link: '/guides/acp.md' },
+        { text: 'Access Control', link: '/guides/access.md' },
+        { text: 'Workspace', link: '/guides/container.md' },
+        { text: 'Browser / Computer Use', link: '/guides/browser-computer-use.md' },
+        { text: 'Files', link: '/guides/files.md' },
+        { text: 'Skills', link: '/guides/skills.md' },
+        { text: 'Supermarket', link: '/guides/supermarket.md' },
+        { text: 'Plugins', link: '/guides/plugins.md' },
+        { text: 'MCP', link: '/guides/mcp.md' },
+        { text: 'Memory', link: '/guides/memory.md' },
+        { text: 'Compaction', link: '/guides/compaction.md' },
+        { text: 'Heartbeat', link: '/guides/heartbeat.md' },
+        { text: 'Scheduled Tasks', link: '/guides/schedule.md' },
+        { text: 'Email', link: '/guides/email.md' },
+        { text: 'Slash Commands', link: '/guides/slash-commands.md' },
+      ],
+    },
+  ],
+  '/integrations/': [
+    {
+      text: 'Integrations',
+      items: [
+        { text: 'Overview', link: '/integrations/' },
+      ],
+    },
+    {
+      text: 'Channels',
+      items: [
+        { text: 'Overview', link: '/integrations/channels/' },
+        { text: 'Slack', link: '/integrations/channels/slack.md' },
+        { text: 'Telegram', link: '/integrations/channels/telegram.md' },
+        { text: 'Feishu (Lark)', link: '/integrations/channels/feishu.md' },
+        { text: 'Discord', link: '/integrations/channels/discord.md' },
+        { text: 'QQ', link: '/integrations/channels/qq.md' },
+        { text: 'Matrix', link: '/integrations/channels/matrix.md' },
+        { text: 'Misskey', link: '/integrations/channels/misskey.md' },
+        { text: 'DingTalk', link: '/integrations/channels/dingtalk.md' },
+        { text: 'WeCom (WeWork)', link: '/integrations/channels/wecom.md' },
+        { text: 'WeChat', link: '/integrations/channels/weixin.md' },
+        { text: 'WeChat Official Account', link: '/integrations/channels/wechatoa.md' },
+      ],
+    },
+    {
+      text: 'Providers',
+      items: [
+        { text: 'Overview', link: '/integrations/providers/' },
+        { text: 'LLM Providers', link: '/integrations/providers/llm.md' },
+        { text: 'Web Search Providers', link: '/integrations/providers/web-search.md' },
+      ],
+    },
+    {
+      text: 'Memory Providers',
+      items: [
+        { text: 'Overview', link: '/integrations/providers/memory/' },
+        { text: 'Built-in', link: '/integrations/providers/memory/builtin.md' },
+        { text: 'Mem0', link: '/integrations/providers/memory/mem0.md' },
+        { text: 'OpenViking', link: '/integrations/providers/memory/openviking.md' },
+      ],
+    },
+    {
+      text: 'TTS Providers',
+      items: [
+        { text: 'Overview', link: '/integrations/providers/tts/' },
+        { text: 'Edge TTS', link: '/integrations/providers/tts/edge.md' },
+      ],
+    },
+  ],
+  '/self-hosted/': [
+    {
+      text: 'Self-hosted',
+      items: [
+        { text: 'Overview', link: '/self-hosted/' },
+        { text: 'Desktop', link: '/self-hosted/desktop.md' },
+        { text: 'Server Deploy', link: '/self-hosted/docker.md' },
+        { text: 'Workspace Backends', link: '/self-hosted/workspace-backends.md' },
+        { text: 'Containerd + Kata', link: '/self-hosted/kata-containerd.md' },
+        { text: 'SQLite', link: '/self-hosted/sqlite.md' },
+      ],
+    },
+  ],
+}

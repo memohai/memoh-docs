@@ -16,23 +16,39 @@ export default defineConfig({
   locales: {
     root: {
       label: 'English',
-      lang: 'en'
+      lang: 'en',
+      themeConfig: {
+        nav: [
+          { text: 'Guides', link: '/guides/' },
+          { text: 'Integrations', link: '/integrations/' },
+          { text: 'Self-hosted', link: '/self-hosted/' },
+        ],
+      },
     },
     zh: {
       label: '简体中文',
       lang: 'zh',
+      themeConfig: {
+        nav: [
+          { text: '教程', link: '/zh/guides/' },
+          { text: '集成', link: '/zh/integrations/' },
+          { text: '自托管', link: '/zh/self-hosted/' },
+        ],
+      },
     }
   },
 
   themeConfig: {
     siteTitle: 'Memoh',
     sidebar: {
-      '/': en,
-      '/zh/': zh,
+      ...en,
+      ...zh,
     },
 
     nav: [
-      { text: 'Guides', link: '/' },
+      { text: 'Guides', link: '/guides/' },
+      { text: 'Integrations', link: '/integrations/' },
+      { text: 'Self-hosted', link: '/self-hosted/' },
     ],
 
     logo: {

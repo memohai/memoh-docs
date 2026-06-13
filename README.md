@@ -22,7 +22,9 @@ The product source code lives in [`memohai/Memoh`](https://github.com/memohai/Me
 
 ## What Is Here
 
-- **Guides** for installation, providers, bots, workspaces, sessions, memory, MCP, channels, email, TTS, scheduled tasks, and slash commands.
+- **Guides** for SaaS/product usage: bots, workspaces, sessions, memory, MCP, email, scheduled tasks, and slash commands.
+- **Integrations** for channels and providers, including messaging platforms, LLMs, memory providers, TTS, and web search.
+- **Self-hosted** docs for Desktop, Server Deploy, workspace backends, Kata, and SQLite.
 - **English and Chinese docs** under `docs/` and `docs/zh/`.
 - **Static assets** under `docs/public/`, including screenshots and logos.
 - **VitePress config** under `docs/.vitepress/`.
@@ -60,9 +62,12 @@ pnpm preview
 .
 ├── docs/
 │   ├── .vitepress/        # VitePress config, nav, sidebars
+│   ├── guides/            # Product usage guides
+│   ├── integrations/      # Channels and providers
+│   ├── self-hosted/       # Open-source deployment docs
 │   ├── public/            # Static images and logo
 │   ├── zh/                # Simplified Chinese documentation
-│   └── *.md               # English documentation pages
+│   └── *.md               # Landing and compatibility pages
 ├── package.json
 └── pnpm-lock.yaml
 ```
