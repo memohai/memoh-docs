@@ -22,7 +22,9 @@
 
 ## 这里有什么
 
-- 安装、供应商、机器人、workspace、会话、记忆、MCP、渠道、邮件、TTS、计划任务和斜杠命令等指南。
+- **教程**：面向 SaaS/产品使用，覆盖机器人、workspace、会话、记忆、MCP、邮件、计划任务和斜杠命令。
+- **集成**：渠道和提供方，包括消息平台、LLM、记忆提供方、TTS 和网页搜索。
+- **自托管**：Desktop、Server Deploy、workspace backend、Kata 和 SQLite 等开源部署文档。
 - 英文和中文文档，分别位于 `docs/` 和 `docs/zh/`。
 - 截图、logo 等静态资源，位于 `docs/public/`。
 - VitePress 配置，位于 `docs/.vitepress/`。
@@ -60,9 +62,12 @@ pnpm preview
 .
 ├── docs/
 │   ├── .vitepress/        # VitePress 配置、导航、侧边栏
+│   ├── guides/            # 产品使用教程
+│   ├── integrations/      # 渠道和提供方
+│   ├── self-hosted/       # 开源自托管部署文档
 │   ├── public/            # 静态图片和 logo
 │   ├── zh/                # 中文文档
-│   └── *.md               # 英文文档页面
+│   └── *.md               # 入口和兼容页面
 ├── package.json
 └── pnpm-lock.yaml
 ```

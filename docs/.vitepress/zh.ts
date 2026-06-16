@@ -1,76 +1,89 @@
-export const zh = [
-  {
-    text: '文档总览',
-    link: '/zh/index.md',
-  },
-  {
-    text: '关于与安装',
-    items: [
-      { text: '了解 Memoh', link: '/zh/about.md' },
-      { text: '安装选择', link: '/zh/installation/index.md' },
-      { text: 'Desktop 桌面版', link: '/zh/installation/desktop.md' },
-      { text: 'Server Deploy', link: '/zh/installation/docker.md' },
-      { text: 'Workspace backend', link: '/zh/installation/workspace-backends.md' },
-      { text: 'Containerd + Kata', link: '/zh/installation/kata-containerd.md' },
-      { text: 'SQLite 部署', link: '/zh/installation/sqlite.md' },
-    ],
-  },
-  {
-    text: '入门',
-    items: [
-      { text: '供应商与模型', link: '/zh/getting-started/provider-and-model.md' },
-      { text: '机器人', link: '/zh/getting-started/bot.md' },
-      { text: '会话', link: '/zh/getting-started/sessions.md' },
-      { text: 'Agents / ACP', link: '/zh/getting-started/acp.md' },
-      { text: '访问控制', link: '/zh/getting-started/access.md' },
-      { text: 'Workspace / 容器', link: '/zh/getting-started/container.md' },
-      { text: 'Browser / Computer Use', link: '/zh/getting-started/browser-computer-use.md' },
-      { text: '文件', link: '/zh/getting-started/files.md' },
-      { text: '技能', link: '/zh/getting-started/skills.md' },
-      { text: '超市', link: '/zh/getting-started/supermarket.md' },
-      { text: '插件', link: '/zh/getting-started/plugins.md' },
-      { text: 'MCP', link: '/zh/getting-started/mcp.md' },
-      { text: '渠道（入门）', link: '/zh/getting-started/channels.md' },
-      { text: '长期记忆', link: '/zh/getting-started/memory.md' },
-      { text: '会话上下文压缩', link: '/zh/getting-started/compaction.md' },
-      { text: '心跳', link: '/zh/getting-started/heartbeat.md' },
-      { text: '计划任务', link: '/zh/getting-started/schedule.md' },
-      { text: '搜索提供方', link: '/zh/getting-started/search-provider.md' },
-      { text: '邮件', link: '/zh/getting-started/email.md' },
-      { text: '斜杠命令', link: '/zh/getting-started/slash-commands.md' },
-    ],
-  },
-  {
-    text: '记忆提供方',
-    items: [
-      { text: '总览', link: '/zh/memory-providers/index.md' },
-      { text: '内置', link: '/zh/memory-providers/builtin.md' },
-      { text: 'Mem0', link: '/zh/memory-providers/mem0.md' },
-      { text: 'OpenViking', link: '/zh/memory-providers/openviking.md' },
-    ],
-  },
-  {
-    text: 'TTS',
-    items: [
-      { text: '总览', link: '/zh/tts-providers/index.md' },
-      { text: 'Edge TTS', link: '/zh/tts-providers/edge.md' },
-    ],
-  },
-  {
-    text: '渠道',
-    items: [
-      { text: '总览', link: '/zh/channels/index.md' },
-      { text: 'Slack', link: '/zh/channels/slack.md' },
-      { text: 'Telegram', link: '/zh/channels/telegram.md' },
-      { text: '飞书', link: '/zh/channels/feishu.md' },
-      { text: 'Discord', link: '/zh/channels/discord.md' },
-      { text: 'QQ', link: '/zh/channels/qq.md' },
-      { text: 'Matrix', link: '/zh/channels/matrix.md' },
-      { text: 'Misskey', link: '/zh/channels/misskey.md' },
-      { text: '钉钉', link: '/zh/channels/dingtalk.md' },
-      { text: '企微', link: '/zh/channels/wecom.md' },
-      { text: '微信', link: '/zh/channels/weixin.md' },
-      { text: '微信公众号', link: '/zh/channels/wechatoa.md' },
-    ],
-  },
-]
+export const zh = {
+  '/zh/guides/': [
+    {
+      text: '教程',
+      items: [
+        { text: '总览', link: '/zh/guides/' },
+        { text: '机器人', link: '/zh/guides/bot.md' },
+        { text: '会话', link: '/zh/guides/sessions.md' },
+        { text: 'Agents / ACP', link: '/zh/guides/acp.md' },
+        { text: '访问控制', link: '/zh/guides/access.md' },
+        { text: 'Workspace', link: '/zh/guides/container.md' },
+        { text: 'Browser / Computer Use', link: '/zh/guides/browser-computer-use.md' },
+        { text: '文件', link: '/zh/guides/files.md' },
+        { text: '技能', link: '/zh/guides/skills.md' },
+        { text: '超市', link: '/zh/guides/supermarket.md' },
+        { text: '插件', link: '/zh/guides/plugins.md' },
+        { text: 'MCP', link: '/zh/guides/mcp.md' },
+        { text: '长期记忆', link: '/zh/guides/memory.md' },
+        { text: '上下文压缩', link: '/zh/guides/compaction.md' },
+        { text: '心跳', link: '/zh/guides/heartbeat.md' },
+        { text: '计划任务', link: '/zh/guides/schedule.md' },
+        { text: '邮件', link: '/zh/guides/email.md' },
+        { text: '斜杠命令', link: '/zh/guides/slash-commands.md' },
+      ],
+    },
+  ],
+  '/zh/integrations/': [
+    {
+      text: '集成',
+      items: [
+        { text: '总览', link: '/zh/integrations/' },
+      ],
+    },
+    {
+      text: '渠道',
+      items: [
+        { text: '总览', link: '/zh/integrations/channels/' },
+        { text: 'Slack', link: '/zh/integrations/channels/slack.md' },
+        { text: 'Telegram', link: '/zh/integrations/channels/telegram.md' },
+        { text: '飞书', link: '/zh/integrations/channels/feishu.md' },
+        { text: 'Discord', link: '/zh/integrations/channels/discord.md' },
+        { text: 'QQ', link: '/zh/integrations/channels/qq.md' },
+        { text: 'Matrix', link: '/zh/integrations/channels/matrix.md' },
+        { text: 'Misskey', link: '/zh/integrations/channels/misskey.md' },
+        { text: '钉钉', link: '/zh/integrations/channels/dingtalk.md' },
+        { text: '企微', link: '/zh/integrations/channels/wecom.md' },
+        { text: '微信', link: '/zh/integrations/channels/weixin.md' },
+        { text: '微信公众号', link: '/zh/integrations/channels/wechatoa.md' },
+      ],
+    },
+    {
+      text: '提供方',
+      items: [
+        { text: '总览', link: '/zh/integrations/providers/' },
+        { text: 'LLM 提供方', link: '/zh/integrations/providers/llm.md' },
+        { text: '搜索提供方', link: '/zh/integrations/providers/web-search.md' },
+      ],
+    },
+    {
+      text: '记忆提供方',
+      items: [
+        { text: '总览', link: '/zh/integrations/providers/memory/' },
+        { text: '内置', link: '/zh/integrations/providers/memory/builtin.md' },
+        { text: 'Mem0', link: '/zh/integrations/providers/memory/mem0.md' },
+        { text: 'OpenViking', link: '/zh/integrations/providers/memory/openviking.md' },
+      ],
+    },
+    {
+      text: 'TTS 提供方',
+      items: [
+        { text: '总览', link: '/zh/integrations/providers/tts/' },
+        { text: 'Edge TTS', link: '/zh/integrations/providers/tts/edge.md' },
+      ],
+    },
+  ],
+  '/zh/self-hosted/': [
+    {
+      text: '自托管',
+      items: [
+        { text: '总览', link: '/zh/self-hosted/' },
+        { text: 'Desktop 桌面版', link: '/zh/self-hosted/desktop.md' },
+        { text: 'Server Deploy', link: '/zh/self-hosted/docker.md' },
+        { text: 'Workspace Backend', link: '/zh/self-hosted/workspace-backends.md' },
+        { text: 'Containerd + Kata', link: '/zh/self-hosted/kata-containerd.md' },
+        { text: 'SQLite 部署', link: '/zh/self-hosted/sqlite.md' },
+      ],
+    },
+  ],
+}

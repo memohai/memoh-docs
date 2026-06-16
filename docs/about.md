@@ -111,9 +111,9 @@ The Web UI is designed so you can manage the whole system without editing config
 
 ## Where To Start
 
-- **[Installation Overview](/installation/)** — choose Desktop or Server Deploy
-- **[Providers And Models](/getting-started/provider-and-model)** — configure model access
-- **[Bot Setup](/getting-started/bot)** — create and configure a bot
-- **[Browser / Computer Use](/getting-started/browser-computer-use)** — understand headed browser and desktop automation
-- **[Channels](/getting-started/channels)** — choose where bots are reachable
-- **[Skills](/getting-started/skills)** and **[Supermarket](/getting-started/supermarket)** — extend what bots can do
+- **[Bot Setup](/guides/bot)** — create and configure a bot
+- **[Providers And Models](/integrations/providers/llm)** — configure model access
+- **[Channels](/integrations/channels/)** — choose where bots are reachable
+- **[Browser / Computer Use](/guides/browser-computer-use)** — understand headed browser and desktop automation
+- **[Skills](/guides/skills)** and **[Supermarket](/guides/supermarket)** — extend what bots can do
+- **[Self-hosted](/self-hosted/)** — deploy and operate your own Memoh instance

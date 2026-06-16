@@ -90,9 +90,9 @@ Memoh 把浏览器和 GUI 操作分成几层：
 
 ## 从哪开始
 
-- [安装选择](/zh/installation/) — 先选 Desktop 还是 Server Deploy
-- [供应商与模型](/zh/getting-started/provider-and-model) — 配好模型访问
-- [机器人](/zh/getting-started/bot) — 创建并配置
-- [Browser / Computer Use](/zh/getting-started/browser-computer-use) — 了解有头浏览器与桌面操作
-- [渠道](/zh/getting-started/channels) — 选机器人出现的位置
-- [技能](/zh/getting-started/skills)、[超市](/zh/getting-started/supermarket) — 扩展能力
+- [机器人](/zh/guides/bot) — 创建并配置
+- [供应商与模型](/zh/integrations/providers/llm) — 配好模型访问
+- [渠道](/zh/integrations/channels/) — 选机器人出现的位置
+- [Browser / Computer Use](/zh/guides/browser-computer-use) — 了解有头浏览器与桌面操作
+- [技能](/zh/guides/skills)、[超市](/zh/guides/supermarket) — 扩展能力
+- [自托管](/zh/self-hosted/) — 部署和运维自己的 Memoh 实例
