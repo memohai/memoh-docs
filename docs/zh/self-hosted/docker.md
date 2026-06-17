@@ -64,7 +64,7 @@ curl -fsSL https://memoh.sh | sh
 需要提权，脚本会只对 `docker` 命令使用 `sudo`。如果确实要以 root
 运行整个安装脚本，需要显式设置 `MEMOH_ALLOW_ROOT_INSTALL=true`。
 
-脚本会：检查 Docker/Compose；判断首次安装、升级或重装；交互问配置（工作区、数据目录、管理员、JWT、数据库后端、Postgres 密码、workspace backend 提示、是否开 sparse）；从 GitHub 取最新发布并克隆；按 Docker 模板生成 `config.toml`；按数据库后端选择 compose 文件；钉死镜像版本；启动服务；启动失败时打印数据库、迁移和 server 的近期日志。
+脚本会：检查 Docker/Compose；判断首次安装、升级或重装；交互问配置（工作区、数据目录、管理员、JWT、数据库后端、Postgres 密码、workspace backend 提示、是否开 sparse）；升级时自动复用已有 `config.toml`，保持数据库凭据和已有 PostgreSQL volume 一致；可选择清理重装并删除 Memoh 容器、volume 和 network；从 GitHub 取最新发布并克隆；按 Docker 模板生成 `config.toml`；按数据库后端选择 `docker-compose.yml` 或 `docker-compose.sqlite.yml`；把 Memoh 镜像钉到发布版本（例如 `v0.13.0` 对应镜像 tag `0.13.0`）；默认带 `qdrant` profile 启动，启用 sparse 时再加 `sparse` profile；启动失败时打印数据库、迁移和 server 的近期日志。
 
 **静默安装**（全默认、无提问）：
 
@@ -72,7 +72,21 @@ curl -fsSL https://memoh.sh | sh
 curl -fsSL https://memoh.sh | sh -s -- -y
 ```
 
-静默时默认大概：工作区 `~/memoh`；数据 `~/memoh/data`；管理员 `admin` / `admin123`；JWT 随机；数据库后端 PostgreSQL；Postgres 密码 `memoh123`。
+静默时默认：工作区 `~/memoh`；数据 `~/memoh/data`；管理员 `admin` / `admin123`；JWT 随机；数据库后端 PostgreSQL；Postgres 密码 `memoh123`；默认启用 `qdrant` profile；sparse 服务默认关闭，除非设置 `USE_SPARSE=true`。
+
+如果静默模式发现已有 Memoh 安装，会默认进入**升级**并复用之前的 `config.toml`。如果只发现 Docker 状态、但找不到可复用的 `config.toml`，脚本会退出并要求显式选择重装。
+
+**强制清理重装**（启动前删除 Memoh Docker 数据）：
+
+```bash
+curl -fsSL https://memoh.sh | MEMOH_INSTALL_MODE=reinstall sh
+```
+
+也可以用参数指定安装模式：
+
+```bash
+curl -fsSL https://memoh.sh | sh -s -- --install-mode reinstall
+```
 
 **使用 SQLite**（单机轻量部署）：
 
@@ -89,13 +103,13 @@ curl -fsSL https://memoh.sh | sh -s -- --database-driver sqlite
 **指定版本：**
 
 ```bash
-curl -fsSL https://memoh.sh | sh -s -- --version v0.9.0
+curl -fsSL https://memoh.sh | sh -s -- --version v0.13.0
 ```
 
 或：
 
 ```bash
-curl -fsSL https://memoh.sh | MEMOH_VERSION=v0.9.0 sh
+curl -fsSL https://memoh.sh | MEMOH_VERSION=v0.13.0 sh
 ```
 
 **大陆镜像**（拉镜像慢时）：
@@ -104,7 +118,25 @@ curl -fsSL https://memoh.sh | MEMOH_VERSION=v0.9.0 sh
 curl -fsSL https://memoh.sh | USE_CN_MIRROR=true sh
 ```
 
-> 环境变量可组合，例如 `MEMOH_VERSION=v0.9.0 USE_CN_MIRROR=true`。
+> 环境变量可组合，例如 `curl -fsSL https://memoh.sh | MEMOH_VERSION=v0.13.0 USE_CN_MIRROR=true sh`。
+
+**启用 sparse 记忆服务**：
+
+```bash
+curl -fsSL https://memoh.sh | USE_SPARSE=true sh
+```
+
+### 安装脚本参数
+
+`sh -s --` 后面可以传这些参数：
+
+| 参数 | 说明 |
+|------|------|
+| `-y`、`--yes` | 静默安装，使用默认值。没有 TTY 时脚本也会自动切到静默模式。 |
+| `--version <tag>`、`--version=<tag>` | 安装指定 Git tag，例如 `v0.13.0`。 |
+| `--install-mode <mode>`、`--install-mode=<mode>` | 选择 `auto`、`fresh`、`upgrade` 或 `reinstall`。 |
+| `--database-driver <driver>`、`--database-driver=<driver>` | 新安装时选择 `postgres` 或 `sqlite`；`postgresql`、`sqlite3` 会被归一化。 |
+| `--container-backend <backend>`、`--workspace-backend <backend>` | 写入配置的 workspace backend。一键 Docker Compose 安装只支持 `containerd`；`docker` 或 `apple` 请走手动部署。 |
 
 ## 手动安装
 
@@ -152,7 +184,7 @@ image_pull_policy = "if_not_present" # if_not_present、always 或 never
 
 ```bash
 docker compose -f docker-compose.yml -f docker/docker-compose.cn.yml \
-  --profile qdrant up -d
+  --profile qdrant --profile sparse up -d
 ```
 
 一键脚本在 `USE_CN_MIRROR=true` 时会处理这套。
@@ -198,6 +230,7 @@ docker compose -f docker-compose.yml -f docker/docker-compose.cn.yml \
 ```bash
 docker compose up -d           # 起
 docker compose down            # 停
+docker compose down -v         # 停并删除 Memoh Docker 数据
 docker compose logs -f         # 看日志
 docker compose ps              # 状态
 docker compose pull && docker compose up -d  # 更新镜像再起
@@ -209,9 +242,11 @@ docker compose pull && docker compose up -d  # 更新镜像再起
 |------|------|------|
 | `POSTGRES_PASSWORD` | `memoh123` | 须与 `config.toml` 里 `postgres.password` 一致 |
 | `MEMOH_CONFIG` | `./config.toml` | 配置文件路径 |
-| `MEMOH_VERSION` | 最新发版 | 要装的 git 标签，也用于钉死镜像 |
+| `MEMOH_DATA_DIR` | `~/memoh/data` | 安装脚本写入 `.env` 的数据目录值；目前预留给后续 bind mount 支持。 |
+| `MEMOH_VERSION` | 最新发版 | 要装的 git 标签，例如 `v0.13.0`；也会把 Memoh 镜像钉到去掉开头 `v` 的 tag，例如 `0.13.0` |
 | `MEMOH_INSTALL_MODE` | `auto` | 安装模式：`auto`、`fresh`、`upgrade` 或 `reinstall` |
 | `MEMOH_DATABASE_DRIVER` | `postgres` | 新安装时使用的数据库后端：`postgres` 或 `sqlite` |
 | `MEMOH_CONTAINER_BACKEND` | `containerd` | Workspace backend。一键 Docker Compose 安装只支持 `containerd`；`docker`、`apple` 请走手动部署。 |
 | `MEMOH_ALLOW_ROOT_INSTALL` | `false` | 允许以 root 运行安装脚本本身。建议保持未设置，用普通用户运行安装脚本。 |
+| `USE_SPARSE` | `false` | 设为 `true` 时启用 sparse 服务。安装脚本始终启动 `qdrant` profile，只有这里为 true 时才额外加 `sparse` profile。 |
 | `USE_CN_MIRROR` | `false` | 是否用大陆镜像 |

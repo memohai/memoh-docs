@@ -1,160 +1,228 @@
 # Bot Access Control
 
-Memoh uses an ACL (Access Control List) system to control who can interact with your bot. You can define prioritized rules to allow or deny specific users, channel identities, or entire channel types — all from the bot's **Access** tab.
+Memoh v0.13 access control has two layers:
+
+- **Channel Members** control identities coming from IM channels such as Telegram, Discord, Feishu, Matrix, QQ, and similar platforms.
+- **Workspace Members** control registered Memoh users in the web app and workspace.
+
+The old ACL rule model still exists, but it is now the advanced engine behind Channel chat access. Most day-to-day changes should start from the bot's **Access** tab, using **Channel Members** and **Workspace Members**.
 
 ---
 
-## Quick Start: ACL Presets
+## The Mental Model
 
-When you create a bot, Memoh lets you start from an **ACL preset**. Presets are just a shortcut for common access patterns.
+| Layer | Identity | Controls |
+|-------|----------|----------|
+| **Channel Members** | A channel identity observed from an IM platform | Whether that platform identity can chat with the bot, and whether it can manage the bot from IM commands |
+| **Workspace Members** | A registered Memoh user account | Whether that user can use the bot in the web app, read/write files, run workspace commands, or manage bot settings |
 
-| Preset | Result |
-|--------|--------|
-| `allow_all` | Default effect is `allow`; anyone can chat unless you add deny rules later |
-| `private_only` | Default effect is `deny`; private conversations are allowed |
-| `group_only` | Default effect is `deny`; group conversations are allowed |
-| `group_and_thread_only` | Default effect is `deny`; groups and threads are allowed |
-| `deny_all` | Default effect is `deny`; nobody except the owner/admin path can chat until you add allow rules |
+These layers can be connected by account binding. A workspace user can bind a channel identity from **Profile -> Connected Accounts** by generating a one-time code and sending `/link <code>` to a Memoh bot in IM. After binding, Memoh can tell that the IM identity belongs to that workspace user.
 
-These presets only define the starting point. After creation, you can refine everything from the **Access** tab.
+Binding does not grant access by itself. It only connects identities. Permissions still come from Channel Members, Workspace Members, bot ownership, or system admin status.
 
 ---
 
-## Concepts
+## Quick Start
 
-### Default Effect
+### Let Anyone Chat From IM
 
-Each bot has a **default effect** (`allow` or `deny`) that applies when no ACL rule matches an incoming message. Configure this from the bot's **Access** tab.
+1. Open the bot's **Access** tab.
+2. Go to **Channel Members**.
+3. Set **Access Mode** to **Blacklist Mode**.
+4. Leave the member list empty, or add only the identities you want to block.
 
-- **Allow**: Anyone can chat with the bot unless explicitly denied by a rule.
-- **Deny**: Only the bot owner, admins, and explicitly allowed subjects can chat.
+Blacklist Mode means the ACL default effect is `allow`. Everyone can chat unless a matching deny rule exists.
 
-### Subject Types
+### Allow Only Selected IM Identities
 
-ACL rules can target three kinds of subjects:
+1. Open **Channel Members**.
+2. Set **Access Mode** to **Whitelist Mode**.
+3. Add the channel identities that should be allowed.
+4. Keep **Chat** checked for each allowed identity.
 
-| Subject | Description |
-|---------|-------------|
-| **All** | Matches every incoming message regardless of sender. Use this for global allow/deny rules. |
-| **Channel Identity** | A specific identity on an external channel (e.g., a Telegram user, a Discord member). Useful for controlling access at the individual level. |
-| **Channel Type** | An entire channel platform (e.g., all Telegram users, all Discord users). Useful for platform-level access control. |
+Whitelist Mode means the ACL default effect is `deny`. Only matching allow rules can chat.
 
-### Rule Effects
+### Give A Web User Access
 
-Each rule has an **effect**:
+1. Open **Workspace Members**.
+2. Add a specific member, or add **Everyone**.
+3. Select the permissions that member should have.
 
-- **Allow** — Grants the subject permission to chat with the bot.
-- **Deny** — Blocks the subject from chatting with the bot.
-
-### Priority-Based Evaluation
-
-Rules are evaluated in **priority order** (top to bottom). The first matching rule determines the outcome:
-
-1. Bot owner or system admin → **Always allowed** (bypasses ACL).
-2. Rules are checked from highest priority (top) to lowest (bottom).
-3. The first rule whose subject matches the sender is applied.
-4. If no rule matches → the **default effect** is applied.
-
-This means rule ordering matters. A deny rule placed above an allow rule will take precedence for matching subjects.
+Workspace access is for registered Memoh users. It is separate from IM chat access unless the user links their IM identity.
 
 ---
 
-## Managing Access
+## Channel Members
 
-Open a bot's **Access** tab to configure its access control.
+Channel Members is the IM-side access surface.
 
-### Start With A Preset, Then Refine
+Each row represents a **channel identity**, for example one Telegram user, Discord member, or Matrix user. A row can have two independent permissions:
 
-Recommended workflow:
+| Permission | Meaning |
+|------------|---------|
+| **Chat** | Controls whether inbound IM messages from that identity can trigger the bot. |
+| **Manage** | Controls whether that identity can manage the bot from IM slash commands. Manage does not automatically grant Chat. |
 
-1. Pick an ACL preset when creating the bot.
-2. Open the **Access** tab.
-3. Confirm the resulting **Default Effect**.
-4. Add or reorder rules only where the preset is too broad or too narrow.
+### Chat
 
-### Adding Rules
+The Chat checkbox is backed by ACL rules for `chat.trigger`.
 
-1. Click **Add Rule**.
-2. Select a subject type:
-   - **All**: Applies to everyone.
-   - **Channel Identity**: Search and select a specific channel identity the bot has seen before.
-   - **Channel Type**: Select an entire channel platform.
-3. Choose the **effect**: `allow` or `deny`.
-4. Optionally set **source scope** to restrict the rule to a specific context:
-   - **Channel**: Only applies when the message comes from a specific channel config.
-   - **Conversation Type**: `private`, `group`, or `thread`.
-   - **Conversation ID**: A specific chat/group ID.
-   - **Thread ID**: A specific thread within a conversation (requires Conversation ID).
-5. Click **Save**.
+In **Blacklist Mode**:
 
-### Reordering Rules
+- the default is `allow`
+- adding or unchecking Chat for an identity creates a deny rule
+- checking Chat removes that identity-specific deny rule
 
-Rules can be **drag-and-dropped** to change their priority. Higher rules (closer to the top) are evaluated first. After reordering, click **Save** to persist the new order.
+In **Whitelist Mode**:
 
-### Source Scope
+- the default is `deny`
+- adding or checking Chat for an identity creates an allow rule
+- unchecking Chat removes that identity-specific allow rule
 
-Source scope lets you create fine-grained rules. For example:
+### Manage
 
-- Allow a user to chat only via Telegram, but not Discord.
-- Block an entire channel type only in group conversations.
-- Restrict access to a specific thread in a specific group.
+The Manage checkbox writes a local Channel Access override for that channel identity.
 
-Scope fields form a hierarchy: **Channel → Conversation Type → Conversation ID → Thread ID**. Each level is optional, but a Thread ID requires a Conversation ID.
+Manage is used by IM commands. It lets a channel identity act as a bot manager for owner-level slash command flows. It is intentionally independent from Chat: a manager can still be denied normal chat messages if Chat is off or the ACL denies them.
+
+### Platform Members
+
+If a channel identity is linked to a workspace member of this bot, the row is marked as a platform member.
+
+When the linked workspace member has **Manage** in Workspace Members, the channel identity inherits Manage automatically. The Channel Members row then shows that Manage is inherited. If you toggle Manage in Channel Members, Memoh writes a local override:
+
+- local **on** forces Manage on for this channel identity
+- local **off** suppresses inherited Manage for this channel identity
+- **Reset to inherited** removes the local override and follows Workspace Members again
+
+Only local-only channel rows can be removed from Channel Members. Platform member rows come from their workspace binding and are managed by permissions or by disconnecting the binding.
 
 ---
 
-## What The Presets Actually Mean
+## Workspace Members
 
-This is the most useful mental model:
+Workspace Members is the web/workspace access surface.
 
-- `allow_all` is best for open bots and public demos.
-- `private_only` is best when the bot should only answer in direct chats.
-- `group_only` is best for bots intended to live only in shared rooms.
-- `group_and_thread_only` is best for bots that should work in group spaces and threaded sub-conversations, but not in private DMs.
-- `deny_all` is best for highly restricted bots where you want to add every allow rule manually.
+You can grant access to:
 
-If you are unsure, start with `allow_all` for a personal test bot or `deny_all` for anything sensitive.
+- a **specific member**
+- **Everyone**
+
+The bot owner is shown as an implicit owner entry and always has full access. System admins also resolve to full access.
+
+Workspace permissions are:
+
+| Permission | Allows |
+|------------|--------|
+| **Can chat** | Use the bot from web chat surfaces. |
+| **Read files** | Read bot workspace files. |
+| **Write files** | Modify bot workspace files. This also implies Read files. |
+| **Run commands** | Run workspace execution flows. |
+| **Can manage** | Manage bot settings and access. This implies all other workspace permissions. |
+
+Workspace Manage also flows into Channel Members for linked channel identities. If a user with Workspace Manage links a Telegram identity, that Telegram identity inherits Manage on the channel side.
+
+Workspace **Can chat** is not the same as Channel **Chat**. Workspace permissions authorize web app and workspace APIs; Channel Chat authorizes IM inbound messages through the ACL engine.
+
+---
+
+## Linking Channel Identities
+
+Users link IM identities from **Profile -> Connected Accounts**:
+
+1. Click **Connect**.
+2. Copy the generated `/link <code>` command.
+3. Send it to a Memoh bot in an IM channel.
+4. The code binds the sending channel identity to the current Memoh user account.
+
+Important details:
+
+- link codes are one-time and expire after a short period
+- `/link <code>` is allowed even when the sender is denied by chat ACL, so users can recover from an unlinked state
+- binding is account-level: it connects the workspace user and the channel identity globally
+- binding does not grant Chat or Manage by itself
+
+After linking, Workspace Manage can be inherited by the matching Channel Members row.
+
+---
+
+## Access Mode And Advanced ACL Rules
+
+Channel Chat uses the ACL engine. In v0.13, the Access page presents it as **Access Mode** plus optional advanced rules.
+
+| Access Mode | ACL default effect | Matching rules that matter |
+|-------------|--------------------|----------------------------|
+| **Blacklist Mode** | `allow` | `deny` rules |
+| **Whitelist Mode** | `deny` | `allow` rules |
+
+Only rules opposite to the current default effect override the default mode. A rule with the same effect as the default does not change the result.
+
+Advanced rules can target:
+
+- all users
+- all users on a platform
+- one channel identity
+- one channel identity on a platform
+
+Advanced rules can also be scoped to:
+
+- any chat
+- private conversations
+- group conversations
+- threads
+- a specific conversation ID
+- a specific thread ID
+
+The rule target handles platform filtering. Source scope handles conversation and thread filtering.
+
+Unlike older ACL documentation, v0.13 does not expose manual rule priority or drag-to-reorder behavior. Think in terms of the current default mode plus matching opposite-effect rules.
+
+---
+
+## Creation Presets
+
+When creating a bot, the ACL preset only initializes Channel Chat behavior. You can change it later from **Channel Members**.
+
+| Preset | Initial behavior |
+|--------|------------------|
+| `allow_all` | Default effect `allow`; no extra rules |
+| `private_only` | Default effect `deny`; allow private conversations |
+| `group_only` | Default effect `deny`; allow group conversations |
+| `group_and_thread_only` | Default effect `deny`; allow group and thread conversations |
+| `deny_all` | Default effect `deny`; no extra allow rules |
+
+Presets do not configure Workspace Members and do not create account bindings.
 
 ---
 
 ## Examples
 
-### Open Bot (Anyone Can Chat)
+### Public IM Bot With A Few Blocks
 
-1. Choose preset `allow_all`, or set **ACL Default Effect** to `allow`.
-2. No rules needed — everyone is allowed by default.
+Use **Blacklist Mode** in Channel Members. Leave Chat on by default and add blocked identities. Use Advanced rules only if you need to block an entire platform or a group/thread context.
 
-### Private Bot with Selected Users
+### Private IM Bot
 
-1. Choose preset `deny_all`, or set **ACL Default Effect** to `deny`.
-2. Add **allow** rules for each authorized channel identity.
-3. Only listed subjects (plus the bot owner and admins) can trigger the bot.
+Use **Whitelist Mode** in Channel Members. Add the allowed channel identities and keep Chat checked. If the same people should manage the bot from IM, also grant Manage.
 
-### Open Bot with Blocked Users
+### Web Team Bot
 
-1. Choose preset `allow_all`, or set **ACL Default Effect** to `allow`.
-2. Add **deny** rules for problematic channel identities at the top of the list.
-3. Everyone except denied subjects can chat with the bot.
+Use **Workspace Members**. Add specific users or Everyone, then choose `Can chat`, file permissions, command execution, and Manage according to their web/workspace role.
 
-### Platform-Specific Access
+### Workspace Manager Also Manages From Telegram
 
-1. Start from preset `deny_all` or `private_only`, depending on your goal.
-2. Add an **allow** rule with subject type **Channel Type** set to `telegram`.
-3. Only Telegram users can chat with the bot — messages from other channels are denied.
-
-### Channel-Scoped Access
-
-1. Add an **allow** rule for a specific channel identity.
-2. Set the **Source Scope** channel to your Telegram channel config.
-3. The user can only chat with the bot via that specific Telegram channel.
+Grant the user **Can manage** in Workspace Members. Ask them to link their Telegram account with `/link <code>`. Their Telegram identity will inherit Manage in Channel Members. If you need to disable Telegram-side management for that identity only, turn off Manage in Channel Members to create a local override.
 
 ---
 
-## Debugging Access Decisions
+## Debugging
 
-When ACL behavior is confusing, use:
+When access is surprising, check these in order:
 
-- the **Access** tab to inspect rule order and default effect
-- the `/access` slash command to inspect the current identity, role, and ACL evaluation context
+1. **Which layer is involved?** IM messages use Channel Chat ACL. Web app and workspace APIs use Workspace Members.
+2. **Is the identity linked?** Connected Accounts determines whether Workspace Manage can inherit into Channel Members.
+3. **What is the Channel Access Mode?** Blacklist Mode defaults to allow; Whitelist Mode defaults to deny.
+4. **Is Manage inherited or overridden?** The Channel Members info popover shows whether Manage follows Workspace Members or is locally overridden.
+5. **What does `/access` show?** In IM, `/access` reports the current identity, write access, and chat ACL context for the sender.
 
-This is especially helpful when a user is linked across multiple channels or when group/thread scoping is involved.
+Remember that Manage and Chat are separate. Manage can allow owner-level IM commands, but normal inbound chat still needs Channel Chat to allow the sender.

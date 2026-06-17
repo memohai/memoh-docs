@@ -75,8 +75,8 @@ The script will:
 6. Fetch the latest release tag from GitHub and clone the repository
 7. Generate `config.toml` from the Docker template with your settings when needed
 8. Select `docker-compose.yml` for PostgreSQL or `docker-compose.sqlite.yml` for SQLite
-9. Pin Docker image versions to the release
-10. Start all services
+9. Pin Memoh Docker image versions to the release (for example, `v0.13.0` uses image tag `0.13.0`)
+10. Start the selected Compose file with the `qdrant` profile by default, plus `sparse` when enabled
 11. Print recent database, migration, and server logs automatically if startup fails
 
 **Silent install** (use all defaults, no prompts):
@@ -93,6 +93,8 @@ Defaults when running silently:
 - JWT secret: auto-generated
 - Database: PostgreSQL
 - Postgres password: `memoh123`
+- Qdrant profile: enabled
+- Sparse memory service: disabled unless `USE_SPARSE=true`
 
 If the script detects an existing Memoh installation in silent mode, it defaults to **upgrade** and reuses the previous `config.toml`. If Docker state exists but no reusable `config.toml` can be found, the script exits and asks you to choose an explicit reinstall.
 
@@ -111,13 +113,13 @@ curl -fsSL https://memoh.sh | sh -s -- --install-mode reinstall
 **Install a specific version:**
 
 ```bash
-curl -fsSL https://memoh.sh | sh -s -- --version v0.9.0
+curl -fsSL https://memoh.sh | sh -s -- --version v0.13.0
 ```
 
 Or using the environment variable:
 
 ```bash
-curl -fsSL https://memoh.sh | MEMOH_VERSION=v0.9.0 sh
+curl -fsSL https://memoh.sh | MEMOH_VERSION=v0.13.0 sh
 ```
 
 **Use China mainland mirror** (for slow image pulls):
@@ -126,7 +128,7 @@ curl -fsSL https://memoh.sh | MEMOH_VERSION=v0.9.0 sh
 curl -fsSL https://memoh.sh | USE_CN_MIRROR=true sh
 ```
 
-> Environment variables can be combined, e.g. `curl -fsSL https://memoh.sh | MEMOH_VERSION=v0.9.0 USE_CN_MIRROR=true sh`
+> Environment variables can be combined, e.g. `curl -fsSL https://memoh.sh | MEMOH_VERSION=v0.13.0 USE_CN_MIRROR=true sh`
 
 **Use SQLite instead of PostgreSQL** (single-node installs):
 
@@ -139,6 +141,24 @@ Or:
 ```bash
 curl -fsSL https://memoh.sh | sh -s -- --database-driver sqlite
 ```
+
+**Enable the sparse memory service**:
+
+```bash
+curl -fsSL https://memoh.sh | USE_SPARSE=true sh
+```
+
+### Installer Options
+
+The install script accepts these flags after `sh -s --`:
+
+| Option | Description |
+|--------|-------------|
+| `-y`, `--yes` | Run silently with defaults. The script also switches to silent mode automatically when no TTY is available. |
+| `--version <tag>`, `--version=<tag>` | Install a specific Git tag, such as `v0.13.0`. |
+| `--install-mode <mode>`, `--install-mode=<mode>` | Choose `auto`, `fresh`, `upgrade`, or `reinstall`. |
+| `--database-driver <driver>`, `--database-driver=<driver>` | Choose `postgres` or `sqlite` for fresh installs. `postgresql` and `sqlite3` are normalized. |
+| `--container-backend <backend>`, `--workspace-backend <backend>` | Choose the workspace backend value written to config. One-click Docker Compose installs support `containerd` only; use manual deployment for `docker` or `apple`. |
 
 ## Manual Install
 
@@ -186,7 +206,7 @@ And add the China mirror compose overlay:
 
 ```bash
 docker compose -f docker-compose.yml -f docker/docker-compose.cn.yml \
-  --profile qdrant up -d
+  --profile qdrant --profile sparse up -d
 ```
 
 The install script handles this automatically when you set `USE_CN_MIRROR=true`.
@@ -246,9 +266,11 @@ docker compose pull && docker compose up -d  # Update to latest images
 |--------------------|--------------------|----------------------------------------------|
 | `POSTGRES_PASSWORD`| `memoh123`         | PostgreSQL password (must match `postgres.password` in `config.toml`) |
 | `MEMOH_CONFIG`     | `./config.toml`    | Path to the configuration file               |
-| `MEMOH_VERSION`    | *(latest release)* | Git tag to install (e.g. `v0.6.0`). Also pins Docker image versions. |
+| `MEMOH_DATA_DIR`   | `~/memoh/data`     | Installer data directory value written to `.env`; currently reserved for future bind-mount support. |
+| `MEMOH_VERSION`    | *(latest release)* | Git tag to install (e.g. `v0.13.0`). Also pins Memoh Docker image versions without the leading `v` (for example, `0.13.0`). |
 | `MEMOH_INSTALL_MODE` | `auto`           | Install mode: `auto`, `fresh`, `upgrade`, or `reinstall` |
 | `MEMOH_DATABASE_DRIVER` | `postgres`    | Database backend for fresh installs: `postgres` or `sqlite` |
 | `MEMOH_CONTAINER_BACKEND` | `containerd` | Workspace backend. One-click Docker Compose installs support `containerd`; use manual deployment for `docker` or `apple`. |
 | `MEMOH_ALLOW_ROOT_INSTALL` | `false` | Allow running the installer shell itself as root. Prefer leaving this unset and running the installer as a normal user. |
+| `USE_SPARSE`       | `false`            | Set to `true` to enable the sparse service. The installer always starts the `qdrant` profile and adds `sparse` only when this is true. |
 | `USE_CN_MIRROR`    | `false`            | Set to `true` to use China mainland image mirrors |

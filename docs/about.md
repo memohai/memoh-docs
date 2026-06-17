@@ -1,119 +1,44 @@
 # About Memoh
 
-## What Is Memoh?
+Memoh v0.13 is the open-source multi-agent platform. It lets you run multiple AI agents on one machine, with each agent getting its own workspace, browser, network, tools, and long-term memory.
 
-Memoh is a multi-member, structured long-memory AI agent platform. You can create multiple AI bots, give each bot its own workspace and long-term memory, and interact with them through Telegram, Discord, Lark (Feishu), QQ, Matrix, Misskey, DingTalk, WeCom, WeChat, WeChat Official Account, Email, or the built-in Web UI.
+Agents can talk through Telegram, Discord, Lark, WeChat, Web UI, Email, and other channels. They can remember context, operate a browser or desktop, call MCP tools, install plugins and skills, run scheduled tasks, and enforce per-bot access rules.
 
-Every bot has its own runtime, tools, memory configuration, channel integrations, and access policy. Depending on deployment mode, that workspace can be an isolated container or a trusted local workspace.
+The hosted Memoh SaaS service is coming soon. Join the [SaaS waitlist](https://memoh.ai/waitlist) if you want a managed option instead of operating your own deployment.
 
 ## Distribution Modes
 
 ### Desktop
 
-The native desktop client is for personal and local use. It starts a local `memoh-server` on `127.0.0.1:18731`, manages local SQLite storage, starts embedded Qdrant for memory search, bundles the `memoh` CLI, and owns system tray lifecycle behavior.
-
-Desktop is the fastest way to try Memoh on your own machine.
+Desktop is the quickest way to try Memoh locally. It starts a local `memoh-server`, manages local SQLite storage, starts embedded Qdrant for memory search, bundles the `memoh` CLI, and owns the system tray lifecycle.
 
 ### Server Deploy
 
-Server Deploy is for always-on shared usage. Use it when Memoh should serve multiple users, run continuously on a server, or connect to external channels while your personal computer is offline.
+Server Deploy is for always-on shared usage. Use it when Memoh should serve multiple users, keep channels online while your computer is offline, or run as a self-hosted service. The Docker Compose stack includes the backend, Web UI, database, memory services, and workspace runtime.
 
-The server stack runs with Docker Compose and includes the backend, Web UI, database, memory services, and workspace runtime.
+## What v0.13 Emphasizes
 
-## What Makes Memoh Different
+### Agent Workspaces
 
-### Multi-Bot And Multi-User
+Each bot can use an isolated container workspace with files, commands, MCP hosting, network access, a headed browser, and a graphical desktop. Local and desktop setups can also use trusted local workspaces when host-level access is intentional.
 
-Memoh is built for real sharing and real separation at the same time:
+### Web Product
 
-- create multiple bots for different roles or people
-- let humans and bots interact in private chats, groups, or delegated workflows
-- distinguish individual users in shared conversations
-- bind identities across channels so the same person can be recognized consistently
+The Web UI now covers more of the daily product surface: bot setup, sessions, providers, channels, workspace files, terminal and display panes, Supermarket, plugins, hooks, schedules, access control, and user preferences. v0.13 also includes English, Simplified Chinese, and Japanese UI language support.
 
-### Independent Workspaces
+### Plugins, Hooks, And Automation
 
-Each bot can use an independent workspace for files, commands, MCP hosting, and long-running tasks. Server deployments normally use container workspaces through Docker, containerd, or Apple-backed runtimes. Desktop/local deployments can also use trusted local workspaces when host-level access is intentional.
+Plugins package managed MCP resources, skills, hooks, configuration, authentication, and install steps behind one bot-scoped capability. Hooks let bots run small automation rules around supported events, while Schedule and Heartbeat keep recurring work moving without an active chat.
 
-Container workspaces can provide a full graphical desktop with VNC/RFB transport and a headed Chrome/Chromium browser. This enables workflows that require visible browser state rather than pure headless automation.
+### Access Control
 
-### Browser Use And Computer Use
-
-Memoh separates browser and GUI operation into practical layers:
-
-- **Headless browser commands** run as ordinary workspace commands.
-- **Browser Use** operates the headed workspace browser over CDP.
-- **Computer Use** drives the broader workspace desktop through screenshots, pointer input, and keyboard input.
-
-Prefer Browser Use for web pages. Use Computer Use for native dialogs, non-browser apps, or GUI states that CDP cannot reach.
-
-### Long-Term Memory And Context Management
-
-Memoh separates two different problems:
-
-- **Long-term memory** stores durable facts and recalls them across conversations through memory providers
-- **Session context compaction** reduces the prompt size of an active session when the current conversation gets too large
-
-This distinction is important: context compaction changes the active session window, while memory compaction rewrites stored memory entries.
-
-### Sessions And Discuss Mode
-
-Each bot maintains independent **sessions** that preserve context. Memoh currently uses six session types:
-
-- **Chat** — regular user-facing conversations
-- **Discuss** — deliberative sessions where the bot can think through work and decide what to send outward
-- **Heartbeat** — periodic autonomous sessions
-- **Schedule** — cron-triggered task sessions
-- **Subagent** — delegated task sessions
-- **ACP Agent** — coding-agent sessions created by the Agents/ACP workflow
-
-You can start or route sessions with slash commands such as `/new`, and the Web UI exposes a session status panel with metrics like context usage, cache hit rate, and used skills.
-
-### Broad Channel Coverage
-
-Memoh uses a unified channel adapter system so one bot can be reachable from many places at once.
-
-Current user-facing integrations include Telegram, Discord, Lark (Feishu), QQ, Matrix, Misskey, DingTalk, WeCom, WeChat, WeChat Official Account, Email, and Web.
-
-### Tools, Skills, MCP, And Supermarket
-
-Bots can use a rich set of built-in capabilities, including:
-
-- web search and web fetch
-- workspace file editing and command execution
-- Browser Use and Computer Use
-- memory search and management
-- messaging, email, and TTS
-- subagents for delegated work
-- **skills** for reusable behavior modules
-- **plugins** that can expose bundled skills and MCP resources
-- **MCP** connections for external tool servers
-- **Supermarket** for curated skill and MCP template installation
-
-### Providers And Models
-
-Memoh supports multiple provider client types, including OpenAI-compatible chat completions, OpenAI Responses API, Anthropic Messages, Google Generative AI, OpenAI Codex, GitHub Copilot, and provider templates for speech and transcription workflows.
-
-Models are separated by role:
-
-- **chat** models for normal interaction
-- **embedding** models for vector memory and search
-- **speech** models for text-to-speech
-- **transcription** models for speech-to-text
-
-Speech provider categories include Edge, OpenAI-compatible, OpenRouter, ElevenLabs, Deepgram, MiniMax, Volcengine, Alibaba Cloud, and Microsoft. Transcription provider categories include OpenAI-compatible, OpenRouter, ElevenLabs, Deepgram, and Google. Exact model and voice availability depends on the provider template and the upstream account you configure.
-
-Image generation is configured through compatible chat/image models rather than a separate image-provider system.
-
-### Operations And UI
-
-The Web UI is designed so you can manage the whole system without editing config files by hand every day. It includes bot configuration tabs, provider/model management, session controls, workspace files, terminal and display panes, skill management, and slash-command control from channels.
+Access control is split between channel-side chat permissions and workspace-side user permissions. Bot owners can allow or block channel members, grant registered users workspace roles, and keep advanced ACL rules for cases that need more precise matching.
 
 ## Where To Start
 
-- **[Bot Setup](/guides/bot)** — create and configure a bot
-- **[Providers And Models](/integrations/providers/llm)** — configure model access
-- **[Channels](/integrations/channels/)** — choose where bots are reachable
-- **[Browser / Computer Use](/guides/browser-computer-use)** — understand headed browser and desktop automation
-- **[Skills](/guides/skills)** and **[Supermarket](/guides/supermarket)** — extend what bots can do
-- **[Self-hosted](/self-hosted/)** — deploy and operate your own Memoh instance
+- **[Bot Setup](/guides/bot)** - create and configure a bot.
+- **[Providers And Models](/integrations/providers/llm)** - configure model access.
+- **[Channels](/integrations/channels/)** - choose where bots are reachable.
+- **[Plugins](/guides/plugins)** and **[Supermarket](/guides/supermarket)** - install packaged capabilities.
+- **[Scheduled Tasks](/guides/schedule)** and **[Access Control](/guides/access)** - operate recurring work and permissions.
+- **[Self-hosted](/self-hosted/)** - deploy and maintain your own Memoh instance.

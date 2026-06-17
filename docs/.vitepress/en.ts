@@ -4,6 +4,7 @@ export const en = {
       text: 'Guides',
       items: [
         { text: 'Overview', link: '/guides/' },
+        { text: 'Preferences', link: '/guides/preferences.md' },
         { text: 'Bot', link: '/guides/bot.md' },
         { text: 'Sessions', link: '/guides/sessions.md' },
         { text: 'Agents / ACP', link: '/guides/acp.md' },
@@ -14,6 +15,7 @@ export const en = {
         { text: 'Skills', link: '/guides/skills.md' },
         { text: 'Supermarket', link: '/guides/supermarket.md' },
         { text: 'Plugins', link: '/guides/plugins.md' },
+        { text: 'Hooks', link: '/guides/hooks.md' },
         { text: 'MCP', link: '/guides/mcp.md' },
         { text: 'Memory', link: '/guides/memory.md' },
         { text: 'Compaction', link: '/guides/compaction.md' },

@@ -29,6 +29,35 @@ The product source code lives in [`memohai/Memoh`](https://github.com/memohai/Me
 - **Static assets** under `docs/public/`, including screenshots and logos.
 - **VitePress config** under `docs/.vitepress/`.
 
+## Documentation Structure
+
+The current VitePress site is organized around three primary navigation roots:
+
+- `docs/guides/` for product usage guides.
+- `docs/integrations/` for channels, providers, memory providers, TTS, and web search.
+- `docs/self-hosted/` for Desktop, Server Deploy, workspace backends, Kata, and SQLite.
+
+The Simplified Chinese mirror uses the same structure under `docs/zh/`:
+
+- `docs/zh/guides/`
+- `docs/zh/integrations/`
+- `docs/zh/self-hosted/`
+
+Legacy paths still exist for old external links, but they are redirect pages instead of the main content source:
+
+- `docs/getting-started/`
+- `docs/installation/`
+- `docs/channels/`
+- `docs/tts-providers/`
+- `docs/memory-providers/`
+- Matching Chinese redirects under `docs/zh/`
+
+When updating content, edit the primary paths above first. Only touch a legacy redirect page when the redirect target itself changes.
+
+Keep the English and Simplified Chinese docs mirrored. If you add, rename, remove, or move a page in one language, make the matching change in the other language and update both VitePress sidebar files.
+
+Do not edit `docs/.vitepress/dist/` by hand. It is generated build output and should not be treated as source documentation.
+
 ## Local Development
 
 Use Node.js and pnpm. The repository is a standalone VitePress project.
@@ -65,8 +94,13 @@ pnpm preview
 │   ├── guides/            # Product usage guides
 │   ├── integrations/      # Channels and providers
 │   ├── self-hosted/       # Open-source deployment docs
+│   ├── getting-started/   # Legacy redirects to guides
+│   ├── installation/      # Legacy redirects to self-hosted
+│   ├── channels/          # Legacy redirects to integrations/channels
+│   ├── tts-providers/     # Legacy redirects to integrations/providers/tts
+│   ├── memory-providers/  # Legacy redirects to integrations/providers/memory
 │   ├── public/            # Static images and logo
-│   ├── zh/                # Simplified Chinese documentation
+│   ├── zh/                # Simplified Chinese documentation and redirects
 │   └── *.md               # Landing and compatibility pages
 ├── package.json
 └── pnpm-lock.yaml
@@ -85,6 +119,8 @@ When adding a new page, update the matching sidebar file in `docs/.vitepress/`:
 
 - `en.ts` for English pages
 - `zh.ts` for Chinese pages
+
+Do not use the legacy redirect folders as the canonical location for new content. New source pages should live under `guides`, `integrations`, or `self-hosted`, with the matching `docs/zh/` page kept in sync.
 
 ## License
 

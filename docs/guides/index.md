@@ -4,6 +4,7 @@ Use these guides to learn Memoh from the product workflow side. They assume you 
 
 ## Start Using Memoh
 
+- **[Preferences](/guides/preferences)**: Customize language, theme, typography, diagrams, and keyboard shortcuts.
 - **[Bot](/guides/bot)**: Create a bot and configure its core tabs.
 - **[Sessions](/guides/sessions)**: Understand chat and discuss sessions, routing, and status panels.
 - **[Files](/guides/files)**: Browse and edit files in a bot workspace.
@@ -12,7 +13,7 @@ Use these guides to learn Memoh from the product workflow side. They assume you 
 ## Extend Bot Capabilities
 
 - **[Skills](/guides/skills)** and **[Supermarket](/guides/supermarket)**: Add reusable prompt modules and catalog templates.
-- **[Plugins](/guides/plugins)** and **[MCP](/guides/mcp)**: Connect tools and external data sources.
+- **[Plugins](/guides/plugins)**, **[Hooks](/guides/hooks)**, and **[MCP](/guides/mcp)**: Connect tools, packaged capabilities, automation rules, and external data sources.
 - **[Browser / Computer Use](/guides/browser-computer-use)**: Work with headed browsers and visible desktop sessions.
 - **[Slash Commands](/guides/slash-commands)**: Use command shortcuts for daily control.
 

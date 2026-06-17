@@ -1,98 +1,44 @@
 # 了解 Memoh
 
-## Memoh 是什么
+Memoh v0.13 是开源的多智能体平台。它让你在一台机器上运行多个 AI Agent，并为每个 Agent 提供自己的 workspace、浏览器、网络、工具和长期记忆。
 
-Memoh 是面向多成员、结构化长期记忆和独立 workspace 的 AI 智能体平台。你可以创建多个机器人，为每个机器人提供自己的工作区和长期记忆，通过 Telegram、Discord、飞书、QQ、Matrix、Misskey、钉钉、企微、微信、微信公众号、邮件或自带网页界面使用。
+Agent 可以通过 Telegram、Discord、飞书、微信、Web UI、邮件等渠道对话；也可以记住上下文、操作浏览器或桌面、调用 MCP 工具、安装插件和技能、执行计划任务，并按机器人配置访问权限。
 
-每个机器人都有自己的运行时、工具、记忆、渠道和访问策略。按部署方式不同，workspace 可以是隔离容器，也可以是明确信任的本地 workspace。
+Memoh 托管版 SaaS 即将开放。如果你更想使用托管服务，而不是自己运维部署，可以加入 [SaaS waitlist](https://memoh.ai/waitlist)。
 
-## 两种分发方式
+## 分发方式
 
-### Desktop 桌面版
+### Desktop
 
-Desktop 适合个人和本地使用。它会在 `127.0.0.1:18731` 启动本地 `memoh-server`，管理本地 SQLite 数据，启动用于记忆检索的 embedded Qdrant，打包 `memoh` CLI，并负责系统托盘里的唤起与退出流程。
-
-想在自己的电脑上快速试用 Memoh，Desktop 是最短路径。
+Desktop 是本地试用 Memoh 的最快方式。它会启动本地 `memoh-server`，管理本地 SQLite 数据，启动用于记忆检索的 embedded Qdrant，打包 `memoh` CLI，并负责系统托盘里的唤起与退出流程。
 
 ### Server Deploy
 
-Server Deploy 适合长期在线和多人共享。只要 Memoh 需要服务多个用户、部署在服务器上持续运行，或在你的个人电脑离线时继续接入外部渠道，就应该用这一形态。
+Server Deploy 适合长期在线和多人共享。只要 Memoh 需要服务多个用户、在你的个人电脑离线时继续接入渠道，或作为自托管服务运行，就应该用这一形态。Docker Compose stack 包含后端、Web UI、数据库、记忆服务和 workspace runtime。
 
-Server stack 用 Docker Compose 跑起来，包含后端、网页端、数据库、记忆服务和 workspace runtime。
+## v0.13 重点
 
-## 和其它方案不一样在哪
+### Agent Workspaces
 
-### 多机器人、多用户
+每个机器人可以使用隔离容器 workspace，拥有文件、命令、MCP 托管、网络访问、有头浏览器和图形桌面。本地与桌面部署也可以在明确受信任时使用 trusted local workspace。
 
-- 一个账号里可建多个机器人，分角色或分场景用。
-- 私聊、群聊、委派流程里，人和机器人都可参与。
-- 共享对话里能区分不同用户；跨渠道绑定身份后，同一个人可被稳定识别。
+### Web 产品
 
-### 独立 Workspace
+Web UI 覆盖了更多日常操作：机器人设置、会话、供应商、渠道、workspace 文件、终端和显示面板、Supermarket、插件、Hooks、计划任务、访问控制和用户偏好。v0.13 也包含英文、简体中文和日文界面支持。
 
-每个机器人可以有自己的 workspace，用来放文件、跑命令、托管 MCP 和执行长期任务。Server Deploy 通常通过 Docker、containerd 或 Apple 后端提供容器 workspace。Desktop/local 模式也可以启用 trusted local workspace，让机器人在明确受信任的本机路径里工作。
+### 插件、Hooks 与自动化
 
-容器 workspace 还能提供完整图形桌面，通过 VNC/RFB 作为显示与输入基础，并运行有头 Chrome/Chromium。这样就能处理很多纯 headless 自动化不可靠的网站和登录流程。
+插件把受管理的 MCP 资源、技能、Hooks、配置、认证和安装步骤打包成一个面向机器人的能力。Hooks 可以围绕支持的事件运行小型自动化规则，Schedule 和 Heartbeat 则让周期性工作不依赖正在进行的聊天。
 
-### Browser Use 与 Computer Use
+### 访问控制
 
-Memoh 把浏览器和 GUI 操作分成几层：
-
-- **Headless browser 命令**：作为普通 workspace 命令运行。
-- **Browser Use**：通过 CDP 操作 workspace 里的有头浏览器。
-- **Computer Use**：通过截图、鼠标和键盘输入操作更完整的 workspace 桌面。
-
-网页内操作优先用 Browser Use；原生弹窗、非浏览器应用或 CDP 够不到的 GUI 状态，再用 Computer Use。
-
-### 长期记忆与会话负担
-
-这是两件不同的事：
-
-- **长期记忆**通过各记忆提供方存事实、跨会话检索。
-- **会话上下文压缩**是在当前对话太长时，用摘要缩小活跃窗口。
-
-注意：压缩会话上下文，改的是当前对话窗口；记忆压缩改的是存下来的记忆条目本身。
-
-### 会话与 Discuss 模式
-
-每个机器人有多路 **会话**，自带上下文。当前有六类：
-
-- **Chat**：普通面向人的对话。
-- **Discuss**：偏观察；模型先组织判断，只有用发送类动作时才真正对频道说话。
-- **Heartbeat**：按间隔自动跑的任务会话。
-- **Schedule**：由 cron 触发的任务会话。
-- **Subagent**：委派子智能体时产生的会话。
-- **ACP Agent**：由 Agents/ACP 工作流创建的编码智能体会话。
-
-在渠道里可以用 `/new` 等切会话，网页端也有会话侧栏，可看上下文占用、缓存命中、用到的技能等。
-
-### 渠道覆盖面
-
-统一的渠道适配让一个机器人能同时在多个地方被叫到。当前可对接 Telegram、Discord、飞书、QQ、Matrix、Misskey、钉钉、企微、微信、公众号、邮件和 Web。
-
-**个人微信扫码**与**公众号 Webhook** 是两套不同适配，别混用。
-
-### 工具、技能、MCP、超市
-
-内置能力包括：网页搜索与拉取、workspace 文件编辑和命令执行、Browser Use、Computer Use、记忆检索与管理、发消息/邮件、TTS、子智能体、可复用 **技能** 模块、可暴露技能和 MCP 资源的 **插件**、外部 **MCP** 服务，以及从 **超市** 装技能和 MCP 模板。
-
-### 供应商与模型
-
-支持多种对接方式，例如 OpenAI Chat/Responses、Anthropic Messages、Google、Codex、GitHub Copilot，以及语音合成和语音转写相关 provider 模板。模型按 **chat / embedding / speech / transcription** 分角色。
-
-语音合成 provider 类别包括 Edge、OpenAI 兼容、OpenRouter、ElevenLabs、Deepgram、MiniMax、火山引擎、阿里云、Microsoft。语音转写 provider 类别包括 OpenAI 兼容、OpenRouter、ElevenLabs、Deepgram、Google。具体模型、音色和语言取决于你配置的 provider 模板与上游账号。
-
-文生图走兼容的 chat/图像能力，不单独做一层“图像供应商系统”。
-
-### 运维与界面
-
-网页端尽量把日常事做完：机器人各 tab、供应商与模型、会话里即时压缩与状态、workspace 文件/终端/显示、技能显隐、渠道里用斜杠命令。不必天天手改配置文件。
+访问控制分成渠道侧聊天权限和 workspace 侧用户权限。机器人 owner 可以允许或屏蔽渠道成员，给注册用户授予 workspace 角色，并在需要更精细匹配时继续使用高级 ACL 规则。
 
 ## 从哪开始
 
-- [机器人](/zh/guides/bot) — 创建并配置
-- [供应商与模型](/zh/integrations/providers/llm) — 配好模型访问
-- [渠道](/zh/integrations/channels/) — 选机器人出现的位置
-- [Browser / Computer Use](/zh/guides/browser-computer-use) — 了解有头浏览器与桌面操作
-- [技能](/zh/guides/skills)、[超市](/zh/guides/supermarket) — 扩展能力
-- [自托管](/zh/self-hosted/) — 部署和运维自己的 Memoh 实例
+- **[机器人](/zh/guides/bot)** - 创建并配置机器人。
+- **[供应商与模型](/zh/integrations/providers/llm)** - 配置模型访问。
+- **[渠道](/zh/integrations/channels/)** - 选择机器人出现的位置。
+- **[插件](/zh/guides/plugins)** 和 **[Supermarket](/zh/guides/supermarket)** - 安装打包能力。
+- **[计划任务](/zh/guides/schedule)** 和 **[访问控制](/zh/guides/access)** - 运维周期性工作和权限。
+- **[自托管](/zh/self-hosted/)** - 部署并维护自己的 Memoh 实例。

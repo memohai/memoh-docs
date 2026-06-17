@@ -95,3 +95,70 @@ const copy = computed(() => {
     </div>
   </section>
 </template>
+
+<style scoped>
+.docs-home {
+  margin-top: 2rem;
+}
+
+.docs-home__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.docs-home__card {
+  display: flex;
+  min-height: 10.5rem;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.1rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.docs-home__card:hover {
+  border-color: var(--vp-c-brand-1);
+  transform: translateY(-1px);
+}
+
+.docs-home__icon {
+  display: inline-flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-brand-1);
+}
+
+.docs-home__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.docs-home__card-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.docs-home__card-text {
+  color: var(--vp-c-text-2);
+  line-height: 1.55;
+}
+
+@media (max-width: 720px) {
+  .docs-home__cards {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

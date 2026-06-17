@@ -29,6 +29,35 @@
 - 截图、logo 等静态资源，位于 `docs/public/`。
 - VitePress 配置，位于 `docs/.vitepress/`。
 
+## 文档站结构
+
+当前 VitePress 文档站围绕三个主导航路径组织：
+
+- `docs/guides/`：产品使用教程。
+- `docs/integrations/`：渠道、提供方、记忆提供方、TTS 和网页搜索。
+- `docs/self-hosted/`：Desktop、Server Deploy、workspace backend、Kata 和 SQLite。
+
+简体中文文档使用相同结构，位于 `docs/zh/` 下：
+
+- `docs/zh/guides/`
+- `docs/zh/integrations/`
+- `docs/zh/self-hosted/`
+
+旧路径仍然保留，用于兼容外部旧链接，但它们是重定向页面，不是主要内容源：
+
+- `docs/getting-started/`
+- `docs/installation/`
+- `docs/channels/`
+- `docs/tts-providers/`
+- `docs/memory-providers/`
+- `docs/zh/` 下对应的中文重定向路径
+
+更新内容时，请优先修改上面的主路径。只有重定向目标本身变化时，才需要修改 legacy redirect 页面。
+
+英文和简体中文文档需要保持镜像一致。如果在一种语言中新增、重命名、删除或移动页面，请在另一种语言中做对应变更，并同时更新两个 VitePress 侧边栏文件。
+
+不要手动编辑 `docs/.vitepress/dist/`。它是构建生成产物，不应当作为文档源码维护。
+
 ## 本地开发
 
 需要 Node.js 和 pnpm。这个仓库是独立的 VitePress 项目。
@@ -65,8 +94,13 @@ pnpm preview
 │   ├── guides/            # 产品使用教程
 │   ├── integrations/      # 渠道和提供方
 │   ├── self-hosted/       # 开源自托管部署文档
+│   ├── getting-started/   # 到 guides 的旧路径重定向
+│   ├── installation/      # 到 self-hosted 的旧路径重定向
+│   ├── channels/          # 到 integrations/channels 的旧路径重定向
+│   ├── tts-providers/     # 到 integrations/providers/tts 的旧路径重定向
+│   ├── memory-providers/  # 到 integrations/providers/memory 的旧路径重定向
 │   ├── public/            # 静态图片和 logo
-│   ├── zh/                # 中文文档
+│   ├── zh/                # 中文文档和重定向页面
 │   └── *.md               # 入口和兼容页面
 ├── package.json
 └── pnpm-lock.yaml
@@ -85,6 +119,8 @@ pnpm preview
 
 - 英文页面：`docs/.vitepress/en.ts`
 - 中文页面：`docs/.vitepress/zh.ts`
+
+不要把 legacy redirect 目录作为新内容的规范位置。新的源码页面应放在 `guides`、`integrations` 或 `self-hosted` 下，并同步维护对应的 `docs/zh/` 页面。
 
 ## 许可证
 

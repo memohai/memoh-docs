@@ -35,6 +35,7 @@ Once created, clicking on a bot card takes you to its **Detail Page**, where you
 | **Agents** | ACP-compatible coding agents, such as Codex and Claude Code, that can be enabled for chat workspace use. |
 | **Email** | Email bindings and outbox. |
 | **Plugins** | Installed plugin status, authentication needs, exposed resources, and uninstall/purge actions. |
+| **Hooks** | Bot-scoped automation rules stored in `/data/.memoh/hooks.json`. |
 | **MCP** | MCP connection management (Stdio, Remote, OAuth). |
 | **Heartbeat** | Heartbeat configuration, model selection, and execution logs. |
 | **Compaction** | Session context compaction settings and logs. |
