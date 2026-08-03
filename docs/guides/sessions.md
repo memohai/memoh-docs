@@ -139,6 +139,6 @@ The panel also exposes **Compact Now**, which triggers immediate [Context Compac
 - **Discuss** sessions are optimized for channels where the bot should observe and selectively speak, especially in group conversations.
 - **Heartbeat** sessions are created on each heartbeat trigger. You can view what the bot did during its autonomous activity by opening the corresponding heartbeat session.
 - **Schedule** sessions are created when a scheduled task runs. Check these to see the results of cron-triggered commands.
-- **Subagent** sessions track delegated tasks. They show the independent work context of each subagent invocation.
+- **Subagent** sessions track delegated tasks. They show the independent work context of each subagent invocation. Subagents get nearly the parent bot's full tool set — including workspace, browser, memory, and MCP tools — but they cannot message users directly, ask the user questions, or spawn further subagents. When delegating, the bot can pick a different chat model per subagent and optionally fork its current conversation context into the subagent. The session info panel shows the bot's currently active subagents.
 - **ACP Agent** sessions track coding-agent work started from the chat workspace through the Agents/ACP integration.
 - **Memory** is shared across all sessions for a bot — memories extracted from one session are available in all others.

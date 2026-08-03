@@ -12,6 +12,10 @@
 - 跨会话保留状态
 - 可选地运行桌面显示和有头浏览器
 
+workspace toolkit 自带 **Node.js** 和 **Python** 两套运行时（`pip`、`uv` 都在 PATH 上），机器人跑 Python 脚本、装包不用先折腾解释器。
+
+机器人还可以在 server workspace 之外、你接入的机器上干活——见 [电脑（远程 Runtime）](/zh/guides/computers.md)。
+
 底层容器 runtime 由 `config.toml` 的 `[container].backend` 决定，trusted local workspace 另行控制。官方 Docker Compose Server Deploy 使用 `containerd`；Docker Engine、Apple 和 local workspace 的差异见 [Workspace backend](/zh/self-hosted/workspace-backends)。
 
 ## Workspace 相关 tab

@@ -222,6 +222,32 @@ docker compose -f docker-compose.yml -f docker/docker-compose.cn.yml \
 | `[sparse]` | 稀疏服务 URL |
 | `[registry]` | 供应商定义目录 |
 | `[web]` | 前端 host/port |
+| `[agent]` | 工具输出截断上限：`tool_output_max_bytes`（默认 65536）、`tool_output_max_lines`（默认 2000）、`system_files_max_bytes`（默认 32768）。超限时保留头尾，不是盲切。 |
+| `[session_runtime]` | 多实例部署的会话状态后端，见上面「多实例部署」 |
+
+## 多实例部署
+
+单实例部署完全不用管这节——会话状态默认在进程内存里，持久账本在数据库里。
+
+要在负载均衡后面跑多个 Memoh server 实例，agent turn 的会话状态必须挪到共享后端。配置 `[session_runtime]` 块：
+
+```toml
+[session_runtime]
+backend = "redis"   # "memory"（默认，仅限单实例）或 "redis"
+cluster = true       # 声明多实例模式；要求 backend = "redis"
+# state_ttl = "24h"
+# owner_lease_ttl = "30s"
+
+[session_runtime.redis]
+url = "redis://redis:6379/0"
+# key_prefix = "memoh:session_runtime:"
+```
+
+注意：
+
+- `redis` 是指 Redis 协议，Valkey 也能用。自带的 Docker Compose 栈**不包含** Redis/Valkey 服务，得自己加。
+- `cluster = true` 配 `memory` backend 会在启动时直接失败，这是有意设计。
+- 用 Redis backend 时 server 启动会做健康探测，连不上就拒绝启动。
 
 ## 常用命令
 

@@ -36,6 +36,25 @@ Two commands are **top-level** instead of resource groups:
 
 ---
 
+## Skill Activation And Quick Actions
+
+Besides fixed commands, the slash system can activate the bot's [Skills](/guides/skills.md) on demand:
+
+```text
+/<skill-name> [optional prompt]
+```
+
+- In the **Web UI composer**, typing `/` opens a panel with **Quick actions** (`/help`, `/skill list`, `/new`, `/compact`, `/model`) and the bot's skills. Selecting a skill attaches it as a removable chip; you can also type the form above directly.
+- In **IM channels**, the same `/<skill-name>` form works, and `/skill list` renders the available skills as tappable buttons.
+- The activated skill's content is injected into the **current turn only** — it does not persist into history, session titles, or memory.
+
+Skill names are resolved **server-side** against the bot's current effective skill catalog on every send. Slash-shaped input that matches no known command or skill is rejected with a clear error instead of being passed to the model, while ordinary text that merely starts with `/` (paths, URLs) still goes through as normal chat.
+
+Two limitations to know:
+
+- A skill activation message cannot carry attachments (fixed commands with attachments still execute).
+- In group chats, a slash message that is not directed at the bot is silently ignored.
+
 ## Built-in Help
 
 The slash system has layered help built into it:
@@ -240,7 +259,7 @@ Supported `update` options:
 | `--language` | Bot language, such as `en` or `zh` |
 | `--acl_default_effect` | `allow` or `deny` |
 | `--reasoning_enabled` | `true` or `false` |
-| `--reasoning_effort` | `low`, `medium`, or `high` |
+| `--reasoning_effort` | Effort level such as `low`, `medium`, `high`, `xhigh` — usable values depend on the selected model's declared reasoning efforts |
 | `--heartbeat_enabled` | `true` or `false` |
 | `--heartbeat_interval` | Minutes |
 | `--chat_model_id` | Chat model UUID |
@@ -341,13 +360,15 @@ Examples:
 
 ### `/skill`
 
-Lists the currently available bot skills.
+Lists the currently available bot skills. Only **runtime-usable** skills appear — disabled or shadowed sources are omitted.
 
 Actions:
 
 | Action | Usage |
 |--------|-------|
 | `list` | `/skill` or `/skill list` |
+
+To activate a skill for one turn, use `/<skill-name> [prompt]` — see [Skill Activation And Quick Actions](#skill-activation-and-quick-actions).
 
 ### `/fs`
 

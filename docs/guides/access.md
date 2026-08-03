@@ -1,6 +1,6 @@
 # Bot Access Control
 
-Memoh v0.13 access control has two layers:
+Memoh access control has two layers:
 
 - **Channel Members** control identities coming from IM channels such as Telegram, Discord, Feishu, Matrix, QQ, and similar platforms.
 - **Workspace Members** control registered Memoh users in the web app and workspace.
@@ -56,7 +56,7 @@ Workspace access is for registered Memoh users. It is separate from IM chat acce
 
 Channel Members is the IM-side access surface.
 
-Each row represents a **channel identity**, for example one Telegram user, Discord member, or Matrix user. A row can have two independent permissions:
+Each row represents a **channel identity** — one Telegram user, Discord member, or Matrix user — or a **group** (see below). Members are added from the inline picker in the card header; identity and group candidates appear in the same dropdown, grouped by section. A row can have two independent permissions:
 
 | Permission | Meaning |
 |------------|---------|
@@ -84,6 +84,14 @@ In **Whitelist Mode**:
 The Manage checkbox writes a local Channel Access override for that channel identity.
 
 Manage is used by IM commands. It lets a channel identity act as a bot manager for owner-level slash command flows. It is intentionally independent from Chat: a manager can still be denied normal chat messages if Chat is off or the ACL denies them.
+
+### Groups As Members
+
+Besides individual identities, you can add an entire **group chat** as a member row. Group candidates come from conversations the bot has observed on its channels, and rows carry a "Group" badge.
+
+- A group row's **Chat** checkbox means "everyone in this group" — in Whitelist Mode it allows the whole group to trigger the bot, in Blacklist Mode it blocks the whole group.
+- **Manage is not available for groups.** Managers are always individual channel identities.
+- Rules that combine both — "this person, in this group" — are still possible through the advanced ACL rules.
 
 ### Platform Members
 
@@ -148,7 +156,7 @@ After linking, Workspace Manage can be inherited by the matching Channel Members
 
 ## Access Mode And Advanced ACL Rules
 
-Channel Chat uses the ACL engine. In v0.13, the Access page presents it as **Access Mode** plus optional advanced rules.
+Channel Chat uses the ACL engine. The Access page presents it as **Access Mode** plus optional advanced rules.
 
 | Access Mode | ACL default effect | Matching rules that matter |
 |-------------|--------------------|----------------------------|
@@ -175,7 +183,7 @@ Advanced rules can also be scoped to:
 
 The rule target handles platform filtering. Source scope handles conversation and thread filtering.
 
-Unlike older ACL documentation, v0.13 does not expose manual rule priority or drag-to-reorder behavior. Think in terms of the current default mode plus matching opposite-effect rules.
+Unlike older ACL documentation, current versions do not expose manual rule priority or drag-to-reorder behavior. Think in terms of the current default mode plus matching opposite-effect rules.
 
 ---
 
