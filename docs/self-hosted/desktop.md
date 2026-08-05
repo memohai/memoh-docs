@@ -33,6 +33,20 @@ Desktop owns the local runtime lifecycle:
 
 Quitting from the tray follows the desktop shutdown path and stops the managed local server and embedded Qdrant.
 
+## Connecting to a remote server
+
+Desktop can also act as a client for a [Server Deploy](/self-hosted/docker) instead of running its own local backend. On the connect screen, enter the server address and connect:
+
+- A bare domain such as `memoh.example.com` is assumed to be `https://` (only localhost addresses default to `http://`).
+- The `/api` path suffix is appended automatically when missing — entering just the domain is enough.
+- Desktop probes the server's `/ping` endpoint (5-second timeout) before proceeding, then takes you to sign-in.
+
+Switching to a different server clears the local sign-in state, so you will authenticate against the new server.
+
+## Sharing this computer with bots
+
+Desktop can register the machine it runs on as a **Computer** that server-side bots can work on, without running a separate runtime process. Enable **This computer**, give it a name, and Desktop keeps the connection alive in the background. See [Computers](/guides/computers.md) for the permission model and per-bot setup.
+
 ## Workspace behavior
 
 Desktop can use trusted local workspaces and container-backed workspaces depending on configuration and runtime availability. Trusted local workspaces run with local user permissions and are not container-isolated. Container-backed workspaces keep the normal bot workspace model for file editing, command execution, MCP hosting, and optional display/browser sessions.

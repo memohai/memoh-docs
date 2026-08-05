@@ -23,9 +23,16 @@
 
 ### 新建供应商
 
+供应商现在从**模板目录**建。模板自带对的 client type、base URL 和一份精选模型清单，通常你只需要填个 API Key。
+
 1. 侧栏打开 **Models**。
-2. 点 **Add Provider**。
-3. 按表单填完保存。
+2. 点 **Add Provider**，从模板列表挑——只显示你还没配过的，可搜索（中文厂商名也能搜到）。
+3. 填模板要的凭据。
+4. 保存。供应商和它的预置模型在保存时一起生成。
+
+内置模板包括 OpenAI、Anthropic、Google、OpenRouter、DeepSeek、**智谱 AI（bigmodel.cn）**、Z.AI、Azure OpenAI、Cerebras、Cloudflare、Fireworks、Perplexity、Together 等。注意**智谱 AI**（`open.bigmodel.cn`，国内账号）和 **Z.AI**（`api.z.ai`，国际账号）是两个模板、两套 key 体系——按你的 key 是哪边发的来选。
+
+没有合适模板时，仍可以建全自定义供应商。
 
 常用字段：
 
@@ -67,30 +74,56 @@
 
 ## 走 OAuth 的供应商
 
-多数类型用普通 API Key。`openai-codex` 和 `github-copilot` 例外。
+多数类型用普通 API Key。`openai-codex` 和 `github-copilot` 例外——两个都走**设备码授权**，同一套流程，都没有 API Key 输入框：
+
+1. 先建好并**保存**供应商——授权入口只在已保存供应商的详情面板里。
+2. **Account** 区点 **Connect**，界面给出验证 URL、一次性用户码和过期倒计时。
+3. 点 **Copy & Open**，去验证页输码，Memoh 自动完成收尾。
+
+> 一次性码只在显示的官方验证 URL 上输——设备码可能被用于钓鱼。
+
+连上后供应商上会显示当前账号，**Revoke** 断开。
 
 ### OpenAI Codex
 
-- 类型选 `openai-codex`
-- 在供应商表单里走 OAuth，不填普通 key
-- 预置会指向 `https://chatgpt.com/backend-api`
+- 类型 `openai-codex`，模板指向 `https://chatgpt.com/backend-api`
+- 用 ChatGPT 账号登录
 
 偏写代码、走 Codex 那套时合适。
 
 ### GitHub Copilot
 
 - 类型 `github-copilot`
-- **设备码** 授权
-- 等待时界面会给验证 URL 和用户码
-- 结束后存 GitHub 侧 token
+- 用 GitHub 账号登录
 
 你本来就有 Copilot 时，可复用进 Memoh。
+
+::: warning 升级提醒
+Copilot 凭据以前按用户存，现在和 Codex 一样是供应商级的一份。老部署升级后要把 Copilot 供应商**重新授权一次**。
+:::
+
+### 托管模型目录
+
+两个 OAuth 供应商的模型列表都是**托管目录**，从上游实时拉取（Codex 干脆没有静态清单，永远反映你 ChatGPT 账号实际能用什么）：
+
+- 设备授权完成后目录自动同步，之后也可以随时重新导入。
+- 上游目录里消失的模型标记为不可用，不会被删。
+- 重复导入是增量合并：补上新发现的能力，不覆盖你自己的模型配置。
 
 ---
 
 ## 导入模型
 
 建完供应商后可以导入或手加模型。常见：选中供应商 → **Import Models**（若上游有目录）→ 勾要保存的。已知上游 id 时也可手填。
+
+### 模型启用开关
+
+供应商详情页里每个模型一行，各带**启用开关**。禁用的模型仍留在这页方便再开，但会从所有模型选择器（机器人设置、聊天、embedding 等）里消失。
+
+默认值看模型怎么来的：
+
+- **手动**添加的模型默认启用。
+- **批量导入**的模型默认**禁用**——导一大目录不至于把每个选择器刷爆，要用哪个自己开哪个。
 
 ---
 
@@ -113,6 +146,7 @@
 |------|------|
 | **Model ID** | 上游真实 id，如 `gpt-4o`。 |
 | **Name** | 界面展示名。 |
+| **Description** | 可选说明文字，模型列表里悬停可见，选择器里还能按它搜。 |
 | **Compatibilities** | 如 `vision`、`tool-call`、`image-output`、`reasoning`。 |
 | **Context Window** | 粗算上下文上限。 |
 

@@ -23,10 +23,16 @@ Typical examples include OpenAI-compatible endpoints, Anthropic, Google Gemini, 
 
 ### Creating A Provider
 
+Providers are created from a **template catalog**. Each template carries the right client type, base URL, and a curated model list, so you usually only fill in an API key.
+
 1. Open the **Models** page from the settings sidebar.
-2. Click **Add Provider**.
-3. Fill in the provider form.
-4. Save the provider.
+2. Click **Add Provider** and pick a template — the list only shows templates you have not configured yet, and it is searchable (including localized vendor names).
+3. Fill in the credentials the template asks for.
+4. Save. The provider and its preset models materialize on save.
+
+Bundled templates include OpenAI, Anthropic, Google, OpenRouter, DeepSeek, **Zhipu AI (bigmodel.cn)**, Z.AI, Azure OpenAI, Cerebras, Cloudflare, Fireworks, Perplexity, Together, and more. Note that **Zhipu AI** (`open.bigmodel.cn`, mainland-China accounts) and **Z.AI** (`api.z.ai`, international accounts) are separate templates with separate API-key namespaces — pick the one matching where your key was issued.
+
+You can still create a fully custom provider when no template fits.
 
 Common fields:
 
@@ -70,24 +76,41 @@ Speech and transcription client types are for audio workflows, not for chat. Con
 
 ## OAuth-Based Providers
 
-Most provider types use a normal API key. Two notable exceptions are `openai-codex` and `github-copilot`.
+Most provider types use a normal API key. Two notable exceptions are `openai-codex` and `github-copilot`. Both authenticate with **device authorization** through the same flow, and neither shows an API key field:
+
+1. Create and **save** the provider first — authorization is only available from the saved provider's details panel.
+2. In the **Account** section, click **Connect**. Memoh shows a verification URL and a one-time user code with an expiry countdown.
+3. Click **Copy & Open**, enter the code on the provider's verification page, and Memoh completes authorization automatically.
+
+> Only enter the code on the displayed verification URL — device codes can be used for phishing.
+
+The connected account is shown on the provider afterwards, and **Revoke** disconnects it.
 
 ### OpenAI Codex
 
-- Uses the `openai-codex` client type
-- Authenticates through the provider form's OAuth flow instead of a normal API key workflow
-- The bundled preset points at `https://chatgpt.com/backend-api`
+- Uses the `openai-codex` client type; the bundled template points at `https://chatgpt.com/backend-api`
+- Signs in with your ChatGPT account
 
 This is a good fit when you want Codex-style model access for coding-oriented workflows.
 
 ### GitHub Copilot
 
 - Uses the `github-copilot` client type
-- Uses **device authorization**
-- The provider form shows a verification URL and a user code while authorization is pending
-- After authorization completes, the provider stores the linked GitHub account token
+- Signs in with your GitHub account
 
 GitHub Copilot is especially useful if you already have access to Copilot-backed chat and embedding models and want to reuse that access from Memoh.
+
+::: warning Upgrade note
+Copilot credentials used to be stored per user. They are now a single provider-level credential, the same as Codex. After upgrading an existing deployment, re-authorize the Copilot provider once.
+:::
+
+### Managed Model Catalogs
+
+For both OAuth providers, the model list is a **managed catalog** fetched live from the upstream service (Codex has no static model list at all — it always reflects what your ChatGPT account can use):
+
+- The catalog syncs automatically after device authorization, and you can re-import at any time.
+- Models that disappear from the upstream catalog are marked unavailable rather than deleted.
+- Re-importing is an upsert: newly discovered capabilities are filled in without overwriting your own model configuration.
 
 ---
 
@@ -102,6 +125,15 @@ Typical flow:
 3. Choose the models you want to save into Memoh.
 
 You can also add models manually when you already know the upstream model ID.
+
+### Enabling Models
+
+Each model row on the provider detail page has an **enable switch**. Disabled models stay visible there for re-enabling, but they disappear from every model picker (bot settings, chat, embedding, and so on).
+
+The defaults differ by how the model was created:
+
+- Models you add **manually** start enabled.
+- Models created by **bulk import** start **disabled**, so importing a large catalog does not flood every picker — enable the ones you actually want to expose.
 
 ---
 
@@ -132,6 +164,7 @@ When adding a chat model, the most important fields are:
 |-------|-------------|
 | **Model ID** | Exact upstream identifier, such as `gpt-4o` or `claude-sonnet-4.6`. |
 | **Name** | Friendly display name shown in the UI. |
+| **Description** | Optional free text shown as a tooltip in model lists and searchable in model pickers. |
 | **Compatibilities** | Feature flags such as `vision`, `tool-call`, `image-output`, and `reasoning`. |
 | **Context Window** | Approximate maximum context budget for the model. |
 

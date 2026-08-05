@@ -127,6 +127,16 @@ In active sessions, the **Session Status Panel** can also show which skills were
 
 ---
 
+## Built-in Skills From The Workspace Template
+
+Memoh ships a couple of built-in skills (such as `skill-creator` and `hooks-setup`) as part of the workspace template. These are **kept in sync automatically**: every time the workspace is bootstrapped or reconciled, the built-in copies are refreshed to the current template version.
+
+Practical consequences:
+
+- **Do not edit a built-in skill in place** — your edits will be overwritten on the next refresh. To customize one, copy it into a skill under a different name (or adopt it into a managed skill) instead.
+- Your own skills placed alongside them are never removed by the sync.
+- Template-provided workspace files like `AGENTS.md` are different: they are created only when missing, so your edits to those are preserved.
+
 ## Supermarket And Imported Skills
 
 Two common ways skills appear without being typed manually:

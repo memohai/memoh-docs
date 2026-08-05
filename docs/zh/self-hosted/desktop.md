@@ -33,6 +33,20 @@ Memoh Desktop 是面向个人和本地使用的原生客户端。它和 Server D
 
 从托盘退出会走桌面端的关闭路径，同时停止它管理的本地 server 和 embedded Qdrant。
 
+## 连接远程 server
+
+Desktop 也可以不用自己的本地后端，直接作为 [Server Deploy](/zh/self-hosted/docker) 的客户端。在连接页填 server 地址即可：
+
+- 裸域名（如 `memoh.example.com`）默认按 `https://` 处理（只有 localhost 类地址才默认 `http://`）。
+- 缺 `/api` 路径后缀会自动补——只填域名就够。
+- 连接前会探测 server 的 `/ping`（5 秒超时），通过后进登录页。
+
+换连别的 server 会清掉本地登录态，需要在新 server 上重新登录。
+
+## 把这台电脑共享给机器人
+
+Desktop 可以把它所在的这台机器注册成 server 侧机器人可用的**电脑**，不用另跑 runtime 进程：打开**这台电脑**开关、起个名字，Desktop 在后台维持连接。权限模型和按机器人的配置见 [电脑（远程 Runtime）](/zh/guides/computers.md)。
+
 ## Workspace 行为
 
 Desktop 可按配置使用 trusted local workspace 或 container-backed workspace。Trusted local workspace 以本地用户权限运行，不提供容器隔离；container-backed workspace 仍保留正常的 bot workspace 模型，可用于文件编辑、命令执行、MCP 托管，以及可选的桌面显示/浏览器会话。

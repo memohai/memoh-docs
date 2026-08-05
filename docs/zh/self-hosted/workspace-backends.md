@@ -19,10 +19,9 @@ backend = "containerd" # containerd、docker 或 apple
 
 一键 Docker Compose Server Deploy 固定使用 `containerd`。这是有意的：server 镜像会启动内置 containerd，并挂好机器人 workspace 需要的 runtime 文件。`docker`、`apple` 更适合你能控制宿主机 runtime 路径的手动部署。
 
-在 Linux/KVM 主机上，`containerd` backend 也可以通过设置
-`[containerd].runtime_type = "io.containerd.kata.v2"` 并使用 Kata compose
-overlay，让 workspace 运行在 Kata Containers 里。见
-[Containerd + Kata](/zh/self-hosted/kata-containerd.md)。
+::: warning Kata Containers 支持已移除
+旧版本可以通过 `[containerd].runtime_type` 让 workspace 跑在 Kata Containers 里。该支持已经移除——当前版本只用标准 containerd runtime。
+:::
 
 ## Trusted local workspace
 
@@ -53,8 +52,6 @@ cni_conf_dir = "/etc/cni/net.d"
 [containerd]
 socket_path = "/run/containerd/containerd.sock"
 namespace = "default"
-# 可选：在 Linux/KVM 上使用 Kata Containers 运行 workspace。
-# runtime_type = "io.containerd.kata.v2"
 ```
 
 官方 Docker Compose 栈和直接连接 containerd 的 Linux 主机都用它。

@@ -246,6 +246,32 @@ The `config.toml` file controls all server behavior. Here is a summary of the av
 | `[sparse]` | Sparse encoding service URL |
 | `[registry]` | Provider definitions directory |
 | `[web]` | Web frontend host and port |
+| `[agent]` | Tool output truncation limits: `tool_output_max_bytes` (default 65536), `tool_output_max_lines` (default 2000), `system_files_max_bytes` (default 32768). Oversized tool output keeps head and tail instead of being cut off blindly. |
+| `[session_runtime]` | Session-state backend for multi-instance deployments; see [Multi-Instance Deployments](#multi-instance-deployments) |
+
+## Multi-Instance Deployments
+
+A single-instance deployment needs none of this — session state lives in process memory by default, with a durable ledger in the database.
+
+To run more than one Memoh server instance behind a load balancer, agent-turn session state must move to a shared backend. Configure the `[session_runtime]` block:
+
+```toml
+[session_runtime]
+backend = "redis"   # "memory" (default, single instance only) or "redis"
+cluster = true       # declare multi-instance mode; requires backend = "redis"
+# state_ttl = "24h"
+# owner_lease_ttl = "30s"
+
+[session_runtime.redis]
+url = "redis://redis:6379/0"
+# key_prefix = "memoh:session_runtime:"
+```
+
+Notes:
+
+- `redis` speaks the Redis protocol; Valkey works too. The bundled Docker Compose stack does not include a Redis/Valkey service — add your own.
+- Setting `cluster = true` with the `memory` backend fails at startup by design.
+- With the Redis backend, the server checks Redis health at startup and refuses to start if it is unreachable.
 
 ## Common Commands
 

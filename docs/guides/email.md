@@ -14,6 +14,12 @@ Connecting email to your Bot involves two steps:
 
 Manage your email service connections from the **Email Provider** page in the sidebar.
 
+Email providers are **scoped per user**: each user configures and sees only their own email accounts, and bot bindings can only use providers owned by the same user. Different users may reuse the same provider name without conflict.
+
+::: tip Gmail OAuth
+For Gmail providers, the OAuth application credentials (client ID / client secret) are no longer entered in the UI — the deployment operator configures them once in `conf/oauth-clients.toml` on the server. Users only go through the Gmail sign-in flow.
+:::
+
 ### Creating a Provider
 
 1. Navigate to the **Email Provider** page from the sidebar.
