@@ -15,6 +15,7 @@ export const zh = {
         { text: '文件', link: '/zh/guides/files.md' },
         { text: '技能', link: '/zh/guides/skills.md' },
         { text: '超市', link: '/zh/guides/supermarket.md' },
+        { text: '连接器', link: '/zh/guides/connectors.md' },
         { text: '插件', link: '/zh/guides/plugins.md' },
         { text: 'Hooks', link: '/zh/guides/hooks.md' },
         { text: 'MCP', link: '/zh/guides/mcp.md' },
