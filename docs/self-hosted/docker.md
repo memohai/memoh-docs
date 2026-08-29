@@ -163,7 +163,7 @@ The install script accepts these flags after `sh -s --`:
 ## Manual Install
 
 ```bash
-git clone https://github.com/memohai/Memoh.git
+git clone https://github.com/felinics/Memoh.git
 cd Memoh
 cp conf/app.docker.toml config.toml
 ```

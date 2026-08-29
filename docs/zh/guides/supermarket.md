@@ -68,4 +68,4 @@ Bundle 文件会解压到目标 Bot 工作区内的 `/data/.memoh/plugins/<plugi
 
 新插件或 Skills 可提交到：
 
-- [memohai/supermarket](https://github.com/memohai/supermarket)
+- [felinics/supermarket](https://github.com/felinics/supermarket)

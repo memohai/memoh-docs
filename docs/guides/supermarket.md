@@ -68,4 +68,4 @@ Bundle files are extracted under `/data/.memoh/plugins/<plugin_id>` inside the t
 
 Contribute new plugins or skills here:
 
-- [memohai/supermarket](https://github.com/memohai/supermarket)
+- [felinics/supermarket](https://github.com/felinics/supermarket)

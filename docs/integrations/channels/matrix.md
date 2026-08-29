@@ -57,7 +57,7 @@ curl -X POST "https://<homeserver>/_matrix/client/v3/login" \
 - **Streaming**: Responses are streamed as they are generated.
 - **Markdown**: Support for formatted text.
 - **Media/Attachment**: Bots can receive and send files or photo.
-- Check [the roadmap](https://github.com/memohai/Memoh/issues/249) for more features of Matrix.
+- Check [the roadmap](https://github.com/felinics/Memoh/issues/249) for more features of Matrix.
 
 ## Official Resources
 

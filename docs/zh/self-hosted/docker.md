@@ -141,7 +141,7 @@ curl -fsSL https://memoh.sh | USE_SPARSE=true sh
 ## 手动安装
 
 ```bash
-git clone https://github.com/memohai/Memoh.git
+git clone https://github.com/felinics/Memoh.git
 cd Memoh
 cp conf/app.docker.toml config.toml
 ```

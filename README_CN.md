@@ -11,14 +11,14 @@
 <p align="center">
   <a href="https://docs.memoh.ai">docs.memoh.ai</a>
   ·
-  <a href="https://github.com/memohai/Memoh">Memoh 主仓库</a>
+  <a href="https://github.com/felinics/Memoh">Memoh 主仓库</a>
   ·
   <a href="./README.md">English</a>
 </p>
 
-这个仓库保存 [Memoh](https://github.com/memohai/Memoh) 的公开文档。Memoh 是一个多成员、长期记忆的 AI 智能体平台，支持独立 workspace、跨渠道接入，以及桌面版和服务器部署。
+这个仓库保存 [Memoh](https://github.com/felinics/Memoh) 的公开文档。Memoh 是一个多成员、长期记忆的 AI 智能体平台，支持独立 workspace、跨渠道接入，以及桌面版和服务器部署。
 
-产品代码在 [`memohai/Memoh`](https://github.com/memohai/Memoh)。这个仓库只负责文档站：VitePress 配置、Markdown 页面和截图。
+产品代码在 [`felinics/Memoh`](https://github.com/felinics/Memoh)。这个仓库只负责文档站：VitePress 配置、Markdown 页面和截图。
 
 ## 这里有什么
 

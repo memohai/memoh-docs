@@ -57,7 +57,7 @@ export default defineConfig({
     },
     
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/memohai/Memoh' }
+      { icon: 'github', link: 'https://github.com/felinics/Memoh' }
     ],
     
     footer: {
@@ -70,7 +70,7 @@ export default defineConfig({
     },
     
     editLink: {
-      pattern: 'https://github.com/memohai/memoh-docs/edit/main/docs/:path',
+      pattern: 'https://github.com/felinics/memoh-docs/edit/main/docs/:path',
       text: 'Edit on GitHub'
     },
     

@@ -35,7 +35,7 @@ SQLite 模式会使用 `docker-compose.sqlite.yml`，不启动 PostgreSQL。迁�
 ## 手动 Docker 安装
 
 ```bash
-git clone https://github.com/memohai/Memoh.git
+git clone https://github.com/felinics/Memoh.git
 cd Memoh
 cp conf/app.docker.toml config.toml
 ```

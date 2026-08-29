@@ -11,14 +11,14 @@
 <p align="center">
   <a href="https://docs.memoh.ai">docs.memoh.ai</a>
   ·
-  <a href="https://github.com/memohai/Memoh">Memoh</a>
+  <a href="https://github.com/felinics/Memoh">Memoh</a>
   ·
   <a href="./README_CN.md">简体中文</a>
 </p>
 
-This repository contains the public documentation site for [Memoh](https://github.com/memohai/Memoh), a multi-member, long-memory AI agent platform with isolated workspaces, channel integrations, and desktop/server deployment modes.
+This repository contains the public documentation site for [Memoh](https://github.com/felinics/Memoh), a multi-member, long-memory AI agent platform with isolated workspaces, channel integrations, and desktop/server deployment modes.
 
-The product source code lives in [`memohai/Memoh`](https://github.com/memohai/Memoh). This repository only owns the docs site: VitePress config, Markdown pages, and screenshots.
+The product source code lives in [`felinics/Memoh`](https://github.com/felinics/Memoh). This repository only owns the docs site: VitePress config, Markdown pages, and screenshots.
 
 ## What Is Here
 

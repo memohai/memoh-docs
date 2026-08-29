@@ -49,7 +49,7 @@ curl -X POST "https://<homeserver>/_matrix/client/v3/login" \
 ## 支持的能力
 
 - 房间、私聊、流式、Markdown、媒体/附件等（以当前 Memoh 版本为准）。
-- 更多路线可见 [相关 issue/路线图](https://github.com/memohai/Memoh/issues/249)。
+- 更多路线可见 [相关 issue/路线图](https://github.com/felinics/Memoh/issues/249)。
 
 ## 参考
 

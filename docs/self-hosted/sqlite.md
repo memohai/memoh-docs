@@ -35,7 +35,7 @@ It also uses `docker-compose.sqlite.yml`, which omits the PostgreSQL service and
 ## Manual Docker install
 
 ```bash
-git clone https://github.com/memohai/Memoh.git
+git clone https://github.com/felinics/Memoh.git
 cd Memoh
 cp conf/app.docker.toml config.toml
 ```
