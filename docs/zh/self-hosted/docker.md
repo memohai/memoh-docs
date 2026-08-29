@@ -19,6 +19,7 @@ Compose 里有多组服务。有的默认就起，有的通过 `--profile` 打�
 | **postgres** | *（核心）* | PostgreSQL |
 | **qdrant** | `qdrant` | 向量库，给记忆检索用（稀疏/稠密） |
 | **sparse** | `sparse` | 神经稀疏编码，给记忆检索（见下） |
+| **connect-it** | `connectors` | 同机部署的 [Connect-It](https://github.com/memohai/connect-it)，支撑 Bot [连接器](/zh/guides/connectors.md)（见下） |
 
 ### sparse 服务
 
@@ -46,6 +47,23 @@ docker compose --profile qdrant --profile sparse up -d
 
 模式细节见 [内置记忆提供方](/zh/integrations/providers/memory/builtin.md)。
 
+### Connect-It 连接器
+
+**connect-it** 容器跑的是 [Connect-It](https://github.com/memohai/connect-it)，Bot [连接器](/zh/guides/connectors.md)背后的服务——通过 OAuth 或 API Key 把第三方服务（GitHub、Notion 这类）连给 Bot。它共用 Memoh 的 PostgreSQL，数据隔离在单独的 `connect_it` schema 里，迁移自己管。
+
+安装脚本把 Connect-It 全程管起来：
+
+- **全新安装**默认启用（`MEMOH_CONNECT_IT_MODE=embedded`，Compose profile `connectors`），装完连接器功能开箱即用，不用手动进 Connect-It 管理台建 token 再抄回配置。
+- **升级**时保持关闭，除非之前已经开过；想开的话带 `MEMOH_CONNECT_IT_MODE=embedded` 重跑一次安装脚本。
+- 全套凭据——管理台密码、AES 密钥、cookie secret、服务端之间的 API token——只生成一次，写进 `.env`，升级复用。之后切换模式也不会丢已有连接。
+
+装完后 Connect-It 管理台在 `http://localhost:8421`（账号 `admin`，密码是生成的，安装结束时会打印，也存在 `.env` 里）。
+
+两个要注意的点：
+
+- **OAuth 回调**走 Connect-It 的公开地址，默认 `http://localhost:8421`。如果 Memoh 要从其它机器访问，把 `MEMOH_CONNECT_IT_PUBLIC_BASE_URL` 设成那些机器（以及 OAuth 提供方）能访问到的地址。
+- **大陆镜像**：Connect-It 镜像在 ghcr.io 上，memoh.cn 镜像源不覆盖。拉不动 ghcr.io 的话，设 `MEMOH_CONNECT_IT_MODE=disabled` 跳过。
+
 ## 先决条件
 
 - [Docker](https://docs.docker.com/get-docker/)
@@ -64,7 +82,7 @@ curl -fsSL https://memoh.sh | sh
 需要提权，脚本会只对 `docker` 命令使用 `sudo`。如果确实要以 root
 运行整个安装脚本，需要显式设置 `MEMOH_ALLOW_ROOT_INSTALL=true`。
 
-脚本会：检查 Docker/Compose；判断首次安装、升级或重装；交互问配置（工作区、数据目录、管理员、JWT、数据库后端、Postgres 密码、workspace backend 提示、是否开 sparse）；升级时自动复用已有 `config.toml`，保持数据库凭据和已有 PostgreSQL volume 一致；可选择清理重装并删除 Memoh 容器、volume 和 network；从 GitHub 取最新发布并克隆；按 Docker 模板生成 `config.toml`；按数据库后端选择 `docker-compose.yml` 或 `docker-compose.sqlite.yml`；把 Memoh 镜像钉到发布版本（例如 `v0.13.0` 对应镜像 tag `0.13.0`）；默认带 `qdrant` profile 启动，启用 sparse 时再加 `sparse` profile；启动失败时打印数据库、迁移和 server 的近期日志。
+脚本会：检查 Docker/Compose；判断首次安装、升级或重装；交互问配置（工作区、数据目录、管理员、JWT、数据库后端、Postgres 密码、workspace backend 提示、是否开 sparse）；升级时自动复用已有 `config.toml`，保持数据库凭据和已有 PostgreSQL volume 一致；可选择清理重装并删除 Memoh 容器、volume 和 network；从 GitHub 取最新发布并克隆；按 Docker 模板生成 `config.toml`；按数据库后端选择 `docker-compose.yml` 或 `docker-compose.sqlite.yml`；把 Memoh 镜像钉到发布版本（例如 `v0.13.0` 对应镜像 tag `0.13.0`）；全新安装时带起同机部署的 Connect-It——凭据只生成一次、写进 `.env`，并加上 `connectors` profile（见[上面](#connect-it-连接器)）；默认带 `qdrant` profile 启动，启用 sparse 时再加 `sparse` profile；启动失败时打印数据库、迁移和 server 的近期日志。
 
 **静默安装**（全默认、无提问）：
 
@@ -170,6 +188,20 @@ POSTGRES_PASSWORD=你的库密码 docker compose up -d
 
 > **重要**：`docker-compose.yml` 默认挂 `./config.toml`，先建好文件再 `up`，否则起不来。
 
+手动部署要开[连接器](/zh/guides/connectors.md)的话，自己生成 Connect-It 凭据并加 `connectors` profile：
+
+```bash
+MEMOH_CONNECT_IT_BASE_URL="http://connect-it:8421" \
+MEMOH_CONNECT_IT_API_TOKEN="cit_$(openssl rand -hex 32)" \
+MEMOH_CONNECT_IT_SECRET_KEY="1:$(openssl rand -hex 32)" \
+MEMOH_CONNECT_IT_COOKIE_SECRET="$(openssl rand -base64 32)" \
+MEMOH_CONNECT_IT_ADMIN_PASSWORD="自己定一个密码" \
+POSTGRES_PASSWORD=你的库密码 \
+docker compose --profile connectors up -d
+```
+
+这些值要跨重启保持一致（比如放进 `.env`）——API token 是 Memoh 出示给 Connect-It 的凭证，密钥用来加密存储的凭据。一键脚本会把这些全部自动处理。
+
 ### 大陆镜像源
 
 拉 Docker Hub 困难时，在 `config.toml` 里取消 `registry` 一行的注释：
@@ -197,8 +229,9 @@ docker compose -f docker-compose.yml -f docker/docker-compose.cn.yml \
 |------|------|
 | 网页 | http://localhost:8082 |
 | API | http://localhost:8080 |
+| Connect-It 管理台*（带 `connectors` profile 时）* | http://localhost:8421 |
 
-默认登录 `admin` / `admin123`（请在 `config.toml` 改掉）。首次拉镜像、初始化可能要一两分钟。
+默认登录 `admin` / `admin123`（请在 `config.toml` 改掉）。Connect-It 管理台账号是 `admin` 加安装脚本生成的密码（安装结束时打印，存在 `.env` 里）。首次拉镜像、初始化可能要一两分钟。
 
 ## 配置总览
 
@@ -221,6 +254,7 @@ docker compose -f docker-compose.yml -f docker/docker-compose.cn.yml \
 | `[qdrant]` | Qdrant 地址、密钥、超时 |
 | `[sparse]` | 稀疏服务 URL |
 | `[registry]` | 供应商定义目录 |
+| `[connect_it]` | [连接器](/zh/guides/connectors.md)用的 Connect-It 地址（`base_url`、`api_token`）；两项都空即关闭该功能。Compose 环境里由 `MEMOH_CONNECT_IT_BASE_URL` / `MEMOH_CONNECT_IT_API_TOKEN` 覆盖 |
 | `[web]` | 前端 host/port |
 | `[agent]` | 工具输出截断上限：`tool_output_max_bytes`（默认 65536）、`tool_output_max_lines`（默认 2000）、`system_files_max_bytes`（默认 32768）。超限时保留头尾，不是盲切。 |
 | `[session_runtime]` | 多实例部署的会话状态后端，见上面「多实例部署」 |
@@ -276,3 +310,9 @@ docker compose pull && docker compose up -d  # 更新镜像再起
 | `MEMOH_ALLOW_ROOT_INSTALL` | `false` | 允许以 root 运行安装脚本本身。建议保持未设置，用普通用户运行安装脚本。 |
 | `USE_SPARSE` | `false` | 设为 `true` 时启用 sparse 服务。安装脚本始终启动 `qdrant` profile，只有这里为 true 时才额外加 `sparse` profile。 |
 | `USE_CN_MIRROR` | `false` | 是否用大陆镜像 |
+| `MEMOH_CONNECT_IT_MODE` | 全新安装 `embedded`；升级保持原状 | `embedded` 跑同机 Connect-It（`connectors` profile）；`disabled` 关闭连接器 |
+| `MEMOH_CONNECT_IT_PUBLIC_BASE_URL` | `http://localhost:8421` | 连接器 OAuth 回调和管理台的公开地址；Memoh 要从其它机器访问时必须设 |
+| `MEMOH_CONNECT_IT_PORT` | `8421` | Connect-It 容器的宿主机端口 |
+| `MEMOH_CONNECT_IT_IMAGE` | 跟随发布钉版 | Connect-It 镜像覆盖 |
+
+其余 `MEMOH_CONNECT_IT_*`（管理台密码、密钥、cookie secret、API token）是安装脚本生成一次、存进 `.env` 的凭据，一般不需要手动设置。

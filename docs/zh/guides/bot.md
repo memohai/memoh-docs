@@ -33,6 +33,7 @@
 | **Agents** | 可为聊天 workspace 启用的 ACP 兼容编码智能体，如 Codex、Claude Code |
 | **Email** | 邮服绑定、发件箱 |
 | **Plugins** | 已安装插件状态、授权需求、暴露资源、卸载/清理动作 |
+| **Connectors** | 经 Connect-It 连接的第三方服务（OAuth 或 API Key）：状态、启停、重新授权、断开 |
 | **Hooks** | 保存在 `/data/.memoh/hooks.json` 的机器人自动化规则 |
 | **MCP** | 连接（Stdio/Remote/OAuth） |
 | **Heartbeat** | 心跳间隔、模型、执行日志 |

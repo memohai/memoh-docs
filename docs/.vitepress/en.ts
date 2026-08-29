@@ -15,6 +15,7 @@ export const en = {
         { text: 'Files', link: '/guides/files.md' },
         { text: 'Skills', link: '/guides/skills.md' },
         { text: 'Supermarket', link: '/guides/supermarket.md' },
+        { text: 'Connectors', link: '/guides/connectors.md' },
         { text: 'Plugins', link: '/guides/plugins.md' },
         { text: 'Hooks', link: '/guides/hooks.md' },
         { text: 'MCP', link: '/guides/mcp.md' },
