@@ -36,7 +36,7 @@ Memoh 支持 **斜杠命令**，在进 LLM 之前截获。用来快速看状态�
 
 ## 技能激活与快捷操作
 
-固定命令之外，斜杠还能按需激活机器人的[技能](/zh/guides/skills.md)：
+固定命令之外，斜杠还能按需激活机器人的[技能](/zh/guides/skills)：
 
 ```text
 /<技能名> [可选的提示词]
@@ -139,7 +139,7 @@ Memoh 支持 **斜杠命令**，在进 LLM 之前截获。用来快速看状态�
 
 **内置网页本地** 没有 `/new discuss`，要 discuss 请用 Telegram、Discord 等。
 
-细节见 [会话](/zh/guides/sessions.md)。
+细节见 [会话](/zh/guides/sessions)。
 
 ### `/stop`
 
@@ -313,7 +313,7 @@ Memoh 支持 **斜杠命令**，在进 LLM 之前截获。用来快速看状态�
 
 ## `/compact`
 
-立刻对**当前会话**做 [会话上下文压缩](/zh/guides/compaction.md)，**不是**改记忆库里条目的那种记忆压缩。
+立刻对**当前会话**做 [会话上下文压缩](/zh/guides/compaction)，**不是**改记忆库里条目的那种记忆压缩。
 
 | 动作 | 用法 |
 |------|------|

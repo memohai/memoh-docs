@@ -1,0 +1,1103 @@
+{
+  "$schema": "https://registry.scalar.com/@scalar/schemas/config",
+  "scalar": "2.0.0",
+  "info": {
+    "title": "Memoh Documentation",
+    "description": "Multi-member long-memory AI agent platform with desktop and server deploy modes."
+  },
+  "assetsDir": "docs/public",
+  "siteConfig": {
+    "customDomain": "docs.memoh.ai",
+    "logo": "docs/public/logo.svg",
+    "theme": "default",
+    "colorScheme": {
+      "default": "system",
+      "showToggle": true
+    },
+    "layout": {
+      "toc": true,
+      "header": true,
+      "search": {
+        "enabled": true,
+        "position": "sidebar"
+      }
+    },
+    "head": {
+      "links": [
+        {
+          "rel": "icon",
+          "href": "/logo.svg"
+        }
+      ]
+    },
+    "footer": {
+      "filepath": "docs/footer.html"
+    },
+    "routing": {
+      "redirects": [
+        {
+          "from": "/channels/dingtalk",
+          "to": "/integrations/channels/dingtalk"
+        },
+        {
+          "from": "/channels/discord",
+          "to": "/integrations/channels/discord"
+        },
+        {
+          "from": "/channels/feishu",
+          "to": "/integrations/channels/feishu"
+        },
+        {
+          "from": "/channels",
+          "to": "/integrations/channels"
+        },
+        {
+          "from": "/channels/matrix",
+          "to": "/integrations/channels/matrix"
+        },
+        {
+          "from": "/channels/misskey",
+          "to": "/integrations/channels/misskey"
+        },
+        {
+          "from": "/channels/qq",
+          "to": "/integrations/channels/qq"
+        },
+        {
+          "from": "/channels/slack",
+          "to": "/integrations/channels/slack"
+        },
+        {
+          "from": "/channels/telegram",
+          "to": "/integrations/channels/telegram"
+        },
+        {
+          "from": "/channels/wechatoa",
+          "to": "/integrations/channels/wechatoa"
+        },
+        {
+          "from": "/channels/wecom",
+          "to": "/integrations/channels/wecom"
+        },
+        {
+          "from": "/channels/weixin",
+          "to": "/integrations/channels/weixin"
+        },
+        {
+          "from": "/getting-started/access",
+          "to": "/guides/access"
+        },
+        {
+          "from": "/getting-started/acp",
+          "to": "/guides/acp"
+        },
+        {
+          "from": "/getting-started/bot",
+          "to": "/guides/bot"
+        },
+        {
+          "from": "/getting-started/browser-computer-use",
+          "to": "/guides/browser-computer-use"
+        },
+        {
+          "from": "/getting-started/channels",
+          "to": "/integrations/channels"
+        },
+        {
+          "from": "/getting-started/compaction",
+          "to": "/guides/compaction"
+        },
+        {
+          "from": "/getting-started/container",
+          "to": "/guides/container"
+        },
+        {
+          "from": "/getting-started/email",
+          "to": "/guides/email"
+        },
+        {
+          "from": "/getting-started/files",
+          "to": "/guides/files"
+        },
+        {
+          "from": "/getting-started/heartbeat",
+          "to": "/guides/heartbeat"
+        },
+        {
+          "from": "/getting-started/mcp",
+          "to": "/guides/mcp"
+        },
+        {
+          "from": "/getting-started/memory",
+          "to": "/guides/memory"
+        },
+        {
+          "from": "/getting-started/plugins",
+          "to": "/guides/plugins"
+        },
+        {
+          "from": "/getting-started/provider-and-model",
+          "to": "/integrations/providers/llm"
+        },
+        {
+          "from": "/getting-started/schedule",
+          "to": "/guides/schedule"
+        },
+        {
+          "from": "/getting-started/search-provider",
+          "to": "/integrations/providers/web-search"
+        },
+        {
+          "from": "/getting-started/sessions",
+          "to": "/guides/sessions"
+        },
+        {
+          "from": "/getting-started/skills",
+          "to": "/guides/skills"
+        },
+        {
+          "from": "/getting-started/slash-commands",
+          "to": "/guides/slash-commands"
+        },
+        {
+          "from": "/getting-started/supermarket",
+          "to": "/guides/supermarket"
+        },
+        {
+          "from": "/installation/desktop",
+          "to": "/self-hosted/desktop"
+        },
+        {
+          "from": "/installation/docker",
+          "to": "/self-hosted/docker"
+        },
+        {
+          "from": "/installation",
+          "to": "/self-hosted"
+        },
+        {
+          "from": "/installation/kata-containerd",
+          "to": "/self-hosted/kata-containerd"
+        },
+        {
+          "from": "/installation/sqlite",
+          "to": "/self-hosted/sqlite"
+        },
+        {
+          "from": "/installation/workspace-backends",
+          "to": "/self-hosted/workspace-backends"
+        },
+        {
+          "from": "/memory-providers/builtin",
+          "to": "/integrations/providers/memory/builtin"
+        },
+        {
+          "from": "/memory-providers",
+          "to": "/integrations/providers/memory"
+        },
+        {
+          "from": "/memory-providers/mem0",
+          "to": "/integrations/providers/memory/mem0"
+        },
+        {
+          "from": "/memory-providers/openviking",
+          "to": "/integrations/providers/memory/openviking"
+        },
+        {
+          "from": "/tts-providers/edge",
+          "to": "/integrations/providers/tts/edge"
+        },
+        {
+          "from": "/tts-providers",
+          "to": "/integrations/providers/tts"
+        },
+        {
+          "from": "/zh/channels/dingtalk",
+          "to": "/zh/integrations/channels/dingtalk"
+        },
+        {
+          "from": "/zh/channels/discord",
+          "to": "/zh/integrations/channels/discord"
+        },
+        {
+          "from": "/zh/channels/feishu",
+          "to": "/zh/integrations/channels/feishu"
+        },
+        {
+          "from": "/zh/channels",
+          "to": "/zh/integrations/channels"
+        },
+        {
+          "from": "/zh/channels/matrix",
+          "to": "/zh/integrations/channels/matrix"
+        },
+        {
+          "from": "/zh/channels/misskey",
+          "to": "/zh/integrations/channels/misskey"
+        },
+        {
+          "from": "/zh/channels/qq",
+          "to": "/zh/integrations/channels/qq"
+        },
+        {
+          "from": "/zh/channels/slack",
+          "to": "/zh/integrations/channels/slack"
+        },
+        {
+          "from": "/zh/channels/telegram",
+          "to": "/zh/integrations/channels/telegram"
+        },
+        {
+          "from": "/zh/channels/wechatoa",
+          "to": "/zh/integrations/channels/wechatoa"
+        },
+        {
+          "from": "/zh/channels/wecom",
+          "to": "/zh/integrations/channels/wecom"
+        },
+        {
+          "from": "/zh/channels/weixin",
+          "to": "/zh/integrations/channels/weixin"
+        },
+        {
+          "from": "/zh/getting-started/access",
+          "to": "/zh/guides/access"
+        },
+        {
+          "from": "/zh/getting-started/acp",
+          "to": "/zh/guides/acp"
+        },
+        {
+          "from": "/zh/getting-started/bot",
+          "to": "/zh/guides/bot"
+        },
+        {
+          "from": "/zh/getting-started/browser-computer-use",
+          "to": "/zh/guides/browser-computer-use"
+        },
+        {
+          "from": "/zh/getting-started/channels",
+          "to": "/zh/integrations/channels"
+        },
+        {
+          "from": "/zh/getting-started/compaction",
+          "to": "/zh/guides/compaction"
+        },
+        {
+          "from": "/zh/getting-started/container",
+          "to": "/zh/guides/container"
+        },
+        {
+          "from": "/zh/getting-started/email",
+          "to": "/zh/guides/email"
+        },
+        {
+          "from": "/zh/getting-started/files",
+          "to": "/zh/guides/files"
+        },
+        {
+          "from": "/zh/getting-started/heartbeat",
+          "to": "/zh/guides/heartbeat"
+        },
+        {
+          "from": "/zh/getting-started/mcp",
+          "to": "/zh/guides/mcp"
+        },
+        {
+          "from": "/zh/getting-started/memory",
+          "to": "/zh/guides/memory"
+        },
+        {
+          "from": "/zh/getting-started/plugins",
+          "to": "/zh/guides/plugins"
+        },
+        {
+          "from": "/zh/getting-started/provider-and-model",
+          "to": "/zh/integrations/providers/llm"
+        },
+        {
+          "from": "/zh/getting-started/schedule",
+          "to": "/zh/guides/schedule"
+        },
+        {
+          "from": "/zh/getting-started/search-provider",
+          "to": "/zh/integrations/providers/web-search"
+        },
+        {
+          "from": "/zh/getting-started/sessions",
+          "to": "/zh/guides/sessions"
+        },
+        {
+          "from": "/zh/getting-started/skills",
+          "to": "/zh/guides/skills"
+        },
+        {
+          "from": "/zh/getting-started/slash-commands",
+          "to": "/zh/guides/slash-commands"
+        },
+        {
+          "from": "/zh/getting-started/supermarket",
+          "to": "/zh/guides/supermarket"
+        },
+        {
+          "from": "/zh/installation/desktop",
+          "to": "/zh/self-hosted/desktop"
+        },
+        {
+          "from": "/zh/installation/docker",
+          "to": "/zh/self-hosted/docker"
+        },
+        {
+          "from": "/zh/installation",
+          "to": "/zh/self-hosted"
+        },
+        {
+          "from": "/zh/installation/kata-containerd",
+          "to": "/zh/self-hosted/kata-containerd"
+        },
+        {
+          "from": "/zh/installation/sqlite",
+          "to": "/zh/self-hosted/sqlite"
+        },
+        {
+          "from": "/zh/installation/workspace-backends",
+          "to": "/zh/self-hosted/workspace-backends"
+        },
+        {
+          "from": "/zh/memory-providers/builtin",
+          "to": "/zh/integrations/providers/memory/builtin"
+        },
+        {
+          "from": "/zh/memory-providers",
+          "to": "/zh/integrations/providers/memory"
+        },
+        {
+          "from": "/zh/memory-providers/mem0",
+          "to": "/zh/integrations/providers/memory/mem0"
+        },
+        {
+          "from": "/zh/memory-providers/openviking",
+          "to": "/zh/integrations/providers/memory/openviking"
+        },
+        {
+          "from": "/zh/tts-providers/edge",
+          "to": "/zh/integrations/providers/tts/edge"
+        },
+        {
+          "from": "/zh/tts-providers",
+          "to": "/zh/integrations/providers/tts"
+        }
+      ]
+    }
+  },
+  "versions": {
+    "default": {
+      "title": "English",
+      "tabs": [
+        {
+          "title": "Guides",
+          "to": "/guides",
+          "icon": "phosphor/regular/book-open"
+        },
+        {
+          "title": "Integrations",
+          "to": "/integrations",
+          "icon": "phosphor/regular/plugs-connected"
+        },
+        {
+          "title": "Self-hosted",
+          "to": "/self-hosted",
+          "icon": "phosphor/regular/hard-drives"
+        }
+      ],
+      "header": [
+        {
+          "type": "link",
+          "title": "GitHub",
+          "icon": "phosphor/regular/github-logo",
+          "to": "https://github.com/felinics/Memoh",
+          "newTab": true,
+          "align": "end"
+        }
+      ],
+      "routes": {
+        "/": {
+          "type": "page",
+          "title": "Memoh Documentation",
+          "filepath": "docs/index.mdx",
+          "icon": "phosphor/regular/house"
+        },
+        "/guides": {
+          "type": "group",
+          "title": "Guides",
+          "icon": "phosphor/regular/book-open",
+          "children": {
+            "": {
+              "type": "page",
+              "title": "Overview",
+              "filepath": "docs/guides/index.md"
+            },
+            "/preferences": {
+              "type": "page",
+              "title": "Preferences",
+              "filepath": "docs/guides/preferences.md"
+            },
+            "/bot": {
+              "type": "page",
+              "title": "Bot",
+              "filepath": "docs/guides/bot.md"
+            },
+            "/sessions": {
+              "type": "page",
+              "title": "Sessions",
+              "filepath": "docs/guides/sessions.md"
+            },
+            "/acp": {
+              "type": "page",
+              "title": "Agents / ACP",
+              "filepath": "docs/guides/acp.md"
+            },
+            "/access": {
+              "type": "page",
+              "title": "Access Control",
+              "filepath": "docs/guides/access.md"
+            },
+            "/container": {
+              "type": "page",
+              "title": "Workspace",
+              "filepath": "docs/guides/container.md"
+            },
+            "/computers": {
+              "type": "page",
+              "title": "Computers",
+              "filepath": "docs/guides/computers.mdx"
+            },
+            "/browser-computer-use": {
+              "type": "page",
+              "title": "Browser / Computer Use",
+              "filepath": "docs/guides/browser-computer-use.md"
+            },
+            "/files": {
+              "type": "page",
+              "title": "Files",
+              "filepath": "docs/guides/files.md"
+            },
+            "/skills": {
+              "type": "page",
+              "title": "Skills",
+              "filepath": "docs/guides/skills.md"
+            },
+            "/supermarket": {
+              "type": "page",
+              "title": "Supermarket",
+              "filepath": "docs/guides/supermarket.md"
+            },
+            "/connectors": {
+              "type": "page",
+              "title": "Connectors",
+              "filepath": "docs/guides/connectors.md"
+            },
+            "/plugins": {
+              "type": "page",
+              "title": "Plugins",
+              "filepath": "docs/guides/plugins.md"
+            },
+            "/hooks": {
+              "type": "page",
+              "title": "Hooks",
+              "filepath": "docs/guides/hooks.md"
+            },
+            "/mcp": {
+              "type": "page",
+              "title": "MCP",
+              "filepath": "docs/guides/mcp.md"
+            },
+            "/memory": {
+              "type": "page",
+              "title": "Memory",
+              "filepath": "docs/guides/memory.md"
+            },
+            "/compaction": {
+              "type": "page",
+              "title": "Compaction",
+              "filepath": "docs/guides/compaction.md"
+            },
+            "/heartbeat": {
+              "type": "page",
+              "title": "Heartbeat",
+              "filepath": "docs/guides/heartbeat.md"
+            },
+            "/schedule": {
+              "type": "page",
+              "title": "Scheduled Tasks",
+              "filepath": "docs/guides/schedule.md"
+            },
+            "/email": {
+              "type": "page",
+              "title": "Email",
+              "filepath": "docs/guides/email.mdx"
+            },
+            "/slash-commands": {
+              "type": "page",
+              "title": "Slash Commands",
+              "filepath": "docs/guides/slash-commands.md"
+            }
+          }
+        },
+        "/integrations": {
+          "type": "group",
+          "title": "Integrations",
+          "icon": "phosphor/regular/plugs-connected",
+          "children": {
+            "": {
+              "type": "page",
+              "title": "Overview",
+              "filepath": "docs/integrations/index.md"
+            },
+            "/channels": {
+              "type": "group",
+              "title": "Channels",
+              "icon": "phosphor/regular/chats-circle",
+              "children": {
+                "": {
+                  "type": "page",
+                  "title": "Overview",
+                  "filepath": "docs/integrations/channels/index.md"
+                },
+                "/slack": {
+                  "type": "page",
+                  "title": "Slack",
+                  "filepath": "docs/integrations/channels/slack.md"
+                },
+                "/telegram": {
+                  "type": "page",
+                  "title": "Telegram",
+                  "filepath": "docs/integrations/channels/telegram.md"
+                },
+                "/feishu": {
+                  "type": "page",
+                  "title": "Feishu (Lark)",
+                  "filepath": "docs/integrations/channels/feishu.md"
+                },
+                "/discord": {
+                  "type": "page",
+                  "title": "Discord",
+                  "filepath": "docs/integrations/channels/discord.md"
+                },
+                "/qq": {
+                  "type": "page",
+                  "title": "QQ",
+                  "filepath": "docs/integrations/channels/qq.md"
+                },
+                "/matrix": {
+                  "type": "page",
+                  "title": "Matrix",
+                  "filepath": "docs/integrations/channels/matrix.md"
+                },
+                "/misskey": {
+                  "type": "page",
+                  "title": "Misskey",
+                  "filepath": "docs/integrations/channels/misskey.md"
+                },
+                "/line": {
+                  "type": "page",
+                  "title": "LINE",
+                  "filepath": "docs/integrations/channels/line.md"
+                },
+                "/dingtalk": {
+                  "type": "page",
+                  "title": "DingTalk",
+                  "filepath": "docs/integrations/channels/dingtalk.md"
+                },
+                "/wecom": {
+                  "type": "page",
+                  "title": "WeCom (WeWork)",
+                  "filepath": "docs/integrations/channels/wecom.md"
+                },
+                "/weixin": {
+                  "type": "page",
+                  "title": "WeChat",
+                  "filepath": "docs/integrations/channels/weixin.md"
+                },
+                "/wechatoa": {
+                  "type": "page",
+                  "title": "WeChat Official Account",
+                  "filepath": "docs/integrations/channels/wechatoa.md"
+                }
+              }
+            },
+            "/providers": {
+              "type": "group",
+              "title": "Providers",
+              "icon": "phosphor/regular/stack",
+              "children": {
+                "": {
+                  "type": "page",
+                  "title": "Overview",
+                  "filepath": "docs/integrations/providers/index.md"
+                },
+                "/llm": {
+                  "type": "page",
+                  "title": "LLM Providers",
+                  "filepath": "docs/integrations/providers/llm.mdx"
+                },
+                "/web-search": {
+                  "type": "page",
+                  "title": "Web Search Providers",
+                  "filepath": "docs/integrations/providers/web-search.md"
+                },
+                "/video": {
+                  "type": "page",
+                  "title": "Video Providers",
+                  "filepath": "docs/integrations/providers/video.md"
+                },
+                "/memory": {
+                  "type": "group",
+                  "title": "Memory Providers",
+                  "icon": "phosphor/regular/brain",
+                  "children": {
+                    "": {
+                      "type": "page",
+                      "title": "Overview",
+                      "filepath": "docs/integrations/providers/memory/index.md"
+                    },
+                    "/builtin": {
+                      "type": "page",
+                      "title": "Built-in",
+                      "filepath": "docs/integrations/providers/memory/builtin.md"
+                    },
+                    "/mem0": {
+                      "type": "page",
+                      "title": "Mem0",
+                      "filepath": "docs/integrations/providers/memory/mem0.md"
+                    },
+                    "/openviking": {
+                      "type": "page",
+                      "title": "OpenViking",
+                      "filepath": "docs/integrations/providers/memory/openviking.md"
+                    }
+                  }
+                },
+                "/tts": {
+                  "type": "group",
+                  "title": "TTS Providers",
+                  "icon": "phosphor/regular/speaker-high",
+                  "children": {
+                    "": {
+                      "type": "page",
+                      "title": "Overview",
+                      "filepath": "docs/integrations/providers/tts/index.md"
+                    },
+                    "/edge": {
+                      "type": "page",
+                      "title": "Edge TTS",
+                      "filepath": "docs/integrations/providers/tts/edge.md"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/self-hosted": {
+          "type": "group",
+          "title": "Self-hosted",
+          "icon": "phosphor/regular/hard-drives",
+          "children": {
+            "": {
+              "type": "page",
+              "title": "Overview",
+              "filepath": "docs/self-hosted/index.md"
+            },
+            "/desktop": {
+              "type": "page",
+              "title": "Desktop",
+              "filepath": "docs/self-hosted/desktop.md"
+            },
+            "/docker": {
+              "type": "page",
+              "title": "Server Deploy",
+              "filepath": "docs/self-hosted/docker.md"
+            },
+            "/workspace-backends": {
+              "type": "page",
+              "title": "Workspace Backends",
+              "filepath": "docs/self-hosted/workspace-backends.mdx"
+            },
+            "/sqlite": {
+              "type": "page",
+              "title": "SQLite",
+              "filepath": "docs/self-hosted/sqlite.md"
+            },
+            "/kata-containerd": {
+              "type": "page",
+              "title": "Containerd + Kata (Removed)",
+              "filepath": "docs/self-hosted/kata-containerd.mdx",
+              "showInSidebar": false
+            }
+          }
+        },
+        "/about": {
+          "type": "page",
+          "title": "About",
+          "filepath": "docs/about.md",
+          "showInSidebar": false
+        }
+      }
+    },
+    "zh": {
+      "title": "简体中文",
+      "tabs": [
+        {
+          "title": "教程",
+          "to": "/guides",
+          "icon": "phosphor/regular/book-open"
+        },
+        {
+          "title": "集成",
+          "to": "/integrations",
+          "icon": "phosphor/regular/plugs-connected"
+        },
+        {
+          "title": "自托管",
+          "to": "/self-hosted",
+          "icon": "phosphor/regular/hard-drives"
+        }
+      ],
+      "header": [
+        {
+          "type": "link",
+          "title": "GitHub",
+          "icon": "phosphor/regular/github-logo",
+          "to": "https://github.com/felinics/Memoh",
+          "newTab": true,
+          "align": "end"
+        }
+      ],
+      "routes": {
+        "/": {
+          "type": "page",
+          "title": "Memoh 中文文档",
+          "filepath": "docs/zh/index.mdx",
+          "icon": "phosphor/regular/house"
+        },
+        "/guides": {
+          "type": "group",
+          "title": "教程",
+          "icon": "phosphor/regular/book-open",
+          "children": {
+            "": {
+              "type": "page",
+              "title": "总览",
+              "filepath": "docs/zh/guides/index.md"
+            },
+            "/preferences": {
+              "type": "page",
+              "title": "用户偏好",
+              "filepath": "docs/zh/guides/preferences.md"
+            },
+            "/bot": {
+              "type": "page",
+              "title": "机器人",
+              "filepath": "docs/zh/guides/bot.md"
+            },
+            "/sessions": {
+              "type": "page",
+              "title": "会话",
+              "filepath": "docs/zh/guides/sessions.md"
+            },
+            "/acp": {
+              "type": "page",
+              "title": "Agents / ACP",
+              "filepath": "docs/zh/guides/acp.md"
+            },
+            "/access": {
+              "type": "page",
+              "title": "访问控制",
+              "filepath": "docs/zh/guides/access.md"
+            },
+            "/container": {
+              "type": "page",
+              "title": "Workspace",
+              "filepath": "docs/zh/guides/container.md"
+            },
+            "/computers": {
+              "type": "page",
+              "title": "电脑（远程 Runtime）",
+              "filepath": "docs/zh/guides/computers.mdx"
+            },
+            "/browser-computer-use": {
+              "type": "page",
+              "title": "Browser / Computer Use",
+              "filepath": "docs/zh/guides/browser-computer-use.md"
+            },
+            "/files": {
+              "type": "page",
+              "title": "文件",
+              "filepath": "docs/zh/guides/files.md"
+            },
+            "/skills": {
+              "type": "page",
+              "title": "技能",
+              "filepath": "docs/zh/guides/skills.md"
+            },
+            "/supermarket": {
+              "type": "page",
+              "title": "超市",
+              "filepath": "docs/zh/guides/supermarket.md"
+            },
+            "/connectors": {
+              "type": "page",
+              "title": "连接器",
+              "filepath": "docs/zh/guides/connectors.md"
+            },
+            "/plugins": {
+              "type": "page",
+              "title": "插件",
+              "filepath": "docs/zh/guides/plugins.md"
+            },
+            "/hooks": {
+              "type": "page",
+              "title": "Hooks",
+              "filepath": "docs/zh/guides/hooks.md"
+            },
+            "/mcp": {
+              "type": "page",
+              "title": "MCP",
+              "filepath": "docs/zh/guides/mcp.md"
+            },
+            "/memory": {
+              "type": "page",
+              "title": "长期记忆",
+              "filepath": "docs/zh/guides/memory.md"
+            },
+            "/compaction": {
+              "type": "page",
+              "title": "上下文压缩",
+              "filepath": "docs/zh/guides/compaction.md"
+            },
+            "/heartbeat": {
+              "type": "page",
+              "title": "心跳",
+              "filepath": "docs/zh/guides/heartbeat.md"
+            },
+            "/schedule": {
+              "type": "page",
+              "title": "计划任务",
+              "filepath": "docs/zh/guides/schedule.md"
+            },
+            "/email": {
+              "type": "page",
+              "title": "邮件",
+              "filepath": "docs/zh/guides/email.mdx"
+            },
+            "/slash-commands": {
+              "type": "page",
+              "title": "斜杠命令",
+              "filepath": "docs/zh/guides/slash-commands.md"
+            }
+          }
+        },
+        "/integrations": {
+          "type": "group",
+          "title": "集成",
+          "icon": "phosphor/regular/plugs-connected",
+          "children": {
+            "": {
+              "type": "page",
+              "title": "总览",
+              "filepath": "docs/zh/integrations/index.md"
+            },
+            "/channels": {
+              "type": "group",
+              "title": "渠道",
+              "icon": "phosphor/regular/chats-circle",
+              "children": {
+                "": {
+                  "type": "page",
+                  "title": "总览",
+                  "filepath": "docs/zh/integrations/channels/index.md"
+                },
+                "/slack": {
+                  "type": "page",
+                  "title": "Slack",
+                  "filepath": "docs/zh/integrations/channels/slack.md"
+                },
+                "/telegram": {
+                  "type": "page",
+                  "title": "Telegram",
+                  "filepath": "docs/zh/integrations/channels/telegram.md"
+                },
+                "/feishu": {
+                  "type": "page",
+                  "title": "飞书",
+                  "filepath": "docs/zh/integrations/channels/feishu.md"
+                },
+                "/discord": {
+                  "type": "page",
+                  "title": "Discord",
+                  "filepath": "docs/zh/integrations/channels/discord.md"
+                },
+                "/qq": {
+                  "type": "page",
+                  "title": "QQ",
+                  "filepath": "docs/zh/integrations/channels/qq.md"
+                },
+                "/matrix": {
+                  "type": "page",
+                  "title": "Matrix",
+                  "filepath": "docs/zh/integrations/channels/matrix.md"
+                },
+                "/misskey": {
+                  "type": "page",
+                  "title": "Misskey",
+                  "filepath": "docs/zh/integrations/channels/misskey.md"
+                },
+                "/line": {
+                  "type": "page",
+                  "title": "LINE",
+                  "filepath": "docs/zh/integrations/channels/line.md"
+                },
+                "/dingtalk": {
+                  "type": "page",
+                  "title": "钉钉",
+                  "filepath": "docs/zh/integrations/channels/dingtalk.md"
+                },
+                "/wecom": {
+                  "type": "page",
+                  "title": "企微",
+                  "filepath": "docs/zh/integrations/channels/wecom.md"
+                },
+                "/weixin": {
+                  "type": "page",
+                  "title": "微信",
+                  "filepath": "docs/zh/integrations/channels/weixin.md"
+                },
+                "/wechatoa": {
+                  "type": "page",
+                  "title": "微信公众号",
+                  "filepath": "docs/zh/integrations/channels/wechatoa.md"
+                }
+              }
+            },
+            "/providers": {
+              "type": "group",
+              "title": "提供方",
+              "icon": "phosphor/regular/stack",
+              "children": {
+                "": {
+                  "type": "page",
+                  "title": "总览",
+                  "filepath": "docs/zh/integrations/providers/index.md"
+                },
+                "/llm": {
+                  "type": "page",
+                  "title": "LLM 提供方",
+                  "filepath": "docs/zh/integrations/providers/llm.mdx"
+                },
+                "/web-search": {
+                  "type": "page",
+                  "title": "网页搜索提供方",
+                  "filepath": "docs/zh/integrations/providers/web-search.md"
+                },
+                "/video": {
+                  "type": "page",
+                  "title": "视频提供方",
+                  "filepath": "docs/zh/integrations/providers/video.md"
+                },
+                "/memory": {
+                  "type": "group",
+                  "title": "记忆提供方",
+                  "icon": "phosphor/regular/brain",
+                  "children": {
+                    "": {
+                      "type": "page",
+                      "title": "总览",
+                      "filepath": "docs/zh/integrations/providers/memory/index.md"
+                    },
+                    "/builtin": {
+                      "type": "page",
+                      "title": "内置",
+                      "filepath": "docs/zh/integrations/providers/memory/builtin.md"
+                    },
+                    "/mem0": {
+                      "type": "page",
+                      "title": "Mem0",
+                      "filepath": "docs/zh/integrations/providers/memory/mem0.md"
+                    },
+                    "/openviking": {
+                      "type": "page",
+                      "title": "OpenViking",
+                      "filepath": "docs/zh/integrations/providers/memory/openviking.md"
+                    }
+                  }
+                },
+                "/tts": {
+                  "type": "group",
+                  "title": "TTS 提供方",
+                  "icon": "phosphor/regular/speaker-high",
+                  "children": {
+                    "": {
+                      "type": "page",
+                      "title": "总览",
+                      "filepath": "docs/zh/integrations/providers/tts/index.md"
+                    },
+                    "/edge": {
+                      "type": "page",
+                      "title": "Edge TTS",
+                      "filepath": "docs/zh/integrations/providers/tts/edge.md"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/self-hosted": {
+          "type": "group",
+          "title": "自托管",
+          "icon": "phosphor/regular/hard-drives",
+          "children": {
+            "": {
+              "type": "page",
+              "title": "总览",
+              "filepath": "docs/zh/self-hosted/index.md"
+            },
+            "/desktop": {
+              "type": "page",
+              "title": "桌面版",
+              "filepath": "docs/zh/self-hosted/desktop.md"
+            },
+            "/docker": {
+              "type": "page",
+              "title": "服务器部署",
+              "filepath": "docs/zh/self-hosted/docker.md"
+            },
+            "/workspace-backends": {
+              "type": "page",
+              "title": "Workspace 后端",
+              "filepath": "docs/zh/self-hosted/workspace-backends.mdx"
+            },
+            "/sqlite": {
+              "type": "page",
+              "title": "SQLite",
+              "filepath": "docs/zh/self-hosted/sqlite.md"
+            },
+            "/kata-containerd": {
+              "type": "page",
+              "title": "Containerd + Kata（已移除）",
+              "filepath": "docs/zh/self-hosted/kata-containerd.mdx",
+              "showInSidebar": false
+            }
+          }
+        },
+        "/about": {
+          "type": "page",
+          "title": "关于",
+          "filepath": "docs/zh/about.md",
+          "showInSidebar": false
+        }
+      }
+    }
+  }
+}

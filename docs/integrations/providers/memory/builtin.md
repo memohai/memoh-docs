@@ -115,4 +115,4 @@ Once a memory provider is assigned to the bot, you can manage actual memories fr
 - Search, edit, and delete memories
 - Compact or rebuild the memory store
 
-For day-to-day memory operations, continue with [Bot Memory Management](/guides/memory.md).
+For day-to-day memory operations, continue with [Bot Memory Management](/guides/memory).

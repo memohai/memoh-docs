@@ -38,7 +38,7 @@ Access control is split between channel-side chat permissions and workspace-side
 
 - **[Bot Setup](/guides/bot)** - create and configure a bot.
 - **[Providers And Models](/integrations/providers/llm)** - configure model access.
-- **[Channels](/integrations/channels/)** - choose where bots are reachable.
+- **[Channels](/integrations/channels)** - choose where bots are reachable.
 - **[Plugins](/guides/plugins)** and **[Supermarket](/guides/supermarket)** - install packaged capabilities.
 - **[Scheduled Tasks](/guides/schedule)** and **[Access Control](/guides/access)** - operate recurring work and permissions.
-- **[Self-hosted](/self-hosted/)** - deploy and maintain your own Memoh instance.
+- **[Self-hosted](/self-hosted)** - deploy and maintain your own Memoh instance.

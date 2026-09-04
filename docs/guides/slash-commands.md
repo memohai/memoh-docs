@@ -38,7 +38,7 @@ Two commands are **top-level** instead of resource groups:
 
 ## Skill Activation And Quick Actions
 
-Besides fixed commands, the slash system can activate the bot's [Skills](/guides/skills.md) on demand:
+Besides fixed commands, the slash system can activate the bot's [Skills](/guides/skills) on demand:
 
 ```text
 /<skill-name> [optional prompt]

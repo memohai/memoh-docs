@@ -54,5 +54,5 @@ If the workspace is unreachable when generation finishes, the task still complet
 
 ## Related Pages
 
-- [Providers And Models](/integrations/providers/llm.md)
-- [Bot Workspace Management](/guides/container.md)
+- [Providers And Models](/integrations/providers/llm)
+- [Bot Workspace Management](/guides/container)

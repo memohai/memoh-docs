@@ -27,5 +27,5 @@
 
 ## 其他文档区域
 
-- **[集成](/zh/integrations/)**：连接渠道和提供方。
-- **[自托管](/zh/self-hosted/)**：部署和运维自己的 Memoh 实例。
+- **[集成](/zh/integrations)**：连接渠道和提供方。
+- **[自托管](/zh/self-hosted)**：部署和运维自己的 Memoh 实例。

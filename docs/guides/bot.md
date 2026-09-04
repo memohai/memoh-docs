@@ -60,11 +60,11 @@ After creating a bot, the most important step is configuring its runtime setting
 If you have not created these resources yet, set them up first:
 
 - [Providers And Models](/integrations/providers/llm)
-- [Built-in Memory Provider](/integrations/providers/memory/builtin.md)
+- [Built-in Memory Provider](/integrations/providers/memory/builtin)
 - [Search Providers](/integrations/providers/web-search)
-- [TTS Providers](/integrations/providers/tts/index.md)
-- [Agents / ACP](/guides/acp.md)
-- [Plugins](/guides/plugins.md)
+- [TTS Providers](/integrations/providers/tts)
+- [Agents / ACP](/guides/acp)
+- [Plugins](/guides/plugins)
 
 ---
 
@@ -88,7 +88,7 @@ The **General** tab contains the settings that shape everyday conversation behav
 Notes:
 
 - The **Image Generation Model** is intentionally separate from the normal chat model so you can dedicate an image-capable model only to visual generation tasks.
-- The **TTS Model** comes from the [TTS Providers](/integrations/providers/tts/index.md) system and uses `speech` models from the configured speech provider.
+- The **TTS Model** comes from the [TTS Providers](/integrations/providers/tts) system and uses `speech` models from the configured speech provider.
 - The selected chat model's `context_window` influences session status reporting and [Context Compaction](/guides/compaction).
 
 ---
@@ -153,7 +153,7 @@ Workspace files and terminals are available from the chat workspace UI after the
 - Open terminal sessions inside the workspace runtime.
 - Use display/browser tools when the bot workspace has display support enabled.
 
-For file workflows, see [Files](/guides/files.md). For headed browser and desktop workflows, see [Browser / Computer Use](/guides/browser-computer-use.md).
+For file workflows, see [Files](/guides/files). For headed browser and desktop workflows, see [Browser / Computer Use](/guides/browser-computer-use).
 
 ---
 

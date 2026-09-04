@@ -45,7 +45,7 @@ Desktop 也可以不用自己的本地后端，直接作为 [Server Deploy](/zh/
 
 ## 把这台电脑共享给机器人
 
-Desktop 可以把它所在的这台机器注册成 server 侧机器人可用的**电脑**，不用另跑 runtime 进程：打开**这台电脑**开关、起个名字，Desktop 在后台维持连接。权限模型和按机器人的配置见 [电脑（远程 Runtime）](/zh/guides/computers.md)。
+Desktop 可以把它所在的这台机器注册成 server 侧机器人可用的**电脑**，不用另跑 runtime 进程：打开**这台电脑**开关、起个名字，Desktop 在后台维持连接。权限模型和按机器人的配置见 [电脑（远程 Runtime）](/zh/guides/computers)。
 
 ## Workspace 行为
 
