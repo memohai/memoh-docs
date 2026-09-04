@@ -100,7 +100,7 @@ Managed OAuth 成功后，Memoh 会刷新插件状态，并在插件进入 `read
 
 ## 相关页面
 
-- [Supermarket](/zh/guides/supermarket.md)
-- [技能](/zh/guides/skills.md)
-- [MCP](/zh/guides/mcp.md)
-- [机器人](/zh/guides/bot.md)
+- [Supermarket](/zh/guides/supermarket)
+- [技能](/zh/guides/skills)
+- [MCP](/zh/guides/mcp)
+- [机器人](/zh/guides/bot)

@@ -1,0 +1,30 @@
+name: Validate Docs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "scalar.config.json"
+      - "docs/**"
+  pull_request:
+    paths:
+      - "scalar.config.json"
+      - "docs/**"
+
+jobs:
+  validate:
+    name: Validate scalar.config.json
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Validate
+        run: npx @scalar/cli@latest project check-config

@@ -100,7 +100,7 @@ When managed OAuth succeeds, Memoh refreshes the plugin status and enables the m
 
 ## Related Pages
 
-- [Supermarket](/guides/supermarket.md)
-- [Skills](/guides/skills.md)
-- [MCP](/guides/mcp.md)
-- [Bot Management](/guides/bot.md)
+- [Supermarket](/guides/supermarket)
+- [Skills](/guides/skills)
+- [MCP](/guides/mcp)
+- [Bot Management](/guides/bot)

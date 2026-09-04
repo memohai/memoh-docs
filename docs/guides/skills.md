@@ -1,6 +1,6 @@
 # Bot Skills
 
-Skills are reusable prompt modules that extend a bot's behavior, style, and tool-usage guidance. You manage them from the bot's **Skills** tab, and you can either write them yourself or install them from **[Supermarket](/guides/supermarket.md)**.
+Skills are reusable prompt modules that extend a bot's behavior, style, and tool-usage guidance. You manage them from the bot's **Skills** tab, and you can either write them yourself or install them from **[Supermarket](/guides/supermarket)**.
 
 ---
 
@@ -154,4 +154,4 @@ If a discovered skill is useful but you want to fully manage it in Memoh, adopt 
 2. Prefer clear names and short descriptions.
 3. Use **Disable** before **Delete** if you are unsure.
 4. Use **Adopt** for legacy skills you plan to keep.
-5. Install reusable skills from **[Supermarket](/guides/supermarket.md)** instead of copy-pasting them repeatedly.
+5. Install reusable skills from **[Supermarket](/guides/supermarket)** instead of copy-pasting them repeatedly.

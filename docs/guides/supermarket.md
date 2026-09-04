@@ -8,13 +8,13 @@ The Web UI shows Supermarket under Settings with three tabs:
 - **Plugins**
 - **Skills**
 
-**Connectors** comes first and is the default landing tab when the server has [Connect-It configured](/guides/connectors.md#requirements). Without Connect-It, the tab is hidden and **Plugins** is the default instead.
+**Connectors** comes first and is the default landing tab when the server has [Connect-It configured](/guides/connectors#requirements). Without Connect-It, the tab is hidden and **Plugins** is the default instead.
 
 ---
 
 ## Connect A Service
 
-The **Connectors** tab lists services a bot can connect through OAuth or an API key. Pick one, click **Connect**, select the target bot, and complete the authorization. The full flow — authentication methods, connection statuses, and how connector tools reach the bot — is documented in [Connectors](/guides/connectors.md).
+The **Connectors** tab lists services a bot can connect through OAuth or an API key. Pick one, click **Connect**, select the target bot, and complete the authorization. The full flow — authentication methods, connection statuses, and how connector tools reach the bot — is documented in [Connectors](/guides/connectors).
 
 ---
 

@@ -47,7 +47,7 @@ Computer Use depends on the `a11y-cli` binary installed under `/opt/memoh/toolki
 
 These tools are workspace runtime features. They do not automate the Electron desktop app itself.
 
-When a bot has remote [Computers](/guides/computers.md) attached, Browser Use and Computer Use still run in the **Server Workspace** — they do not follow the selected work location.
+When a bot has remote [Computers](/guides/computers) attached, Browser Use and Computer Use still run in the **Server Workspace** — they do not follow the selected work location.
 
 ## Related
 

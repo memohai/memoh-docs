@@ -4,13 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "serve": "vitepress serve docs",
-    "preview": "vitepress preview docs"
+    "dev": "scalar project preview",
+    "check": "scalar project check-config",
+    "publish:docs": "scalar project publish"
   },
   "devDependencies": {
-    "vitepress": "^1.6.0",
-    "vue": "^3.5.0"
+    "@scalar/cli": "^2.1.0"
   }
 }

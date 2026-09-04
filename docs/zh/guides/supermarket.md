@@ -8,13 +8,13 @@ Web UI 会在 Settings 下显示 Supermarket，提供三个 tab：
 - **Plugins**
 - **Skills**
 
-服务器[配置了 Connect-It](/zh/guides/connectors.md#前提) 时，**Connectors** 排在第一个，也是默认落地的 tab；没配置时这个 tab 不显示，默认落在 **Plugins**。
+服务器[配置了 Connect-It](/zh/guides/connectors#前提) 时，**Connectors** 排在第一个，也是默认落地的 tab；没配置时这个 tab 不显示，默认落在 **Plugins**。
 
 ---
 
 ## 连接一个服务
 
-**Connectors** tab 列出可以通过 OAuth 或 API Key 连给 Bot 的服务。挑一个点 **Connect**，选目标 Bot，完成授权即可。完整流程——认证方式、连接状态、工具怎么到 Bot 手上——见[连接器](/zh/guides/connectors.md)。
+**Connectors** tab 列出可以通过 OAuth 或 API Key 连给 Bot 的服务。挑一个点 **Connect**，选目标 Bot，完成授权即可。完整流程——认证方式、连接状态、工具怎么到 Bot 手上——见[连接器](/zh/guides/connectors)。
 
 ---
 

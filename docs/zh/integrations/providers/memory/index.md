@@ -4,9 +4,9 @@
 
 ## 有哪些
 
-- [内置](/zh/integrations/providers/memory/builtin.md)：默认自带，可关、稀疏、稠密三档，全可自建。
-- [Mem0](/zh/integrations/providers/memory/mem0.md)：走 Mem0 云 API，要密钥。
-- [OpenViking](/zh/integrations/providers/memory/openviking.md)：自建或 SaaS，自有 API。
+- [内置](/zh/integrations/providers/memory/builtin)：默认自带，可关、稀疏、稠密三档，全可自建。
+- [Mem0](/zh/integrations/providers/memory/mem0)：走 Mem0 云 API，要密钥。
+- [OpenViking](/zh/integrations/providers/memory/openviking)：自建或 SaaS，自有 API。
 
 ---
 
@@ -22,7 +22,7 @@
 
 ## 接下来
 
-- [内置](/zh/integrations/providers/memory/builtin.md)
-- [Mem0](/zh/integrations/providers/memory/mem0.md)
-- [OpenViking](/zh/integrations/providers/memory/openviking.md)
-- 条目级操作：[长期记忆](/zh/guides/memory.md)
+- [内置](/zh/integrations/providers/memory/builtin)
+- [Mem0](/zh/integrations/providers/memory/mem0)
+- [OpenViking](/zh/integrations/providers/memory/openviking)
+- 条目级操作：[长期记忆](/zh/guides/memory)

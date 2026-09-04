@@ -18,7 +18,7 @@ api_token = ""  # trusted server-to-server token
 
 Leaving both empty disables the feature. In deployed environments, prefer the matching environment variables (`MEMOH_CONNECT_IT_BASE_URL`, `MEMOH_CONNECT_IT_API_TOKEN`).
 
-The one-click server deployment provisions a co-hosted Connect-It automatically on fresh installs; see [Server Deploy](/self-hosted/docker.md#connect-it-connectors). When Connect-It is not configured, the Supermarket hides the **Connectors** tab and connector operations report that connectors are not configured on this server.
+The one-click server deployment provisions a co-hosted Connect-It automatically on fresh installs; see [Server Deploy](/self-hosted/docker#connect-it-connectors). When Connect-It is not configured, the Supermarket hides the **Connectors** tab and connector operations report that connectors are not configured on this server.
 
 ---
 
@@ -67,6 +67,6 @@ Each connection gets a **tool namespace** derived from the connector type when i
 
 ## Related Pages
 
-- [Supermarket](/guides/supermarket.md) — where connectors are discovered and connected.
-- [MCP](/guides/mcp.md) — direct MCP connection management.
-- [Server Deploy](/self-hosted/docker.md#connect-it-connectors) — co-hosted Connect-It provisioning, credentials, and the OAuth callback URL.
+- [Supermarket](/guides/supermarket) — where connectors are discovered and connected.
+- [MCP](/guides/mcp) — direct MCP connection management.
+- [Server Deploy](/self-hosted/docker#connect-it-connectors) — co-hosted Connect-It provisioning, credentials, and the OAuth callback URL.

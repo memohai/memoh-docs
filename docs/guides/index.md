@@ -27,5 +27,5 @@ Use these guides to learn Memoh from the product workflow side. They assume you 
 
 ## Other Documentation Areas
 
-- **[Integrations](/integrations/)**: Connect channels and providers.
-- **[Self-hosted](/self-hosted/)**: Deploy and operate your own Memoh instance.
+- **[Integrations](/integrations)**: Connect channels and providers.
+- **[Self-hosted](/self-hosted)**: Deploy and operate your own Memoh instance.

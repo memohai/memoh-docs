@@ -45,7 +45,7 @@ Switching to a different server clears the local sign-in state, so you will auth
 
 ## Sharing this computer with bots
 
-Desktop can register the machine it runs on as a **Computer** that server-side bots can work on, without running a separate runtime process. Enable **This computer**, give it a name, and Desktop keeps the connection alive in the background. See [Computers](/guides/computers.md) for the permission model and per-bot setup.
+Desktop can register the machine it runs on as a **Computer** that server-side bots can work on, without running a separate runtime process. Enable **This computer**, give it a name, and Desktop keeps the connection alive in the background. See [Computers](/guides/computers) for the permission model and per-bot setup.
 
 ## Workspace behavior
 

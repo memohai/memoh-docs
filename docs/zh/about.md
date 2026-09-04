@@ -38,7 +38,7 @@ Web UI 覆盖了更多日常操作：机器人设置、会话、供应商、渠�
 
 - **[机器人](/zh/guides/bot)** - 创建并配置机器人。
 - **[供应商与模型](/zh/integrations/providers/llm)** - 配置模型访问。
-- **[渠道](/zh/integrations/channels/)** - 选择机器人出现的位置。
+- **[渠道](/zh/integrations/channels)** - 选择机器人出现的位置。
 - **[插件](/zh/guides/plugins)** 和 **[Supermarket](/zh/guides/supermarket)** - 安装打包能力。
 - **[计划任务](/zh/guides/schedule)** 和 **[访问控制](/zh/guides/access)** - 运维周期性工作和权限。
-- **[自托管](/zh/self-hosted/)** - 部署并维护自己的 Memoh 实例。
+- **[自托管](/zh/self-hosted)** - 部署并维护自己的 Memoh 实例。

@@ -294,6 +294,6 @@ Hooks 很强大。请把它们当成会在机器人 workspace 里运行的代码
 
 ## 相关页面
 
-- [机器人](/zh/guides/bot.md)
-- [插件](/zh/guides/plugins.md)
-- [技能](/zh/guides/skills.md)
+- [机器人](/zh/guides/bot)
+- [插件](/zh/guides/plugins)
+- [技能](/zh/guides/skills)

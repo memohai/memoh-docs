@@ -24,7 +24,7 @@ Memoh supports **Text-to-Speech (TTS)** so bots can synthesize spoken audio from
 
 | Provider | Description |
 |----------|-------------|
-| [Edge TTS](/integrations/providers/tts/edge.md) | Free, uses Microsoft Edge's public read-aloud API. 256+ voices across 50+ languages. No API key required. |
+| [Edge TTS](/integrations/providers/tts/edge) | Free, uses Microsoft Edge's public read-aloud API. 256+ voices across 50+ languages. No API key required. |
 | OpenAI-compatible speech | Uses OpenAI-compatible speech APIs when configured with a matching provider template and credentials. |
 | OpenRouter Speech | Uses OpenRouter speech-capable routes when available to the configured account. |
 | ElevenLabs Speech | Uses ElevenLabs text-to-speech models and voices. |
@@ -42,5 +42,5 @@ Transcription is managed separately from TTS. Memoh also supports transcription 
 
 ## Next Steps
 
-- To set up the no-key Edge option, continue with [Edge TTS](/integrations/providers/tts/edge.md).
+- To set up the no-key Edge option, continue with [Edge TTS](/integrations/providers/tts/edge).
 - To understand how audio provider client types relate to models, see [Providers And Models](/integrations/providers/llm).

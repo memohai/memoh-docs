@@ -4,9 +4,9 @@ Server Deploy is the self-hosted Memoh stack for always-on, multi-user or multi-
 
 This page documents the Docker Compose server deployment. For the native local client, see [Desktop Installation](/self-hosted/desktop).
 
-The default Compose stack includes PostgreSQL, the main server with an explicit workspace backend and in-process AI agent, and the web UI. SQLite is also available for single-node server installs; see [SQLite deployment](/self-hosted/sqlite.md).
+The default Compose stack includes PostgreSQL, the main server with an explicit workspace backend and in-process AI agent, and the web UI. SQLite is also available for single-node server installs; see [SQLite deployment](/self-hosted/sqlite).
 
-The official Compose stack uses the `containerd` workspace backend. The server image starts an embedded containerd and mounts the runtime files needed by bot workspaces. For Docker Engine and Apple backends, see [Workspace backends](/self-hosted/workspace-backends.md).
+The official Compose stack uses the `containerd` workspace backend. The server image starts an embedded containerd and mounts the runtime files needed by bot workspaces. For Docker Engine and Apple backends, see [Workspace backends](/self-hosted/workspace-backends).
 
 ## Service Architecture
 
@@ -19,7 +19,7 @@ The Docker Compose stack consists of multiple services. Some are always started,
 | **postgres** | *(core)* | PostgreSQL database |
 | **qdrant** | `qdrant` | Qdrant vector database for memory search (sparse and dense modes) |
 | **sparse** | `sparse` | Neural sparse encoding service for memory retrieval (see below) |
-| **connect-it** | `connectors` | Co-hosted [Connect-It](https://github.com/memohai/connect-it) service backing bot [connectors](/guides/connectors.md) (see below) |
+| **connect-it** | `connectors` | Co-hosted [Connect-It](https://github.com/memohai/connect-it) service backing bot [connectors](/guides/connectors) (see below) |
 
 ### Sparse Service
 
@@ -45,11 +45,11 @@ Enable the sparse profile (`--profile sparse`) if you plan to use the built-in m
 docker compose --profile qdrant --profile sparse up -d
 ```
 
-For more details on memory modes, see [Built-in Memory Provider](/integrations/providers/memory/builtin.md).
+For more details on memory modes, see [Built-in Memory Provider](/integrations/providers/memory/builtin).
 
 ### Connect-It Connectors
 
-The **connect-it** container runs [Connect-It](https://github.com/memohai/connect-it), the service behind bot [connectors](/guides/connectors.md) — third-party service connections (GitHub, Notion, and so on) over OAuth or API keys. It shares the Memoh PostgreSQL instance under a separate `connect_it` schema and manages its own migrations.
+The **connect-it** container runs [Connect-It](https://github.com/memohai/connect-it), the service behind bot [connectors](/guides/connectors) — third-party service connections (GitHub, Notion, and so on) over OAuth or API keys. It shares the Memoh PostgreSQL instance under a separate `connect_it` schema and manages its own migrations.
 
 The install script manages Connect-It end to end:
 
@@ -193,7 +193,7 @@ Edit `config.toml` — at minimum change:
 - `auth.jwt_secret` — Generate with `openssl rand -base64 32`
 - `postgres.password` — Database password (also set `POSTGRES_PASSWORD` env var to match)
 
-For SQLite, set `database.driver = "sqlite"` and use `docker-compose.sqlite.yml`. Details are in [SQLite deployment](/self-hosted/sqlite.md).
+For SQLite, set `database.driver = "sqlite"` and use `docker-compose.sqlite.yml`. Details are in [SQLite deployment](/self-hosted/sqlite).
 
 Then start (recommended — with Qdrant and Sparse):
 
@@ -211,7 +211,7 @@ POSTGRES_PASSWORD=your-db-password docker compose up -d
 
 > **Important**: `docker-compose.yml` mounts `./config.toml` by default. You must create this file before starting — running without it will fail.
 
-To enable [connectors](/guides/connectors.md) in a manual deployment, generate the Connect-It credentials yourself and add the `connectors` profile:
+To enable [connectors](/guides/connectors) in a manual deployment, generate the Connect-It credentials yourself and add the `connectors` profile:
 
 ```bash
 MEMOH_CONNECT_IT_BASE_URL="http://connect-it:8421" \
@@ -279,7 +279,7 @@ The `config.toml` file controls all server behavior. Here is a summary of the av
 | `[qdrant]` | Qdrant vector database connection (base_url, api_key, timeout) |
 | `[sparse]` | Sparse encoding service URL |
 | `[registry]` | Provider definitions directory |
-| `[connect_it]` | Connect-It endpoint for [connectors](/guides/connectors.md) (`base_url`, `api_token`); both empty disables the feature. The Compose environment overrides these via `MEMOH_CONNECT_IT_BASE_URL` / `MEMOH_CONNECT_IT_API_TOKEN`. |
+| `[connect_it]` | Connect-It endpoint for [connectors](/guides/connectors) (`base_url`, `api_token`); both empty disables the feature. The Compose environment overrides these via `MEMOH_CONNECT_IT_BASE_URL` / `MEMOH_CONNECT_IT_API_TOKEN`. |
 | `[web]` | Web frontend host and port |
 | `[agent]` | Tool output truncation limits: `tool_output_max_bytes` (default 65536), `tool_output_max_lines` (default 2000), `system_files_max_bytes` (default 32768). Oversized tool output keeps head and tail instead of being cut off blindly. |
 | `[session_runtime]` | Session-state backend for multi-instance deployments; see [Multi-Instance Deployments](#multi-instance-deployments) |

@@ -40,4 +40,4 @@ After creating a provider, select it from the list and configure its settings.
 
 Once assigned, the bot will use OpenViking as its memory backend. Memory extraction, search, and management operations are routed through the OpenViking API.
 
-For day-to-day memory operations, see [Bot Memory Management](/guides/memory.md).
+For day-to-day memory operations, see [Bot Memory Management](/guides/memory).

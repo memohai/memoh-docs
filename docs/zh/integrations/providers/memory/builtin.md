@@ -99,4 +99,4 @@ base_url = "http://qdrant:6334"
 
 ## 配好之后
 
-在 **Memory** tab 可手建、从对话抽、搜、改、压、重建等。日常操作见 [长期记忆](/zh/guides/memory.md)。
+在 **Memory** tab 可手建、从对话抽、搜、改、压、重建等。日常操作见 [长期记忆](/zh/guides/memory)。

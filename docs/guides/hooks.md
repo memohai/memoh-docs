@@ -294,6 +294,6 @@ Hooks are powerful. Treat them like code that runs inside the bot workspace.
 
 ## Related Pages
 
-- [Bot Management](/guides/bot.md)
-- [Plugins](/guides/plugins.md)
-- [Skills](/guides/skills.md)
+- [Bot Management](/guides/bot)
+- [Plugins](/guides/plugins)
+- [Skills](/guides/skills)

@@ -90,7 +90,7 @@ ACP work uses the `acp_agent` session type. These sessions are created and manag
 
 ## Related Pages
 
-- [Bot Management](/guides/bot.md)
-- [Sessions](/guides/sessions.md)
-- [Files](/guides/files.md)
-- [Providers And Models](/integrations/providers/llm.md)
+- [Bot Management](/guides/bot)
+- [Sessions](/guides/sessions)
+- [Files](/guides/files)
+- [Providers And Models](/integrations/providers/llm)

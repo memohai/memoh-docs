@@ -4,9 +4,9 @@ Server Deploy 是 Memoh 的自托管服务端部署形态，适合长期在线�
 
 本页说明 Docker Compose 版 Server Deploy。要安装本地原生客户端，请看 [Desktop 桌面版](/zh/self-hosted/desktop)。
 
-默认编排里包含 PostgreSQL、主服务（显式配置 workspace backend，智能体也在同一进程）和网页前端。单机轻量 server 部署也可以用 SQLite，见 [SQLite 部署](/zh/self-hosted/sqlite.md)。
+默认编排里包含 PostgreSQL、主服务（显式配置 workspace backend，智能体也在同一进程）和网页前端。单机轻量 server 部署也可以用 SQLite，见 [SQLite 部署](/zh/self-hosted/sqlite)。
 
-官方 Compose 栈使用 `containerd` workspace backend。server 镜像会启动内置 containerd，并挂好机器人 workspace 需要的 runtime 文件。Docker Engine 和 Apple 后端见 [Workspace backend](/zh/self-hosted/workspace-backends.md)。
+官方 Compose 栈使用 `containerd` workspace backend。server 镜像会启动内置 containerd，并挂好机器人 workspace 需要的 runtime 文件。Docker Engine 和 Apple 后端见 [Workspace backend](/zh/self-hosted/workspace-backends)。
 
 ## 服务结构
 
@@ -19,7 +19,7 @@ Compose 里有多组服务。有的默认就起，有的通过 `--profile` 打�
 | **postgres** | *（核心）* | PostgreSQL |
 | **qdrant** | `qdrant` | 向量库，给记忆检索用（稀疏/稠密） |
 | **sparse** | `sparse` | 神经稀疏编码，给记忆检索（见下） |
-| **connect-it** | `connectors` | 同机部署的 [Connect-It](https://github.com/memohai/connect-it)，支撑 Bot [连接器](/zh/guides/connectors.md)（见下） |
+| **connect-it** | `connectors` | 同机部署的 [Connect-It](https://github.com/memohai/connect-it)，支撑 Bot [连接器](/zh/guides/connectors)（见下） |
 
 ### sparse 服务
 
@@ -45,11 +45,11 @@ Compose 里有多组服务。有的默认就起，有的通过 `--profile` 打�
 docker compose --profile qdrant --profile sparse up -d
 ```
 
-模式细节见 [内置记忆提供方](/zh/integrations/providers/memory/builtin.md)。
+模式细节见 [内置记忆提供方](/zh/integrations/providers/memory/builtin)。
 
 ### Connect-It 连接器
 
-**connect-it** 容器跑的是 [Connect-It](https://github.com/memohai/connect-it)，Bot [连接器](/zh/guides/connectors.md)背后的服务——通过 OAuth 或 API Key 把第三方服务（GitHub、Notion 这类）连给 Bot。它共用 Memoh 的 PostgreSQL，数据隔离在单独的 `connect_it` schema 里，迁移自己管。
+**connect-it** 容器跑的是 [Connect-It](https://github.com/memohai/connect-it)，Bot [连接器](/zh/guides/connectors)背后的服务——通过 OAuth 或 API Key 把第三方服务（GitHub、Notion 这类）连给 Bot。它共用 Memoh 的 PostgreSQL，数据隔离在单独的 `connect_it` schema 里，迁移自己管。
 
 安装脚本把 Connect-It 全程管起来：
 
@@ -170,7 +170,7 @@ cp conf/app.docker.toml config.toml
 - `auth.jwt_secret`（可 `openssl rand -base64 32`）
 - `postgres.password`（环境变量 `POSTGRES_PASSWORD` 要一致）
 
-如果用 SQLite，把 `database.driver` 改成 `"sqlite"`，并使用 `docker-compose.sqlite.yml`。详细步骤见 [SQLite 部署](/zh/self-hosted/sqlite.md)。
+如果用 SQLite，把 `database.driver` 改成 `"sqlite"`，并使用 `docker-compose.sqlite.yml`。详细步骤见 [SQLite 部署](/zh/self-hosted/sqlite)。
 
 然后（推荐开 Qdrant 和 sparse）：
 
@@ -188,7 +188,7 @@ POSTGRES_PASSWORD=你的库密码 docker compose up -d
 
 > **重要**：`docker-compose.yml` 默认挂 `./config.toml`，先建好文件再 `up`，否则起不来。
 
-手动部署要开[连接器](/zh/guides/connectors.md)的话，自己生成 Connect-It 凭据并加 `connectors` profile：
+手动部署要开[连接器](/zh/guides/connectors)的话，自己生成 Connect-It 凭据并加 `connectors` profile：
 
 ```bash
 MEMOH_CONNECT_IT_BASE_URL="http://connect-it:8421" \
@@ -254,7 +254,7 @@ docker compose -f docker-compose.yml -f docker/docker-compose.cn.yml \
 | `[qdrant]` | Qdrant 地址、密钥、超时 |
 | `[sparse]` | 稀疏服务 URL |
 | `[registry]` | 供应商定义目录 |
-| `[connect_it]` | [连接器](/zh/guides/connectors.md)用的 Connect-It 地址（`base_url`、`api_token`）；两项都空即关闭该功能。Compose 环境里由 `MEMOH_CONNECT_IT_BASE_URL` / `MEMOH_CONNECT_IT_API_TOKEN` 覆盖 |
+| `[connect_it]` | [连接器](/zh/guides/connectors)用的 Connect-It 地址（`base_url`、`api_token`）；两项都空即关闭该功能。Compose 环境里由 `MEMOH_CONNECT_IT_BASE_URL` / `MEMOH_CONNECT_IT_API_TOKEN` 覆盖 |
 | `[web]` | 前端 host/port |
 | `[agent]` | 工具输出截断上限：`tool_output_max_bytes`（默认 65536）、`tool_output_max_lines`（默认 2000）、`system_files_max_bytes`（默认 32768）。超限时保留头尾，不是盲切。 |
 | `[session_runtime]` | 多实例部署的会话状态后端，见上面「多实例部署」 |

@@ -14,7 +14,7 @@ New bots ship with automatic context compaction **enabled and zero-config**. You
 - If a session grows past about **75%** before the background pass catches up, Memoh compacts **synchronously** before sending the next turn.
 - Either path aims to bring the raw history back down to about **40%** of the window.
 
-The only real prerequisite: the bot's chat model must declare a `context_window` in its model settings. Without it, the automatic policy has no budget to work against and never triggers. See [Providers And Models](/integrations/providers/llm.md).
+The only real prerequisite: the bot's chat model must declare a `context_window` in its model settings. Without it, the automatic policy has no budget to work against and never triggers. See [Providers And Models](/integrations/providers/llm).
 
 Bots created before this default changed keep their stored settings and behave as configured (see legacy mode below).
 

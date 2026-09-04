@@ -55,11 +55,11 @@ Files、Terminal、Display、Browser 这些 workspace 工具在聊天 workspace 
 若这些资源还没有，先建好：
 
 - [供应商与模型](/zh/integrations/providers/llm)
-- [内置记忆提供方](/zh/integrations/providers/memory/builtin.md)（如用）
+- [内置记忆提供方](/zh/integrations/providers/memory/builtin)（如用）
 - [搜索提供方](/zh/integrations/providers/web-search)
-- [TTS 提供方](/zh/integrations/providers/tts/index)
-- [Agents / ACP](/zh/guides/acp.md)
-- [插件](/zh/guides/plugins.md)
+- [TTS 提供方](/zh/integrations/providers/tts)
+- [Agents / ACP](/zh/guides/acp)
+- [插件](/zh/guides/plugins)
 
 ---
 
@@ -81,8 +81,8 @@ Files、Terminal、Display、Browser 这些 workspace 工具在聊天 workspace 
 注意：
 
 - **生图模型** 故意与主聊天模型分开，好单独换「更擅长出图」的。
-- **TTS** 在 [TTS 提供方](/zh/integrations/providers/tts/index.md) 里用所配置语音提供方的 `speech` 模型。
-- `context_window` 会影响状态栏展示和 [会话压缩](/zh/guides/compaction.md) 的体感。
+- **TTS** 在 [TTS 提供方](/zh/integrations/providers/tts) 里用所配置语音提供方的 `speech` 模型。
+- `context_window` 会影响状态栏展示和 [会话压缩](/zh/guides/compaction) 的体感。
 
 ---
 
@@ -109,7 +109,7 @@ Files、Terminal、Display、Browser 这些 workspace 工具在聊天 workspace 
 | **Compaction Ratio** | 压多狠 |
 | **Compaction Model** | 可选，专门做摘要的模型 |
 
-细节见 [会话上下文压缩](/zh/guides/compaction.md)。
+细节见 [会话上下文压缩](/zh/guides/compaction)。
 
 ---
 
@@ -117,7 +117,7 @@ Files、Terminal、Display、Browser 这些 workspace 工具在聊天 workspace 
 
 创建时先给一个 **ACL 预设**，之后在 **Access** 里微调。**预设** 给一版默认策略，**Default Effect** 管「没命中规则时」放行还是挡。
 
-[会话](/zh/guides/sessions.md) 与 Discuss 的默认行为在那一页。若你用 API/自动化，配置里还可能有 `discuss_probe_model_id` 等进阶项，日常创建不必先动。
+[会话](/zh/guides/sessions) 与 Discuss 的默认行为在那一页。若你用 API/自动化，配置里还可能有 `discuss_probe_model_id` 等进阶项，日常创建不必先动。
 
 ---
 
@@ -129,7 +129,7 @@ Workspace 文件和终端在聊天 workspace UI 里使用；前提是该机器�
 - 打开 workspace 内的终端会话
 - 在开启 display 后使用浏览器/桌面相关工具
 
-文件流程见 [文件](/zh/guides/files.md)，有头浏览器和桌面操作见 [Browser / Computer Use](/zh/guides/browser-computer-use.md)。
+文件流程见 [文件](/zh/guides/files)，有头浏览器和桌面操作见 [Browser / Computer Use](/zh/guides/browser-computer-use)。
 
 ---
 

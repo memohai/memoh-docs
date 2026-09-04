@@ -14,7 +14,7 @@ The workspace acts as the bot's private computer. Within it, the bot can:
 
 The workspace toolkit ships both **Node.js** and **Python** runtimes (with `pip` and `uv` on the PATH), so bots can run Python scripts and install packages without preparing an interpreter first.
 
-A bot can also work outside its server workspace on connected machines — see [Computers](/guides/computers.md).
+A bot can also work outside its server workspace on connected machines — see [Computers](/guides/computers).
 
 The underlying runtime is selected globally with `[container].backend` in `config.toml`, with trusted local workspace support controlled separately. The official Docker Compose server deploy uses `containerd`; Docker Engine, Apple, and local workspace modes are documented in [Workspace Backends](/self-hosted/workspace-backends).
 

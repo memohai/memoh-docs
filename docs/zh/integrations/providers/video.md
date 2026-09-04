@@ -54,5 +54,5 @@ OpenRouter 支持 **Import Models** 在线拉模型列表；ModelArk 和火山�
 
 ## 相关页面
 
-- [提供方与模型](/zh/integrations/providers/llm.md)
-- [Workspace](/zh/guides/container.md)
+- [提供方与模型](/zh/integrations/providers/llm)
+- [Workspace](/zh/guides/container)
